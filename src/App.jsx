@@ -1,5 +1,4 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -15,12 +14,18 @@ function App() {
       <div className="app">
         <Header />
         <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/sobre" element={<Sobre />} />
-            <Route path="/habilidades" element={<Habilidades />} />
-            <Route path="/contato" element={<Contato />} />
-          </Routes>
+          <section id="inicio">
+            <Home />
+          </section>
+          <section id="sobre">
+            <Sobre />
+          </section>
+          <section id="habilidades">
+            <Habilidades />
+          </section>
+          <section id="contato">
+            <Contato />
+          </section>
         </main>
         <Footer />
       </div>
