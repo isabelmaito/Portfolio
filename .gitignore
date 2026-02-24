@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+package-lock.json
+yarn.lock
+
+# Build
+dist
+build
+.vite
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+
+# Editor
+.vscode
+.idea
+*.swp
+*.swo
