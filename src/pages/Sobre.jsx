@@ -40,11 +40,13 @@ const Sobre = () => {
           <div className="sobre-image">
             <div className="profile-card">
               <div className="profile-placeholder">
-                <div className="profile-icon">👨‍💻</div>
+                <div className="profile-photo">
+                    <image src="/profile.jpg" alt="Foto de Perfil" className="profile-photo" />
+                </div>
               </div>
               <div className="profile-info">
-                <h3>Desenvolvedor Full Stack</h3>
-                <p className="profile-subtitle">Apaixonado por tecnologia</p>
+                <h3>Desenvolvedora Full Stack</h3>
+                <p className="profile-subtitle">Apaixonada por tecnologia</p>
               </div>
             </div>
           </div>
