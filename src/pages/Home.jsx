@@ -8,9 +8,9 @@ const Home = () => {
     <div className="home">
       <div className="home-container">
         <div className="home-content">
-          <div className="greeting">Olá, eu sou</div>
+          <div className="greeting">Olá, eu sou Isabel Maito</div>
           <h1 className="title">
-            <span className="gradient-text">Desenvolvedor</span>
+            <span className="gradient-text">Desenvolvedora</span>
             <br />
             Full Stack
           </h1>
@@ -26,13 +26,13 @@ const Home = () => {
             </Link>
           </div>
           <div className="social-links">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href="https://github.com/isabelmaito" target="_blank" rel="noopener noreferrer" className="social-link">
               <Github size={24} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href="https://linkedin.com/in/isabelmaito" target="_blank" rel="noopener noreferrer" className="social-link">
               <Linkedin size={24} />
             </a>
-            <a href="mailto:contato@email.com" className="social-link">
+            <a href="mailto:maitoisabel@gmail.com" className="social-link">
               <Mail size={24} />
             </a>
           </div>
