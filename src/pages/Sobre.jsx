@@ -1,5 +1,6 @@
 import React from 'react';
 import { Code2, Rocket, Users, Award } from 'lucide-react';
+import profilePhoto from '../assets/Foto_eu_perfil.jpeg';
 import './Sobre.css';
 
 const Sobre = () => {
@@ -40,9 +41,7 @@ const Sobre = () => {
           <div className="sobre-image">
             <div className="profile-card">
               <div className="profile-placeholder">
-                <div className="profile-photo">
-                    <image src="/profile.jpg" alt="Foto de Perfil" className="profile-photo" />
-                </div>
+                <img src={profilePhoto} alt="Foto de Perfil" className="profile-photo" />
               </div>
               <div className="profile-info">
                 <h3>Desenvolvedora Full Stack</h3>
@@ -53,18 +52,24 @@ const Sobre = () => {
 
           <div className="sobre-content">
             <p className="sobre-text">
-              Olá! Sou um desenvolvedor apaixonado por criar experiências digitais incríveis. 
-              Com experiência em desenvolvimento web full stack, transformo ideias em realidade 
-              através de código limpo e eficiente.
+              Minha trajetória profissional é definida pela convergência entre a comunicação visual e a lógica computacional. 
+              Com mais de uma década de atuação em Design Gráfico, desenvolvi um olhar apurado para interfaces e usabilidade, 
+              competência que hoje aplico diretamente na construção de softwares intuitivos e visualmente coerentes. 
+              Minha passagem como Assistente de Engenharia, embora não tenha culminado na graduação da área, 
+              foi fundamental para estruturar meu pensamento analítico, ensinando-me a lidar com dados complexos, 
+              relatórios técnicos e resolução de problemas sob pressão.
             </p>
             <p className="sobre-text">
-              Minha jornada na programação começou com curiosidade e se transformou em uma 
-              paixão que me motiva a aprender constantemente. Trabalho com diversas tecnologias 
-              modernas e estou sempre explorando novas ferramentas para melhorar minhas habilidades.
+              Atualmente, dedico-me integralmente à transição para o Desenvolvimento de Software, cursando Tecnologia em Desenvolvimento Multiplataforma na Fatec 
+              e atuando como desenvolvedora freelancer. Tenho experiência prática na entrega de soluções Fullstack reais, 
+              como o desenvolvimento completo de sistemas para o setor imobiliário, onde utilizei React, Material UI e Styled Components no front-end, 
+              integrados a um back-end em Node.js (Express) e bancos de dados MySQL com Sequelize.
+
             </p>
             <p className="sobre-text">
-              Acredito que o desenvolvimento de software vai além do código - trata-se de 
-              resolver problemas reais e criar soluções que fazem a diferença na vida das pessoas.
+              Meu objetivo é atuar como Desenvolvedora de Software, trazendo para o time não apenas o conhecimento técnico em JavaScript, Python e frameworks modernos,
+              mas também a maturidade de quem entende o produto de ponta a ponta, do protótipo no Figma à implementação do código e deploy. 
+              Busco desafios que valorizem a capacidade de adaptação, o rigor técnico e a visão centrada na experiência do usuário.
             </p>
 
             <div className="stats">
