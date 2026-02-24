@@ -33,7 +33,7 @@ const Header = () => {
       <div className="header-container">
         <Link to="/" className="logo">
           <span className="logo-bracket">{'<'}</span>
-          Portfolio
+          Isabel Maito
           <span className="logo-bracket">{'/>'}</span>
         </Link>
 
