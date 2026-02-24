@@ -11,6 +11,11 @@
     width: 100%;
 }
 
+.main-content section {
+    min-height: 100vh;
+    scroll-margin-top: 80px;
+}
+
 /* Scrollbar styling for webkit browsers */
 ::-webkit-scrollbar {
     width: 12px;
