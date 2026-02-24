@@ -70,6 +70,40 @@
     justify-content: center;
     margin-bottom: 1.5rem;
     border: 2px solid var(--border);
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    transition: var(--transition);
+    filter: brightness(0.95) contrast(1.05);
+}
+
+.profile-placeholder:hover .profile-photo {
+    transform: scale(1.05);
+    filter: brightness(1) contrast(1.1);
+}
+
+.profile-placeholder::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(138, 43, 226, 0.1),
+        rgba(75, 0, 130, 0.1)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.profile-placeholder:hover::after {
+    opacity: 1;
 }
 
 .profile-icon {
@@ -102,6 +136,7 @@
     font-size: 1.0625rem;
     line-height: 1.8;
     margin-bottom: 1.5rem;
+    text-align: justify;
 }
 
 .stats {
@@ -203,6 +238,7 @@
     color: var(--text-secondary);
     line-height: 1.6;
     font-size: 0.9375rem;
+    text-align: justify;
 }
 
 @keyframes fadeInUp {
