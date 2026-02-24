@@ -74,11 +74,11 @@ const Sobre = () => {
 
             <div className="stats">
               <div className="stat">
-                <div className="stat-number">3+</div>
+                <div className="stat-number">1+</div>
                 <div className="stat-label">Anos de Experiência</div>
               </div>
               <div className="stat">
-                <div className="stat-number">20+</div>
+                <div className="stat-number">3+</div>
                 <div className="stat-label">Projetos Concluídos</div>
               </div>
               <div className="stat">
