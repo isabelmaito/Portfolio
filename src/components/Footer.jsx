@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <p className="footer-text">
-          Feito com <Heart className="heart-icon" size={16} /> por Portfolio
+          Feito com <Heart className="heart-icon" size={16} /> por Isabel Maito
         </p>
         <p className="footer-year">&copy; {currentYear} Todos os direitos reservados</p>
       </div>
