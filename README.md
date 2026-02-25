@@ -1,7 +1,7 @@
 # 🎨 Portfolio Pessoal
 
 Portfolio moderno e responsivo desenvolvido com React, apresentando um design elegante com suporte a tema dark/light mode.
-<link='https://isabelmaito.vercel.app/'>
+https://isabelmaito.vercel.app/
 
 ## ✨ Características
 
