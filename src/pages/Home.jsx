@@ -14,7 +14,7 @@ const Home = () => {
             Full Stack
           </h1>
           <p className="description">
-            Onde a estética encontra a performance: construindo o futuro da web através de design intuitivo e desenvolvimento frontend de alto nível.
+            Desenvolvedora Frontend focada em transformar conceitos complexos em interfaces fluidas, responsivas e centradas no usuário.
           </p>
           <div className="cta-buttons">
             <button 
