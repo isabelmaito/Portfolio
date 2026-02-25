@@ -39,12 +39,6 @@ const Contato = () => {
       link: 'mailto:contato@email.com'
     },
     {
-      icon: <Phone size={24} />,
-      title: 'Telefone',
-      content: '+55 (11) 99999-9999',
-      link: 'tel:+5511999999999'
-    },
-    {
       icon: <MapPin size={24} />,
       title: 'Localização',
       content: 'São Paulo, Brasil',
@@ -53,9 +47,8 @@ const Contato = () => {
   ];
 
   const socialLinks = [
-    { icon: <Github size={24} />, url: 'https://github.com', label: 'GitHub' },
-    { icon: <Linkedin size={24} />, url: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: <Twitter size={24} />, url: 'https://twitter.com', label: 'Twitter' }
+    { icon: <Github size={24} />, url: 'https://github.com/isabelmaito', label: 'GitHub' },
+    { icon: <Linkedin size={24} />, url: 'https://www.linkedin.com/in/isabelmaito/', label: 'Linkedin' },
   ];
 
   return (
