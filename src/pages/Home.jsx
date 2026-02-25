@@ -76,8 +76,13 @@ const Home = () => {
               </div>
               <div className="code-line code-indent">
                 <span className="code-property">skills:</span> [
-                <span className="code-string">'React'</span>,{' '}
-                <span className="code-string">'Node.js'</span>]
+                <span className="code-string">'React'</span>,
+                <span className="code-string">'Node.js'</span>,
+                <span className="code-string">'CSS'</span>,{' '}
+                <span className="code-string">'JavaScript'</span>,
+                <span className="code-string">'Python'</span>,
+                <span className="code-string">'HTML'</span>
+                ],
               </div>
               <div className="code-line">{'}'}</div>
             </div>
