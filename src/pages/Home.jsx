@@ -14,7 +14,7 @@ const Home = () => {
             Full Stack
           </h1>
           <p className="description">
-            Transformando ideias em experiências digitais únicas através de código limpo e design intuitivo.
+            Onde a estética encontra a performance: construindo o futuro da web através de design intuitivo e desenvolvimento frontend de alto nível.
           </p>
           <div className="cta-buttons">
             <button 
