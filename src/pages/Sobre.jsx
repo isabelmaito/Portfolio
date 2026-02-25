@@ -45,7 +45,7 @@ const Sobre = () => {
               </div>
               <div className="profile-info">
                 <h3>Desenvolvedora Full Stack</h3>
-                <p className="profile-subtitle">Apaixonada por tecnologia</p>
+                <p className="profile-subtitle">Estudante de Desenvolvimento de Software | Fullstack | FrontEnd | Designer Gráfico |</p>
               </div>
             </div>
           </div>
