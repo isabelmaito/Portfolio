@@ -73,6 +73,8 @@ const Home = () => {
               <div className="code-line code-indent">
                 <span className="code-property">passion:</span>{' '}
                 <span className="code-string">'Design'</span>,
+                <span className="code-string">'Coding'</span>,
+                <span className="code-string">'Cats & Dogs'</span>
               </div>
               <div className="code-line code-indent">
                 <span className="code-property">skills:</span> [
