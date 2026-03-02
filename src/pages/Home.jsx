@@ -1,20 +1,23 @@
 import React from 'react';
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './Home.css';
 
 const Home = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="home">
       <div className="home-container">
         <div className="home-content">
-          <div className="greeting">Olá, eu sou Isabel Maito</div>
+          <div className="greeting">{t('home.greeting')}</div>
           <h1 className="title">
-            <span className="gradient-text">Desenvolvedora</span>
+            <span className="gradient-text">{t('home.title')}</span>
             <br />
-            Full Stack
+            {t('home.subtitle')}
           </h1>
           <p className="description">
-            Desenvolvedora Frontend focada em transformar conceitos complexos em interfaces fluidas, responsivas e centradas no usuário.
+            {t('home.description')}
           </p>
           <div className="cta-buttons">
             <button 
@@ -29,7 +32,7 @@ const Home = () => {
               }}
               className="btn btn-primary"
             >
-              Entre em Contato
+              {t('home.contactButton')}
             </button>
             <button 
               onClick={() => {
@@ -43,7 +46,7 @@ const Home = () => {
               }}
               className="btn btn-secondary"
             >
-              Saiba Mais
+              {t('home.moreButton')}
             </button>
           </div>
           <div className="social-links">
