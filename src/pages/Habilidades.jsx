@@ -1,7 +1,10 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import './Habilidades.css';
 
 const Habilidades = () => {
+  const { t } = useLanguage();
+
   const skills = {
     frontend: [
       { name: 'React', level: 90 },
@@ -30,9 +33,9 @@ const Habilidades = () => {
   };
 
   const categories = [
-    { key: 'frontend', title: 'Frontend', icon: '🎨' },
-    { key: 'backend', title: 'Backend', icon: '⚙️' },
-    { key: 'tools', title: 'Ferramentas', icon: '🛠️' }
+    { key: 'frontend', title: t('skills.categories.frontend'), icon: '🎨' },
+    { key: 'backend', title: t('skills.categories.backend'), icon: '⚙️' },
+    { key: 'tools', title: t('skills.categories.tools'), icon: '🛠️' }
   ];
 
   return (
@@ -40,11 +43,11 @@ const Habilidades = () => {
       <div className="habilidades-container">
         <div className="section-header">
           <h1 className="section-title">
-            Minhas <span className="gradient-text">Habilidades</span>
+            {t('skills.title')} <span className="gradient-text">{t('skills.titleHighlight')}</span>
           </h1>
           <div className="title-underline"></div>
           <p className="section-subtitle">
-            Tecnologias e ferramentas que domino e utilizo no dia a dia
+            {t('skills.subtitle')}
           </p>
         </div>
 
@@ -79,11 +82,9 @@ const Habilidades = () => {
         </div>
 
         <div className="learning-section">
-          <h2 className="learning-title">🚀 Sempre Aprendendo</h2>
+          <h2 className="learning-title">{t('skills.learning')}</h2>
           <p className="learning-text">
-            A tecnologia está em constante evolução, e eu também. Atualmente estou explorando 
-            novas ferramentas e frameworks para expandir minhas habilidades e me manter atualizado 
-            com as últimas tendências do mercado.
+            {t('skills.learningText')}
           </p>
           <div className="learning-tags">
             <span className="tag">Next.js</span>
