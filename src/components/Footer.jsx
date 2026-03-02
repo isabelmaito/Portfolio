@@ -1,17 +1,19 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './Footer.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="footer">
       <div className="footer-container">
         <p className="footer-text">
-          Feito com <Heart className="heart-icon" size={16} /> por Isabel Maito
+          {t('footer.madeWith')} <Heart className="heart-icon" size={16} /> {t('footer.by')}
         </p>
-        <p className="footer-year">&copy; {currentYear} Todos os direitos reservados</p>
+        <p className="footer-year">&copy; {currentYear} {t('footer.rights')}</p>
       </div>
     </footer>
   );
