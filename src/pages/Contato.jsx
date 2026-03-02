@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './Contato.css';
 
 const Contato = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,14 +36,14 @@ const Contato = () => {
   const contactInfo = [
     {
       icon: <Mail size={24} />,
-      title: 'Email',
+      title: t('contact.contactInfo.email'),
       content: 'contato@email.com',
       link: 'mailto:contato@email.com'
     },
     {
       icon: <MapPin size={24} />,
-      title: 'Localização',
-      content: 'São Paulo, Brasil',
+      title: t('contact.contactInfo.location'),
+      content: t('contact.contactInfo.locationValue'),
       link: null
     }
   ];
@@ -56,20 +58,19 @@ const Contato = () => {
       <div className="contato-container">
         <div className="section-header">
           <h1 className="section-title">
-            Entre em <span className="gradient-text">Contato</span>
+            {t('contact.title')} <span className="gradient-text">{t('contact.titleHighlight')}</span>
           </h1>
           <div className="title-underline"></div>
           <p className="section-subtitle">
-            Tem um projeto em mente? Vamos trabalhar juntos!
+            {t('contact.subtitle')}
           </p>
         </div>
 
         <div className="contato-grid">
           <div className="contato-info">
-            <h2 className="info-title">Vamos conversar</h2>
+            <h2 className="info-title">{t('contact.formTitle')}</h2>
             <p className="info-description">
-              Estou sempre aberto a discutir novos projetos, ideias criativas ou 
-              oportunidades de fazer parte da sua equipe.
+              {t('contact.formDescription')}
             </p>
 
             <div className="contact-cards">
@@ -91,7 +92,7 @@ const Contato = () => {
             </div>
 
             <div className="social-section">
-              <h3 className="social-title">Redes Sociais</h3>
+              <h3 className="social-title">{t('contact.socialTitle')}</h3>
               <div className="social-links">
                 {socialLinks.map((social, index) => (
                   <a
@@ -112,7 +113,7 @@ const Contato = () => {
           <div className="contato-form-wrapper">
             <form onSubmit={handleSubmit} className="contato-form">
               <div className="form-group">
-                <label htmlFor="name" className="form-label">Nome</label>
+                <label htmlFor="name" className="form-label">{t('contact.formLabels.name')}</label>
                 <input
                   type="text"
                   id="name"
@@ -120,13 +121,13 @@ const Contato = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className="form-input"
-                  placeholder="Seu nome"
+                  placeholder={t('contact.formPlaceholders.name')}
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email" className="form-label">Email</label>
+                <label htmlFor="email" className="form-label">{t('contact.formLabels.email')}</label>
                 <input
                   type="email"
                   id="email"
@@ -134,13 +135,13 @@ const Contato = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="form-input"
-                  placeholder="seu@email.com"
+                  placeholder={t('contact.formPlaceholders.email')}
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="subject" className="form-label">Assunto</label>
+                <label htmlFor="subject" className="form-label">{t('contact.formLabels.subject')}</label>
                 <input
                   type="text"
                   id="subject"
@@ -148,20 +149,20 @@ const Contato = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   className="form-input"
-                  placeholder="Sobre o que você quer falar?"
+                  placeholder={t('contact.formPlaceholders.subject')}
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="message" className="form-label">Mensagem</label>
+                <label htmlFor="message" className="form-label">{t('contact.formLabels.message')}</label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   className="form-textarea"
-                  placeholder="Sua mensagem..."
+                  placeholder={t('contact.formPlaceholders.message')}
                   rows="5"
                   required
                 ></textarea>
@@ -173,12 +174,12 @@ const Contato = () => {
                 disabled={status === 'sending'}
               >
                 {status === 'sending' ? (
-                  'Enviando...'
+                  t('contact.messages.sending')
                 ) : status === 'success' ? (
-                  'Enviado com sucesso!'
+                  t('contact.messages.success')
                 ) : (
                   <>
-                    Enviar Mensagem
+                    {t('contact.submitButton')}
                     <Send size={20} />
                   </>
                 )}
