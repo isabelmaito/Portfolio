@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -11,24 +12,26 @@ import './App.css';
 function App() {
   return (
     <ThemeProvider>
-      <div className="app">
-        <Header />
-        <main className="main-content">
-          <section id="inicio">
-            <Home />
-          </section>
-          <section id="sobre">
-            <Sobre />
-          </section>
-          <section id="habilidades">
-            <Habilidades />
-          </section>
-          <section id="contato">
-            <Contato />
-          </section>
-        </main>
-        <Footer />
-      </div>
+      <LanguageProvider>
+        <div className="app">
+          <Header />
+          <main className="main-content">
+            <section id="inicio">
+              <Home />
+            </section>
+            <section id="sobre">
+              <Sobre />
+            </section>
+            <section id="habilidades">
+              <Habilidades />
+            </section>
+            <section id="contato">
+              <Contato />
+            </section>
+          </main>
+          <Footer />
+        </div>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
