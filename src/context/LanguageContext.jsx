@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { translations } from '../locales/translations';
+import React, { createContext, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const LanguageContext = createContext();
 
@@ -12,33 +12,21 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState(() => {
-    const saved = localStorage.getItem('language');
-    return saved || 'pt';
-  });
-
-  useEffect(() => {
-    localStorage.setItem('language', language);
-    document.documentElement.lang = language;
-  }, [language]);
+  const { t, i18n } = useTranslation();
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === 'pt' ? 'en' : 'pt'));
+    const newLang = i18n.language === 'pt' ? 'en' : 'pt';
+    i18n.changeLanguage(newLang);
   };
 
-  const t = (key) => {
-    const keys = key.split('.');
-    let value = translations[language];
-
-    for (const k of keys) {
-      value = value?.[k];
-    }
-
-    return value || key;
+  const value = {
+    t,
+    language: i18n.language,
+    toggleLanguage
   };
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );
