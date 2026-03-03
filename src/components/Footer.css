@@ -1,49 +1,162 @@
 .footer {
-    background-color: var(--bg-secondary);
-    border-top: 1px solid var(--border);
-    padding: 2rem 0;
-    margin-top: auto;
+    padding: 3rem 0;
+    color: #ffffff;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.footer-dark {
+    background-color: #000000;
+}
+
+.footer-light {
+    background-color: #111827;
 }
 
 .footer-container {
-    max-width: 1200px;
+    max-width: 80rem;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-left,
+.footer-right {
     text-align: center;
 }
 
+.footer-brand-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo-image {
+    height: 3rem;
+    object-fit: contain;
+}
+
 .footer-text {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
+    margin: 0;
+    color: #9ca3af;
+}
+
+.footer-text-spaced {
+    margin-bottom: 1rem;
+}
+
+.footer-heading {
+    margin: 0 0 1rem;
+    font-weight: 600;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.footer-social-link {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.footer-social-link:hover {
+    transform: scale(1.1);
+}
+
+.footer-social-dark {
+    background-color: #111827;
+}
+
+.footer-social-light {
+    background-color: #1f2937;
+}
+
+.footer-social-github:hover {
+    background-color: #9333ea;
+}
+
+.footer-social-linkedin:hover {
+    background-color: #2563eb;
+}
+
+.footer-social-email:hover {
+    background-color: #db2777;
+}
+
+.footer-social-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid #1f2937;
+    padding-top: 2rem;
+}
+
+.footer-bottom-text {
+    color: #9ca3af;
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    margin-bottom: 0.5rem;
 }
 
-.heart-icon {
-    color: #ef4444;
-    animation: heartbeat 1.5s ease-in-out infinite;
+.footer-heart-icon {
+    width: 1rem;
+    height: 1rem;
+    color: #a855f7;
+    fill: currentColor;
 }
 
-@keyframes heartbeat {
-    0%,
-    100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-.footer-year {
-    color: var(--text-muted);
-    font-size: 0.875rem;
-}
-
-@media (max-width: 768px) {
+@media (min-width: 640px) {
     .footer-container {
         padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-left {
+        text-align: left;
+    }
+
+    .footer-right {
+        text-align: right;
+    }
+
+    .footer-brand-wrapper {
+        justify-content: flex-start;
+    }
+
+    .footer-socials {
+        justify-content: flex-end;
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer-container {
+        padding: 0 2rem;
     }
 }
