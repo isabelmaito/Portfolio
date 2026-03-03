@@ -1,36 +1,36 @@
-import React from 'react';
-import { ThemeProvider } from './context/ThemeContext';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Sobre from './pages/Sobre';
-import Habilidades from './pages/Habilidades';
-import Contato from './pages/Contato';
-import './App.css';
+import { useState, useEffect } from 'react';
+import { Header } from './components/Header.jsx';
+import { Home } from './components/Home.jsx';
+import { Sobre } from './components/Sobre.jsx';
+import { Habilidades } from './components/Habilidades.jsx';
+import { Experience } from './components/Experience.jsx';
+import { Portfolio } from './components/Portfolio.jsx';
+import { Footer } from './components/Footer.jsx';
 
-function App() {
+export default function App() {
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <ThemeProvider>
-      <div className="app">
-        <Header />
-        <main className="main-content">
-          <section id="inicio">
-            <Home />
-          </section>
-          <section id="sobre">
-            <Sobre />
-          </section>
-          <section id="habilidades">
-            <Habilidades />
-          </section>
-          <section id="contato">
-            <Contato />
-          </section>
-        </main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <div className={`app-wrapper ${darkMode ? 'dark-mode' : ''}`}>
+      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <Home darkMode={darkMode} />
+      <Sobre darkMode={darkMode} />
+      <Habilidades darkMode={darkMode} />
+      <Experience darkMode={darkMode} />
+      <Portfolio darkMode={darkMode} />
+      <Footer darkMode={darkMode} />
+    </div>
   );
 }
-
-export default App;

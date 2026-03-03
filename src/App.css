@@ -1,3 +1,13 @@
+.app-wrapper {
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
+    background-color: #ffffff;
+}
+
+.app-wrapper.dark-mode {
+    background-color: #111827;
+}
+
 .app {
     min-height: 100vh;
     display: flex;
