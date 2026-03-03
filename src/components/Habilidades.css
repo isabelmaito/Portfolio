@@ -1,0 +1,447 @@
+/* Seção Principal */
+.habilidades-section {
+    padding: 5rem 0;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.habilidades-section.light {
+    background: linear-gradient(135deg, #faf5ff 0%, #ffffff 50%, #fdf2f8 100%);
+}
+
+.habilidades-section.dark {
+    background-color: #1f2937;
+}
+
+.habilidades-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Cabeçalho da Seção */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.section-title.light {
+    color: #111827;
+}
+
+.section-title.dark {
+    color: #ffffff;
+}
+
+.section-subtitle {
+    font-size: 1.25rem;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.section-subtitle.light {
+    color: #4b5563;
+}
+
+.section-subtitle.dark {
+    color: #d1d5db;
+}
+
+/* Botões de Categoria */
+.category-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.category-buttons-container.light {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.category-buttons-container.dark {
+    background-color: rgba(17, 24, 39, 0.6);
+}
+
+.category-button {
+    padding: 0.625rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.category-button.light {
+    background-color: #ffffff;
+    color: #4b5563;
+    border-color: #e5e7eb;
+}
+
+.category-button.light:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.category-button.light.active {
+    background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+    color: #ffffff;
+    border-color: #7e22ce;
+    box-shadow: 0 10px 15px -3px rgba(147, 51, 234, 0.3);
+}
+
+.category-button.dark {
+    background-color: rgba(55, 65, 81, 0.5);
+    color: #d1d5db;
+    border-color: #4b5563;
+}
+
+.category-button.dark:hover {
+    background-color: rgba(55, 65, 81, 0.8);
+    border-color: #6b7280;
+}
+
+.category-button.dark.active {
+    background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+    color: #ffffff;
+    border-color: #9333ea;
+    box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.3);
+}
+
+/* Grid de Habilidades */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+@media (min-width: 640px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Card de Habilidade */
+.skill-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: scale(1.02);
+}
+
+.skill-card.light {
+    background: #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.skill-card.dark {
+    background: rgba(17, 24, 39, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+/* Header do Skill */
+.skill-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.skill-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.skill-icon {
+    font-size: 1.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    color: currentColor;
+}
+
+.skill-name {
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.skill-name.light {
+    color: #111827;
+}
+
+.skill-name.dark {
+    color: #ffffff;
+}
+
+.skill-percentage {
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.skill-percentage.light {
+    color: #9333ea;
+}
+
+.skill-percentage.dark {
+    color: #c084fc;
+}
+
+/* Barra de Progresso */
+.skill-bar-container {
+    height: 0.75rem;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.skill-bar-container.light {
+    background-color: #e5e7eb;
+}
+
+.skill-bar-container.dark {
+    background-color: #374151;
+}
+
+.skill-bar {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Cores dos gradientes das barras */
+.skill-bar.cyan-blue {
+    background: linear-gradient(to right, #06b6d4, #3b82f6);
+}
+
+.skill-bar.blue {
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+}
+
+.skill-bar.yellow {
+    background: linear-gradient(to right, #facc15, #eab308);
+}
+
+.skill-bar.green {
+    background: linear-gradient(to right, #059669, #047857);
+}
+
+.skill-bar.purple-pink {
+    background: linear-gradient(to right, #a855f7, #ec4899);
+}
+
+.skill-bar.orange-red {
+    background: linear-gradient(to right, #f97316, #ef4444);
+}
+
+.skill-bar.orange-red-dark {
+    background: linear-gradient(to right, #ea580c, #dc2626);
+}
+
+.skill-bar.blue-cyan {
+    background: linear-gradient(to right, #3b82f6, #06b6d4);
+}
+
+.skill-bar.green-teal {
+    background: linear-gradient(to right, #10b981, #14b8a6);
+}
+
+.skill-bar.indigo-blue {
+    background: linear-gradient(to right, #6366f1, #3b82f6);
+}
+
+.skill-bar.red-pink {
+    background: linear-gradient(to right, #dc2626, #db2777);
+}
+
+.skill-bar.blue-yellow {
+    background: linear-gradient(to right, #60a5fa, #fbbf24);
+}
+
+.skill-bar.blue-indigo {
+    background: linear-gradient(to right, #3b82f6, #4f46e5);
+}
+
+.skill-bar.amber-orange {
+    background: linear-gradient(to right, #f59e0b, #ea580c);
+}
+
+.skill-bar.red-rose {
+    background: linear-gradient(to right, #ef4444, #f43f5e);
+}
+
+.skill-bar.teal-cyan {
+    background: linear-gradient(to right, #14b8a6, #06b6d4);
+}
+
+/* Efeitos na barra de progresso */
+.skill-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+}
+
+/* Seção de Certificações */
+.certifications-section {
+    margin-top: 4rem;
+}
+
+.certifications-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.certifications-title.light {
+    color: #111827;
+}
+
+.certifications-title.dark {
+    color: #ffffff;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .certifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .certifications-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card de Certificação */
+.certification-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.certification-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.certification-card.light {
+    background: #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.certification-card.dark {
+    background: rgba(17, 24, 39, 0.5);
+}
+
+.certification-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.certification-icon.light {
+    background-color: #f3e8ff;
+    color: #9333ea;
+}
+
+.certification-icon.dark {
+    background-color: rgba(88, 28, 135, 0.5);
+    color: #c084fc;
+}
+
+.certification-name {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.certification-name.light {
+    color: #111827;
+}
+
+.certification-name.dark {
+    color: #ffffff;
+}
+
+.certification-institution {
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.certification-institution.light {
+    color: #9333ea;
+}
+
+.certification-institution.dark {
+    color: #c084fc;
+}
+
+.certification-date {
+    font-size: 0.75rem;
+}
+
+.certification-date.light {
+    color: #4b5563;
+}
+
+.certification-date.dark {
+    color: #9ca3af;
+}
+
+/* Responsividade */
+@media (min-width: 640px) {
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .habilidades-section {
+        padding: 3rem 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .habilidades-container {
+        padding: 0 1.5rem;
+    }
+}
