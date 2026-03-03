@@ -1,0 +1,330 @@
+.about-section {
+    padding: 5rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.about-section.dark {
+    background-color: #111827;
+}
+
+.about-section.light {
+    background-color: #ffffff;
+}
+
+.about-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .about-container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .about-container {
+        padding: 0 2rem;
+    }
+}
+
+/* Metrics */
+.metrics-section {
+    margin: 4rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.metrics-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 64rem;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+    .metrics-container {
+        gap: 5rem;
+    }
+}
+
+.metric-item {
+    text-align: center;
+    min-width: 120px;
+}
+
+.metric-item.dark {
+    /* No background needed for dark mode */
+}
+
+.metric-item.light {
+    /* No background needed for light mode */
+}
+
+.metric-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #a855f7 0%, #d946ef 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.metric-number span {
+    font-size: 2.5rem;
+}
+
+.metric-label {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.metric-label.dark {
+    color: #d1d5db;
+}
+
+.metric-label.light {
+    color: #4b5563;
+}
+
+/* Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+.section-title.dark {
+    color: white;
+}
+
+.section-title.light {
+    color: #111827;
+}
+
+.section-description {
+    font-size: 1.25rem;
+    max-width: 48rem;
+    margin: 0 auto 2rem;
+    text-align: justify;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.section-description.dark {
+    color: #d1d5db;
+}
+
+.section-description.light {
+    color: #4b5563;
+}
+
+/* Education Grid */
+.education-grid {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .education-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.education-card {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.education-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.education-card.dark {
+    background-color: #1f2937;
+}
+
+.education-card.light {
+    background: linear-gradient(135deg, #faf5ff 0%, #fce7f3 100%);
+}
+
+.education-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.education-icon.dark {
+    background-color: rgba(88, 28, 135, 0.5);
+    color: #c084fc;
+}
+
+.education-icon.light {
+    background-color: #f3e8ff;
+    color: #9333ea;
+}
+
+.education-degree {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.education-degree.dark {
+    color: white;
+}
+
+.education-degree.light {
+    color: #111827;
+}
+
+.education-institution {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.education-institution.dark {
+    color: #c084fc;
+}
+
+.education-institution.light {
+    color: #9333ea;
+}
+
+.education-period {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.education-period.dark {
+    color: #9ca3af;
+}
+
+.education-period.light {
+    color: #4b5563;
+}
+
+.education-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.education-status.active.dark {
+    background-color: rgba(16, 185, 129, 0.5);
+    color: #6ee7b7;
+}
+
+.education-status.active.light {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.education-status.completed.dark {
+    background-color: rgba(59, 130, 246, 0.5);
+    color: #93c5fd;
+}
+
+.education-status.completed.light {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.education-status.interrupted.dark {
+    background-color: #374151;
+    color: #9ca3af;
+}
+
+.education-status.interrupted.light {
+    background-color: #e5e7eb;
+    color: #4b5563;
+}
+
+/* Languages */
+.languages-section {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.languages-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.languages-title.dark {
+    color: white;
+}
+
+.languages-title.light {
+    color: #111827;
+}
+
+.languages-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.language-item {
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+}
+
+.language-item.dark {
+    background-color: #1f2937;
+}
+
+.language-item.light {
+    background-color: #f3e8ff;
+}
+
+.language-name {
+    font-weight: 500;
+}
+
+.language-name.dark {
+    color: white;
+}
+
+.language-name.light {
+    color: #111827;
+}
+
+.language-level {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.language-level.dark {
+    color: #9ca3af;
+}
+
+.language-level.light {
+    color: #4b5563;
+}
