@@ -10,7 +10,6 @@ export function Header({ darkMode, toggleDarkMode }) {
   const menuItems = [
     { label: 'Sobre', href: '#sobre' },
     { label: 'Habilidades', href: '#habilidades' },
-    { label: 'Experiência', href: '#experiencia' },
     { label: 'Portfolio', href: '#portfolio' }
   ];
 
