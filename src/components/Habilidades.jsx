@@ -12,11 +12,11 @@ import {
   SiHtml5,
   SiMysql,
   SiMongodb,
-  SiAdobephotoshop,
-  SiAdobeillustrator,
-  SiAutocad,
-  SiQgis
+  SiAutodesk,
+  SiQgis,
+  SiMui
 } from 'react-icons/si';
+import { DiIllustrator, DiPhotoshop } from 'react-icons/di';
 import './Habilidades.css';
 
 export function Habilidades({ darkMode }) {
@@ -73,7 +73,7 @@ export function Habilidades({ darkMode }) {
     {
       name: "Material UI",
       level: 88,
-      icon: <SiNodedotjs />,
+      icon: <SiMui />,
       iconColor: "#007FFF",
       colorClass: "indigo-blue",
       category: "Frameworks/Libraries"
@@ -129,7 +129,7 @@ export function Habilidades({ darkMode }) {
     {
       name: "Photoshop",
       level: 90,
-      icon: <SiAdobephotoshop />,
+      icon: <DiPhotoshop />,
       iconColor: "#31A8FF",
       colorClass: "blue-indigo",
       category: "Concepts"
@@ -137,7 +137,7 @@ export function Habilidades({ darkMode }) {
     {
       name: "Illustrator",
       level: 85,
-      icon: <SiAdobeillustrator />,
+      icon: <DiIllustrator />,
       iconColor: "#FF9A00",
       colorClass: "amber-orange",
       category: "Concepts"
@@ -145,7 +145,7 @@ export function Habilidades({ darkMode }) {
     {
       name: "AutoCAD",
       level: 88,
-      icon: <SiAutocad />,
+      icon: <SiAutodesk />,
       iconColor: "#0696D7",
       colorClass: "red-rose",
       category: "Concepts"
