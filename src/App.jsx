@@ -5,15 +5,18 @@ import { Sobre } from './components/Sobre.jsx';
 import { Habilidades } from './components/Habilidades.jsx';
 import { Portfolio } from './components/Portfolio.jsx';
 import { Footer } from './components/Footer.jsx';
+import './App.css';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
+      document.body.classList.remove('light');
     } else {
-      document.documentElement.classList.remove('dark');
+      document.body.classList.add('light');
+      document.body.classList.remove('dark');
     }
   }, [darkMode]);
 
