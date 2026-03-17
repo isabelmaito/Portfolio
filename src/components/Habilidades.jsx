@@ -14,12 +14,10 @@ import {
   SiVuedotjs,
   SiExpo,
   SiGit,
-  SiAmazonwebservices,
   SiVercel,
   SiVite,
   SiFigma,
   SiPenpot,
-  SiAdobeindesign,
   SiCoreldraw,
   SiGimp,
   SiInkscape,
@@ -34,6 +32,8 @@ import {
 } from 'react-icons/si';
 import { DiIllustrator, DiPhotoshop } from 'react-icons/di';
 import { DiMsqlServer } from 'react-icons/di';
+import { FaAws } from 'react-icons/fa6';
+import { TbBrandAdobeIndesign } from 'react-icons/tb';
 import { VscVscode } from 'react-icons/vsc';
 import './Habilidades.css';
 
@@ -198,14 +198,14 @@ export function Habilidades({ darkMode }) {
       name: "Vercel",
       level: 77,
       icon: <SiVercel />,
-      iconColor: "#ffffff",
+      iconColor: "#000000",
       colorClass: "slate-dark",
       category: "Ferramentas e Deploy"
     },
     {
       name: "AWS",
       level: 65,
-      icon: <SiAmazonwebservices />,
+      icon: <FaAws />,
       iconColor: "#FF9900",
       colorClass: "amber-orange",
       category: "Ferramentas e Deploy"
@@ -262,14 +262,14 @@ export function Habilidades({ darkMode }) {
       name: "PenPot",
       level: 76,
       icon: <SiPenpot />,
-      iconColor: "#ffffff",
+      iconColor: "#000000",
       colorClass: "slate-dark",
       category: "Design e Projetos"
     },
     {
       name: "InDesign",
       level: 82,
-      icon: <SiAdobeindesign />,
+      icon: <TbBrandAdobeIndesign />,
       iconColor: "#FF3366",
       colorClass: "rose-pink",
       category: "Design e Projetos"
@@ -310,7 +310,7 @@ export function Habilidades({ darkMode }) {
       name: "Inkscape",
       level: 78,
       icon: <SiInkscape />,
-      iconColor: "#ffffff",
+      iconColor: "#000000",
       colorClass: "slate-dark",
       category: "Design e Projetos"
     },
