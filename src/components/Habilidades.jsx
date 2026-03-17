@@ -5,28 +5,48 @@ import {
   SiJavascript,
   SiPython,
   SiReact,
+  SiTailwindcss,
+  SiBootstrap,
+  SiStyledcomponents,
   SiNodedotjs,
+  SiSequelize,
   SiAngular,
+  SiVuedotjs,
+  SiExpo,
   SiGit,
+  SiAmazonwebservices,
+  SiVercel,
+  SiVite,
   SiFigma,
+  SiPenpot,
+  SiAdobeindesign,
+  SiCoreldraw,
+  SiGimp,
+  SiInkscape,
   SiHtml5,
   SiMysql,
+  SiPostgresql,
+  SiSqlite,
   SiMongodb,
   SiAutodesk,
   SiQgis,
   SiMui
 } from 'react-icons/si';
 import { DiIllustrator, DiPhotoshop } from 'react-icons/di';
+import { DiMsqlServer } from 'react-icons/di';
+import { VscVscode } from 'react-icons/vsc';
 import './Habilidades.css';
 
 export function Habilidades({ darkMode }) {
-  const [activeCategory, setActiveCategory] = useState('Languages');
+  const [activeCategory, setActiveCategory] = useState('Linguagens e Marcacao');
 
   const categories = [
-    'Languages',
-    'Frameworks/Libraries',
-    'Cloud/DevOps',
-    'Concepts'
+    'Linguagens',
+    'Frameworks e UI',
+    'Ferramentas e Deploy',
+    'Backend',
+    'Banco de Dados',
+    'Design e Projetos'
   ];
 
   const skills = [
@@ -36,7 +56,7 @@ export function Habilidades({ darkMode }) {
       icon: <SiTypescript />,
       iconColor: "#3178C6",
       colorClass: "blue",
-      category: "Languages"
+      category: "Linguagens"
     },
     {
       name: "JavaScript",
@@ -44,7 +64,7 @@ export function Habilidades({ darkMode }) {
       icon: <SiJavascript />,
       iconColor: "#F7DF1E",
       colorClass: "yellow",
-      category: "Languages"
+      category: "Linguagens"
     },
     {
       name: "Python",
@@ -52,55 +72,7 @@ export function Habilidades({ darkMode }) {
       icon: <SiPython />,
       iconColor: "#3776AB",
       colorClass: "blue-yellow",
-      category: "Languages"
-    },
-    {
-      name: "React",
-      level: 90,
-      icon: <SiReact />,
-      iconColor: "#61DAFB",
-      colorClass: "cyan-blue",
-      category: "Frameworks/Libraries"
-    },
-    {
-      name: "Node.js/Express",
-      level: 88,
-      icon: <SiNodedotjs />,
-      iconColor: "#339933",
-      colorClass: "green",
-      category: "Frameworks/Libraries"
-    },
-    {
-      name: "Material UI",
-      level: 88,
-      icon: <SiMui />,
-      iconColor: "#007FFF",
-      colorClass: "indigo-blue",
-      category: "Frameworks/Libraries"
-    },
-    {
-      name: "Angular",
-      level: 82,
-      icon: <SiAngular />,
-      iconColor: "#DD0031",
-      colorClass: "red-pink",
-      category: "Frameworks/Libraries"
-    },
-    {
-      name: "Git",
-      level: 85,
-      icon: <SiGit />,
-      iconColor: "#F05032",
-      colorClass: "orange-red-dark",
-      category: "Cloud/DevOps"
-    },
-    {
-      name: "Figma",
-      level: 95,
-      icon: <SiFigma />,
-      iconColor: "#F24E1E",
-      colorClass: "purple-pink",
-      category: "Concepts"
+      category: "Linguagens"
     },
     {
       name: "HTML/CSS",
@@ -108,23 +80,207 @@ export function Habilidades({ darkMode }) {
       icon: <SiHtml5 />,
       iconColor: "#E34F26",
       colorClass: "orange-red",
-      category: "Concepts"
+      category: "Linguagens"
+    },
+    {
+      name: "React",
+      level: 75,
+      icon: <SiReact />,
+      iconColor: "#61DAFB",
+      colorClass: "cyan-blue",
+      category: "Frameworks e UI"
+    },
+    {
+      name: "Vue",
+      level: 65,
+      icon: <SiVuedotjs />,
+      iconColor: "#4FC08D",
+      colorClass: "green-teal",
+      category: "Frameworks e UI"
+    },
+    {
+      name: "Angular",
+      level: 82,
+      icon: <SiAngular />,
+      iconColor: "#DD0031",
+      colorClass: "red-pink",
+      category: "Frameworks e UI"
+    },
+    {
+      name: "Material UI",
+      level: 88,
+      icon: <SiMui />,
+      iconColor: "#007FFF",
+      colorClass: "indigo-blue",
+      category: "Frameworks e UI"
+    },
+    {
+      name: "Tailwind CSS",
+      level: 85,
+      icon: <SiTailwindcss />,
+      iconColor: "#06B6D4",
+      colorClass: "teal-cyan",
+      category: "Frameworks e UI"
+    },
+    {
+      name: "Bootstrap",
+      level: 86,
+      icon: <SiBootstrap />,
+      iconColor: "#7952B3",
+      colorClass: "purple-pink",
+      category: "Frameworks e UI"
+    },
+    {
+      name: "Styled-Components",
+      level: 84,
+      icon: <SiStyledcomponents />,
+      iconColor: "#DB7093",
+      colorClass: "rose-pink",
+      category: "Frameworks e UI"
+    },
+    {
+      name: "React Paper",
+      level: 80,
+      icon: <SiReact />,
+      iconColor: "#61DAFB",
+      colorClass: "cyan-indigo",
+      category: "Frameworks e UI"
+    },
+    {
+      name: "Expo",
+      level: 76,
+      icon: <SiExpo />,
+      iconColor: "#686868",
+      colorClass: "slate-dark",
+      category: "Frameworks e UI"
+    },
+    {
+      name: "Node.js/Express",
+      level: 75,
+      icon: <SiNodedotjs />,
+      iconColor: "#339933",
+      colorClass: "green",
+      category: "Backend"
+    },
+    {
+      name: "Sequelize",
+      level: 72,
+      icon: <SiSequelize />,
+      iconColor: "#52B0E7",
+      colorClass: "cyan-blue",
+      category: "Backend"
+    },
+    {
+      name: "Vite",
+      level: 77,
+      icon: <SiVite />,
+      iconColor: "#646CFF",
+      colorClass: "violet-indigo",
+      category: "Ferramentas e Deploy"
+    },
+    {
+      name: "VSCode",
+      level: 85,
+      icon: <VscVscode />,
+      iconColor: "#007ACC",
+      colorClass: "blue-cyan",
+      category: "Ferramentas e Deploy"
+    },
+    {
+      name: "Git",
+      level: 85,
+      icon: <SiGit />,
+      iconColor: "#F05032",
+      colorClass: "orange-red-dark",
+      category: "Ferramentas e Deploy"
+    },
+    {
+      name: "Vercel",
+      level: 77,
+      icon: <SiVercel />,
+      iconColor: "#ffffff",
+      colorClass: "slate-dark",
+      category: "Ferramentas e Deploy"
+    },
+    {
+      name: "AWS",
+      level: 65,
+      icon: <SiAmazonwebservices />,
+      iconColor: "#FF9900",
+      colorClass: "amber-orange",
+      category: "Ferramentas e Deploy"
     },
     {
       name: "MySQL",
-      level: 80,
+      level: 68,
       icon: <SiMysql />,
       iconColor: "#4479A1",
       colorClass: "blue-cyan",
-      category: "Concepts"
+      category: "Banco de Dados"
+    },
+    {
+      name: "PostgreSQL",
+      level: 66,
+      icon: <SiPostgresql />,
+      iconColor: "#336791",
+      colorClass: "blue",
+      category: "Banco de Dados"
+    },
+    {
+      name: "Microsoft SQL Server",
+      level: 62,
+      icon: <DiMsqlServer />,
+      iconColor: "#CC2927",
+      colorClass: "red-pink",
+      category: "Banco de Dados"
+    },
+    {
+      name: "SQLite",
+      level: 64,
+      icon: <SiSqlite />,
+      iconColor: "#003B57",
+      colorClass: "blue-indigo",
+      category: "Banco de Dados"
     },
     {
       name: "MongoDB",
-      level: 78,
+      level: 65,
       icon: <SiMongodb />,
       iconColor: "#47A248",
       colorClass: "green-teal",
-      category: "Concepts"
+      category: "Banco de Dados"
+    },
+    {
+      name: "Figma",
+      level: 95,
+      icon: <SiFigma />,
+      iconColor: "#F24E1E",
+      colorClass: "purple-pink",
+      category: "Design e Projetos"
+    },
+    {
+      name: "PenPot",
+      level: 76,
+      icon: <SiPenpot />,
+      iconColor: "#ffffff",
+      colorClass: "slate-dark",
+      category: "Design e Projetos"
+    },
+    {
+      name: "InDesign",
+      level: 82,
+      icon: <SiAdobeindesign />,
+      iconColor: "#FF3366",
+      colorClass: "rose-pink",
+      category: "Design e Projetos"
+    },
+    {
+      name: "CorelDraw",
+      level: 90,
+      icon: <SiCoreldraw />,
+      iconColor: "#46A247",
+      colorClass: "green-teal",
+      category: "Design e Projetos"
     },
     {
       name: "Photoshop",
@@ -132,31 +288,47 @@ export function Habilidades({ darkMode }) {
       icon: <DiPhotoshop />,
       iconColor: "#31A8FF",
       colorClass: "blue-indigo",
-      category: "Concepts"
+      category: "Design e Projetos"
     },
     {
       name: "Illustrator",
-      level: 85,
+      level: 90,
       icon: <DiIllustrator />,
       iconColor: "#FF9A00",
       colorClass: "amber-orange",
-      category: "Concepts"
+      category: "Design e Projetos"
+    },
+    {
+      name: "Gimp",
+      level: 80,
+      icon: <SiGimp />,
+      iconColor: "#6b5110",
+      colorClass: "brown-dark",
+      category: "Design e Projetos"
+    },
+    {
+      name: "Inkscape",
+      level: 78,
+      icon: <SiInkscape />,
+      iconColor: "#ffffff",
+      colorClass: "slate-dark",
+      category: "Design e Projetos"
     },
     {
       name: "AutoCAD",
-      level: 88,
+      level: 80,
       icon: <SiAutodesk />,
       iconColor: "#0696D7",
-      colorClass: "red-rose",
-      category: "Concepts"
+      colorClass: "blue-cyan",
+      category: "Design e Projetos"
     },
     {
       name: "ArcGis/QGIS",
-      level: 82,
+      level: 77,
       icon: <SiQgis />,
       iconColor: "#589632",
       colorClass: "teal-cyan",
-      category: "Concepts"
+      category: "Design e Projetos"
     }
   ];
 
@@ -204,10 +376,10 @@ export function Habilidades({ darkMode }) {
           className="section-header"
         >
           <h2 className={`section-title ${darkMode ? 'dark' : 'light'}`}>
-            Technical Skills
+            Habilidades Técnicas
           </h2>
           <p className={`section-subtitle ${darkMode ? 'dark' : 'light'}`}>
-            My expertise across various technologies and tools
+            Tecnologias e ferramentas que domino e utilizo no dia a dia para criar soluções eficientes e inovadoras.
           </p>
         </motion.div>
 
