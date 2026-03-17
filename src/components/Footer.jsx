@@ -1,5 +1,4 @@
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
-import logoHorizontal from '../assets/logoHorizontal.png';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import logoHorizontalBranco from '../assets/logoHorizontalBranco.png';
 import './Footer.css';
 
@@ -19,16 +18,11 @@ export function Footer({ darkMode }) {
               />
             </div>
             <p className="footer-text footer-text-spaced">
-              Sorocaba - SP, Brasil
+              São Paulo - Brasil
             </p>
-            <p className="footer-text">
-              maitoisabel@gmail.com
-            </p>
-            <p className="footer-text">
-              +55 (11) 96362-6890
-            </p>
+
           </div>
-          
+
           <div className="footer-right">
             <h4 className="footer-heading">Vamos Conversar?</h4>
             <p className="footer-text footer-text-spaced">
