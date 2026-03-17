@@ -96,13 +96,6 @@ export function Home({ darkMode }) {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="scroll-indicator">
-        <a href="#sobre" className={`scroll-link ${darkMode ? 'dark' : 'light'}`}>
-          <span>Role para baixo</span>
-          <ArrowDown className="w-6 h-6 scroll-icon" />
-        </a>
-      </div>
     </section>
   );
 }
