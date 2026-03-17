@@ -3,7 +3,7 @@
 }
 
 .portfolio-section {
-    padding: 5rem 0;
+    padding: 3rem 0;
     transition: background-color 0.3s ease;
 }
 
@@ -35,7 +35,7 @@
 
 .portfolio-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .portfolio-title {
@@ -116,7 +116,7 @@
 .portfolio-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 @media (min-width: 640px) {
@@ -127,7 +127,7 @@
 
 @media (min-width: 1024px) {
     .portfolio-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -433,4 +433,20 @@
     .portfolio-modal-title {
         font-size: 1.5rem;
     }
+}
+
+.portfolio-image-modal {
+    position: relative;
+    width: 90vw;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+}
+
+.portfolio-fullscreen-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
