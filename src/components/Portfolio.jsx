@@ -6,76 +6,55 @@ import "./Portfolio.css"
 export function Portfolio({ darkMode }) {
     const [selectedProject, setSelectedProject] = useState(null)
     const [activeCategory, setActiveCategory] = useState("Todos")
+    const [selectedImageModal, setSelectedImageModal] = useState(null)
 
     const projects = [
         {
             id: 1,
-            title: "App de E-commerce",
-            category: "UI/UX Design",
-            image: "https://images.unsplash.com/photo-1629494893504-d41e26a02631?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxVSSUyMFVYJTIwZGVzaWduJTIwbW9ja3VwfGVufDF8fHx8MTc3MjEyNTg0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-            description:
-                "Design completo de aplicativo de e-commerce com foco em conversão e experiência do usuário.",
-            tags: ["Figma", "Prototyping", "User Research", "Mobile"],
-            link: "#",
-        },
-        {
-            id: 2,
             title: "Protótipo Mobile",
             category: "Prototype",
-            image: "https://images.unsplash.com/photo-1748801583975-720cb5e4985e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBwcm90b3R5cGV8ZW58MXx8fHwxNzcyMDEwMjI0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+            image: new URL("../assets/Doorganization-mockup.png", import.meta.url).href,
             description:
                 "Protótipo interativo de aplicativo mobile com animações e micro-interações detalhadas.",
             tags: ["Mobile", "Interactive", "Figma", "Animation"],
             link: "#",
         },
         {
-            id: 3,
+            id: 2,
             title: "Interface Dashboard",
             category: "Web Design",
-            image: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXNpZ24lMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzcyMTA2OTkwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+            image: new URL("../assets/Delbicos-site-mock.png", import.meta.url).href,
             description:
-                "Dashboard analítico com visualização de dados complexos de forma clara e intuitiva.",
+            "Dashboard analítico com visualização de dados complexos de forma clara e intuitiva.",
             tags: ["Dashboard", "Data Viz", "Web", "React"],
             link: "#",
         },
         {
-            id: 4,
-            title: "Arte Digital",
-            category: "Graphic Design",
-            image: "https://images.unsplash.com/photo-1687930679761-66223bff307d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmFwaGljJTIwZGVzaWduJTIwYXJ0d29ya3xlbnwxfHx8fDE3NzIwODY4OTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-            description:
-                "Criação de peças visuais e artes digitais para campanhas e redes sociais.",
-            tags: ["Illustration", "Art", "Creative", "Photoshop"],
-            link: "#",
-        },
-        {
-            id: 5,
-            title: "Projeto de Branding",
+            id: 3,
+            title: "Identidade Visual",
             category: "Branding",
-            image: "https://images.unsplash.com/photo-1770980249597-4296a4e4ce1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZGluZyUyMGRlc2lnbiUyMHByb2plY3R8ZW58MXx8fHwxNzcyMTI1ODQxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+            image: new URL("../assets/Delbicos-ident-mock.png", import.meta.url).href,
             description:
-                "Desenvolvimento de identidade visual completa, desde logo até material de marketing.",
-            tags: ["Branding", "Logo", "Identity", "Guidelines"],
+            "Desenvolvimentso de identidade visual com designs e logos criativos.",
+            tags: ["Illustrator", "Art", "Creative", "Branding"],
             link: "#",
         },
         {
-            id: 6,
-            title: "Design System",
-            category: "UI/UX Design",
-            image: "https://images.unsplash.com/photo-1629494893504-d41e26a02631?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxVSSUyMFVYJTIwZGVzaWduJTIwbW9ja3VwfGVufDF8fHx8MTc3MjEyNTg0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+            id: 4,
+            title: "E-commerce",
+            category: "Branding",
+            image: new URL("../assets/erosashop-identi-mock2.png", import.meta.url).href,
             description:
-                "Sistema de design escalável com componentes reutilizáveis e documentação completa.",
-            tags: ["Design System", "Components", "Documentation", "Figma"],
+                "Design completo de aplicativo de e-commerce com foco em conversão e experiência do usuário.",
+            tags: ["Illustrator", "Prototyping", "User Research", "Graphic Design"],
             link: "#",
         },
     ]
 
     const categories = [
         "Todos",
-        "UI/UX Design",
         "Prototype",
         "Web Design",
-        "Graphic Design",
         "Branding",
     ]
 
@@ -262,14 +241,47 @@ export function Portfolio({ darkMode }) {
                                         </span>
                                     ))}
                                 </div>
-                                <a
-                                    href={selectedProjectData.link}
+                                <button
+                                    onClick={() => setSelectedImageModal(selectedProjectData.image)}
                                     className="portfolio-modal-link"
                                 >
                                     Ver Projeto Completo
                                     <ExternalLink className="portfolio-icon" />
-                                </a>
+                                </button>
                             </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+
+                {selectedImageModal && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="portfolio-modal-overlay"
+                        onClick={() => setSelectedImageModal(null)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                            className="portfolio-image-modal"
+                            onClick={(event) => event.stopPropagation()}
+                        >
+                            <button
+                                onClick={() => setSelectedImageModal(null)}
+                                className={`portfolio-modal-close ${
+                                    darkMode ? "dark" : "light"
+                                }`}
+                                aria-label="Fechar modal"
+                            >
+                                <X className="portfolio-close-icon" />
+                            </button>
+                            <img
+                                src={selectedImageModal}
+                                alt="Projeto em tela cheia"
+                                className="portfolio-fullscreen-image"
+                            />
                         </motion.div>
                     </motion.div>
                 )}
