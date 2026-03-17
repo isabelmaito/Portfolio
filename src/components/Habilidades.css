@@ -291,6 +291,26 @@
     background: linear-gradient(to right, #14b8a6, #06b6d4);
 }
 
+.skill-bar.rose-pink {
+    background: linear-gradient(to right, #f43f5e, #db2777);
+}
+
+.skill-bar.cyan-indigo {
+    background: linear-gradient(to right, #06b6d4, #4f46e5);
+}
+
+.skill-bar.slate-dark {
+    background: linear-gradient(to right, #737d8b, #4c4c4d);
+}
+
+.skill-bar.violet-indigo {
+    background: linear-gradient(to right, #8b5cf6, #6366f1);
+}
+
+.skill-bar.brown-dark {
+    background: linear-gradient(to right, #7c6837, #4b3f07);
+}
+
 /* Efeitos na barra de progresso */
 .skill-shimmer {
     position: absolute;
