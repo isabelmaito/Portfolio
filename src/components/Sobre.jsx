@@ -1,5 +1,9 @@
 import { GraduationCap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import brazilFlag from '../assets/brazilflag.png';
+import usaFlag from '../assets/usaflag.png';
+import spainFlag from '../assets/spainflag.png';
+import chinaFlag from '../assets/chinaflag.png';
 import './Sobre.css';
 
 export function Sobre({ darkMode }) {
@@ -34,22 +38,33 @@ export function Sobre({ darkMode }) {
 
   const languages = [
     {
+      id: 'portuguese',
       name: t('about.languages.portuguese.name'),
       level: t('about.languages.portuguese.level')
     },
     {
+      id: 'english',
       name: t('about.languages.english.name'),
       level: t('about.languages.english.level')
     },
     {
+      id: 'spanish',
       name: t('about.languages.spanish.name'),
       level: t('about.languages.spanish.level')
     },
     {
+      id: 'mandarin',
       name: t('about.languages.mandarin.name'),
       level: t('about.languages.mandarin.level')
     }
   ];
+
+  const languageFlags = {
+    portuguese: brazilFlag,
+    english: usaFlag,
+    spanish: spainFlag,
+    mandarin: chinaFlag
+  };
 
   const getStatusLabel = (status) => {
     return t(`about.status.${status}`);
@@ -133,6 +148,12 @@ export function Sobre({ darkMode }) {
             {languages.map((lang, index) => (
               <div key={index} className={`language-item ${darkMode ? 'dark' : 'light'}`}>
                 <span className={`language-name ${darkMode ? 'dark' : 'light'}`}>
+                  <img
+                    src={languageFlags[lang.id]}
+                    alt=""
+                    aria-hidden="true"
+                    className="language-flag"
+                  />
                   {lang.name}
                 </span>
                 <span className={`language-level ${darkMode ? 'dark' : 'light'}`}>

@@ -292,6 +292,9 @@
 }
 
 .language-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.75rem 1.5rem;
     border-radius: 9999px;
 }
@@ -305,7 +308,19 @@
 }
 
 .language-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    line-height: 1;
     font-weight: 500;
+}
+
+.language-flag {
+    width: 1.2em;
+    height: 1.2em;
+    object-fit: cover;
+    border-radius: 2px;
+    flex-shrink: 0;
 }
 
 .language-name.dark {
@@ -317,7 +332,7 @@
 }
 
 .language-level {
-    margin-left: 0.5rem;
+    line-height: 1;
     font-size: 0.875rem;
 }
 
