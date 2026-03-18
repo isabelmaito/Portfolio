@@ -1,52 +1,58 @@
 import { GraduationCap } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import './Sobre.css';
 
 export function Sobre({ darkMode }) {
+  const { t } = useTranslation();
+
   const metrics = [
-    { number: "1", label: "Anos de Experiência" },
-    { number: "3", label: "Projetos Concluídos" },
-    { number: "15", label: "Tecnologias" }
+    { number: '1', label: t('about.metrics.experience') },
+    { number: '3', label: t('about.metrics.projects') },
+    { number: '15', label: t('about.metrics.technologies') }
   ];
 
   const education = [
     {
-      degree: "Desenvolvimento de Software e Multiplataforma",
-      institution: "Fatec Votorantim",
-      period: "Formação prevista para Dezembro/2026",
-      status: "active"
+      degree: t('about.education.software.degree'),
+      institution: t('about.education.software.institution'),
+      period: t('about.education.software.period'),
+      status: 'active'
     },
     {
-      degree: "Hidráulica e Saneamento Ambiental",
-      institution: "Fatec São Paulo",
-      period: "Agosto/2017 - Agosto/2023",
-      status: "interrupted"
+      degree: t('about.education.hydraulics.degree'),
+      institution: t('about.education.hydraulics.institution'),
+      period: t('about.education.hydraulics.period'),
+      status: 'interrupted'
     },
     {
-      degree: "Design Gráfico",
-      institution: "Universidade Paulista",
-      period: "Graduada em 2009",
-      status: "completed"
+      degree: t('about.education.graphicDesign.degree'),
+      institution: t('about.education.graphicDesign.institution'),
+      period: t('about.education.graphicDesign.period'),
+      status: 'completed'
     }
   ];
 
   const languages = [
-    { name: "🇧🇷 Português", level: "Nativo" },
-    { name: "🇺🇸 Inglês", level: "Intermediário" },
-    { name: "🇪🇸 Espanhol", level: "Básico" },
-    { name: "🇨🇳 Mandarim", level: "Iniciante" }
+    {
+      name: t('about.languages.portuguese.name'),
+      level: t('about.languages.portuguese.level')
+    },
+    {
+      name: t('about.languages.english.name'),
+      level: t('about.languages.english.level')
+    },
+    {
+      name: t('about.languages.spanish.name'),
+      level: t('about.languages.spanish.level')
+    },
+    {
+      name: t('about.languages.mandarin.name'),
+      level: t('about.languages.mandarin.level')
+    }
   ];
 
   const getStatusLabel = (status) => {
-    switch (status) {
-      case 'active':
-        return 'Em andamento';
-      case 'completed':
-        return 'Concluído';
-      case 'interrupted':
-        return 'Interrompido';
-      default:
-        return '';
-    }
+    return t(`about.status.${status}`);
   };
 
   return (
@@ -54,27 +60,18 @@ export function Sobre({ darkMode }) {
       <div className="about-container">
         <div className="section-header">
           <h2 className={`section-title ${darkMode ? 'dark' : 'light'}`}>
-            Sobre Mim
+            {t('about.title')}
           </h2>
           <p className={`section-description ${darkMode ? 'dark' : 'light'}`}>
-            Minha trajetória profissional é definida pela convergência entre a comunicação visual e a lógica computacional.
-            Com mais de uma década de atuação em Design Gráfico, desenvolvi um olhar apurado para interfaces e usabilidade, 
-            competência que hoje aplico diretamente na construção de softwares intuitivos e visualmente coerentes.
-            Minha passagem como Assistente de Engenharia, embora não tenha culminado na graduação da área, foi fundamental 
-            para estruturar meu pensamento analítico, ensinando-me a lidar com dados complexos, relatórios técnicos e resolução de problemas sob pressão.
+            {t('about.description.part1')}
 
             <br /><br />
 
-            Atualmente, dedico-me integralmente à transição para o Desenvolvimento de Software, cursando Tecnologia em 
-            Desenvolvimento Multiplataforma na Fatec e atuando como desenvolvedora freelancer. Tenho experiência prática na 
-            entrega de soluções Fullstack reais, como o desenvolvimento completo de sistemas para o setor imobiliário, onde utilizei React, 
-            Material UI e Styled Components no front-end, integrados a um back-end em Node.js (Express) e bancos de dados MySQL com Sequelize.
+            {t('about.description.part2')}
 
             <br /><br />
 
-            Meu objetivo é atuar como Desenvolvedora de Software, trazendo para o time não apenas o conhecimento técnico em JavaScript, 
-            Python e frameworks modernos, mas também a maturidade de quem entende o produto de ponta a ponta, do protótipo no Figma à implementação do código e deploy.
-            Busco desafios que valorizem a capacidade de adaptação, o rigor técnico e a visão centrada na experiência do usuário.
+            {t('about.description.part3')}
           </p>
         </div>
 
@@ -93,7 +90,7 @@ export function Sobre({ darkMode }) {
         {/* Education */}
         <div>
           <h3 className={`section-title ${darkMode ? 'dark' : 'light'}`} style={{ fontSize: '1.875rem', marginBottom: '2rem' }}>
-            Formação Acadêmica
+            {t('about.educationTitle')}
           </h3>
           
           <div className="education-grid">
@@ -129,7 +126,7 @@ export function Sobre({ darkMode }) {
         {/* Languages */}
         <div className="languages-section">
           <h3 className={`languages-title ${darkMode ? 'dark' : 'light'}`}>
-            Idiomas
+            {t('about.languagesTitle')}
           </h3>
           
           <div className="languages-list">
