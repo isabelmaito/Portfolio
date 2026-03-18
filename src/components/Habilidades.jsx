@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   SiTypescript,
   SiJavascript,
@@ -38,15 +39,16 @@ import { VscVscode } from 'react-icons/vsc';
 import './Habilidades.css';
 
 export function Habilidades({ darkMode }) {
-  const [activeCategory, setActiveCategory] = useState('Linguagens e Marcacao');
+  const { t } = useTranslation();
+  const [activeCategory, setActiveCategory] = useState('Linguagens');
 
   const categories = [
-    'Linguagens',
-    'Frameworks e UI',
-    'Ferramentas e Deploy',
-    'Backend',
-    'Banco de Dados',
-    'Design e Projetos'
+    { id: 'Linguagens', label: t('skills.categories.languages') },
+    { id: 'Frameworks e UI', label: t('skills.categories.frameworks') },
+    { id: 'Ferramentas e Deploy', label: t('skills.categories.tools') },
+    { id: 'Backend', label: t('skills.categories.backend') },
+    { id: 'Banco de Dados', label: t('skills.categories.databases') },
+    { id: 'Design e Projetos', label: t('skills.categories.design') }
   ];
 
   const skills = [
@@ -336,29 +338,29 @@ export function Habilidades({ darkMode }) {
 
   const certifications = [
     {
-      name: "DIO Campus Expert",
-      institution: "DIO",
-      date: "Julho/2025"
+      name: t('skills.certifications.dio.name'),
+      institution: t('skills.certifications.dio.institution'),
+      date: t('skills.certifications.dio.date')
     },
     {
-      name: "Angular: Construa uma Aplicação Web com Componentes",
-      institution: "Alura",
-      date: "Dezembro/2024"
+      name: t('skills.certifications.angular.name'),
+      institution: t('skills.certifications.angular.institution'),
+      date: t('skills.certifications.angular.date')
     },
     {
-      name: "React: Desenvolvendo com Javascript",
-      institution: "Alura",
-      date: "Dezembro/2024"
+      name: t('skills.certifications.reactJs.name'),
+      institution: t('skills.certifications.reactJs.institution'),
+      date: t('skills.certifications.reactJs.date')
     },
     {
-      name: "React: Implementando Gestão de Estado com Zustand",
-      institution: "Alura",
-      date: "Dezembro/2024"
+      name: t('skills.certifications.reactState.name'),
+      institution: t('skills.certifications.reactState.institution'),
+      date: t('skills.certifications.reactState.date')
     },
     {
-      name: "Computação Gráfica",
-      institution: "Saga School of Art, Games and Animation",
-      date: "Dezembro/2012"
+      name: t('skills.certifications.graphics.name'),
+      institution: t('skills.certifications.graphics.institution'),
+      date: t('skills.certifications.graphics.date')
     }
   ];
 
@@ -376,10 +378,10 @@ export function Habilidades({ darkMode }) {
           className="section-header"
         >
           <h2 className={`section-title ${darkMode ? 'dark' : 'light'}`}>
-            Habilidades Técnicas
+            {t('skills.title')}
           </h2>
           <p className={`section-subtitle ${darkMode ? 'dark' : 'light'}`}>
-            Tecnologias e ferramentas que domino e utilizo no dia a dia para criar soluções eficientes e inovadoras.
+            {t('skills.subtitle')}
           </p>
         </motion.div>
 
@@ -393,16 +395,16 @@ export function Habilidades({ darkMode }) {
         >
           {categories.map((category) => (
             <motion.button
-              key={category}
-              onClick={() => setActiveCategory(category)}
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
               className={`category-button ${
-                activeCategory === category ? 'active' : ''
+                activeCategory === category.id ? 'active' : ''
               } ${darkMode ? 'dark' : 'light'}`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >
-              {category}
+              {category.label}
             </motion.button>
           ))}
         </motion.div>
@@ -491,7 +493,7 @@ export function Habilidades({ darkMode }) {
           className="certifications-section"
         >
           <h3 className={`certifications-title ${darkMode ? 'dark' : 'light'}`}>
-            Cursos & Certificações
+            {t('skills.certificationsTitle')}
           </h3>
           
           <div className="certifications-grid">
