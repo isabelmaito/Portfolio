@@ -1,8 +1,11 @@
 import { ArrowDown, Github, Linkedin, Mail, Code2, Palette } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import FotoPerfil from '../assets/Foto_eu_perfil.jpeg';
 import './Home.css';
 
 export function Home({ darkMode }) {
+  const { t } = useTranslation();
+
   return (
     <section className={`hero-section ${darkMode ? 'dark' : 'light'}`}>
       <div className="hero-container">
@@ -37,7 +40,7 @@ export function Home({ darkMode }) {
           {/* Text Content */}
           <div className="hero-text">
             <div className={`badge ${darkMode ? 'dark' : 'light'}`}>
-              Desenvolvedora Fullstack & Designer
+              {t('home.badge')}
             </div>
             
             <h1 className={`hero-title ${darkMode ? 'dark' : 'light'}`}>
@@ -45,8 +48,7 @@ export function Home({ darkMode }) {
             </h1>
             
             <p className={`hero-description ${darkMode ? 'dark' : 'light'}`}>
-              Combinando habilidades de fullstack com design criativo,
-              transformando conceitos complexos em soluções web dinâmicas e centradas no usuário.              
+              {t('home.description')}
             </p>
 
 
@@ -83,13 +85,13 @@ export function Home({ darkMode }) {
             {/* CTA Buttons */}
             <div className="cta-buttons">
               <a href="#portfolio" className="btn btn-primary">
-                Ver Projetos
+                {t('home.cta.projects')}
               </a>
               <a 
                 href="#sobre" 
                 className={`btn btn-secondary ${darkMode ? 'dark' : 'light'}`}
               >
-                Sobre Mim
+                {t('home.cta.about')}
               </a>
             </div>
           </div>
