@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
+import './i18n';
 
 // Adiciona classe dark por padrão ao body
 document.body.classList.add('dark');
