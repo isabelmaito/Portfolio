@@ -1,65 +1,63 @@
 import { motion } from "motion/react"
 import { useState } from "react"
+import { useTranslation } from 'react-i18next';
 import { ExternalLink, X } from "lucide-react"
 import "./Portfolio.css"
 
 export function Portfolio({ darkMode }) {
+    const { t } = useTranslation();
     const [selectedProject, setSelectedProject] = useState(null)
-    const [activeCategory, setActiveCategory] = useState("Todos")
+    const [activeCategory, setActiveCategory] = useState('all')
     const [selectedImageModal, setSelectedImageModal] = useState(null)
 
     const projects = [
         {
             id: 1,
-            title: "Protótipo Mobile",
-            category: "Prototype",
+            title: t('portfolio.projects.mobilePrototype.title'),
+            category: 'prototype',
             image: new URL("../assets/Doorganization-mockup.png", import.meta.url).href,
-            description:
-                "Protótipo interativo de aplicativo mobile com animações e micro-interações detalhadas.",
+            description: t('portfolio.projects.mobilePrototype.description'),
             tags: ["Mobile", "Interactive", "Figma", "Animation"],
             link: "#",
         },
         {
             id: 2,
-            title: "Interface Dashboard",
-            category: "Web Design",
+            title: t('portfolio.projects.dashboardInterface.title'),
+            category: 'webDesign',
             image: new URL("../assets/Delbicos-site-mock.png", import.meta.url).href,
-            description:
-            "Dashboard analítico com visualização de dados complexos de forma clara e intuitiva.",
+            description: t('portfolio.projects.dashboardInterface.description'),
             tags: ["Dashboard", "Data Viz", "Web", "React"],
             link: "#",
         },
         {
             id: 3,
-            title: "Identidade Visual",
-            category: "Branding",
+            title: t('portfolio.projects.visualIdentity.title'),
+            category: 'branding',
             image: new URL("../assets/Delbicos-ident-mock.png", import.meta.url).href,
-            description:
-            "Desenvolvimentso de identidade visual com designs e logos criativos.",
+            description: t('portfolio.projects.visualIdentity.description'),
             tags: ["Illustrator", "Art", "Creative", "Branding"],
             link: "#",
         },
         {
             id: 4,
-            title: "E-commerce",
-            category: "Branding",
+            title: t('portfolio.projects.ecommerce.title'),
+            category: 'branding',
             image: new URL("../assets/erosashop-identi-mock2.png", import.meta.url).href,
-            description:
-                "Design completo de aplicativo de e-commerce com foco em conversão e experiência do usuário.",
+            description: t('portfolio.projects.ecommerce.description'),
             tags: ["Illustrator", "Prototyping", "User Research", "Graphic Design"],
             link: "#",
         },
     ]
 
     const categories = [
-        "Todos",
-        "Prototype",
-        "Web Design",
-        "Branding",
+        { id: 'all', label: t('portfolio.categories.all') },
+        { id: 'prototype', label: t('portfolio.categories.prototype') },
+        { id: 'webDesign', label: t('portfolio.categories.webDesign') },
+        { id: 'branding', label: t('portfolio.categories.branding') },
     ]
 
     const filteredProjects =
-        activeCategory === "Todos"
+        activeCategory === 'all'
             ? projects
             : projects.filter((project) => project.category === activeCategory)
 
@@ -81,31 +79,30 @@ export function Portfolio({ darkMode }) {
                     className="portfolio-header"
                 >
                     <h2 className={`portfolio-title ${darkMode ? "dark" : "light"}`}>
-                        Portfolio
+                        {t('portfolio.title')}
                     </h2>
                     <p
                         className={`portfolio-description ${darkMode ? "dark" : "light"}`}
                     >
-                        Uma seleção dos meus trabalhos mais recentes e projetos
-                        favoritos
+                        {t('portfolio.description')}
                     </p>
 
                     <div className="portfolio-category-filter">
                         {categories.map((category) => (
                             <motion.button
-                                key={category}
-                                onClick={() => setActiveCategory(category)}
+                                key={category.id}
+                                onClick={() => setActiveCategory(category.id)}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className={`portfolio-category-button ${
-                                    activeCategory === category
+                                    activeCategory === category.id
                                         ? "active"
                                         : darkMode
                                           ? "dark"
                                           : "light"
                                 }`}
                             >
-                                {category}
+                                {category.label}
                             </motion.button>
                         ))}
                     </div>
@@ -134,7 +131,7 @@ export function Portfolio({ darkMode }) {
                                 <div className="portfolio-card-overlay">
                                     <div className="portfolio-card-overlay-content">
                                         <span className="portfolio-card-category">
-                                            {project.category}
+                                            {t(`portfolio.categories.${project.category}`)}
                                         </span>
                                         <h3 className="portfolio-card-overlay-title">
                                             {project.title}
@@ -143,7 +140,7 @@ export function Portfolio({ darkMode }) {
                                             {project.description}
                                         </p>
                                         <div className="portfolio-card-details-link">
-                                            <span>Ver detalhes</span>
+                                            <span>{t('portfolio.actions.viewDetails')}</span>
                                             <ExternalLink className="portfolio-icon" />
                                         </div>
                                     </div>
@@ -201,7 +198,7 @@ export function Portfolio({ darkMode }) {
                                     className={`portfolio-modal-close ${
                                         darkMode ? "dark" : "light"
                                     }`}
-                                    aria-label="Fechar modal"
+                                    aria-label={t('portfolio.actions.closeModal')}
                                 >
                                     <X className="portfolio-close-icon" />
                                 </button>
@@ -213,7 +210,7 @@ export function Portfolio({ darkMode }) {
                                         darkMode ? "dark" : "light"
                                     }`}
                                 >
-                                    {selectedProjectData.category}
+                                    {t(`portfolio.categories.${selectedProjectData.category}`)}
                                 </span>
                                 <h3
                                     className={`portfolio-modal-title ${
@@ -245,7 +242,7 @@ export function Portfolio({ darkMode }) {
                                     onClick={() => setSelectedImageModal(selectedProjectData.image)}
                                     className="portfolio-modal-link"
                                 >
-                                    Ver Projeto Completo
+                                    {t('portfolio.actions.viewFullProject')}
                                     <ExternalLink className="portfolio-icon" />
                                 </button>
                             </div>
@@ -273,13 +270,13 @@ export function Portfolio({ darkMode }) {
                                 className={`portfolio-modal-close ${
                                     darkMode ? "dark" : "light"
                                 }`}
-                                aria-label="Fechar modal"
+                                aria-label={t('portfolio.actions.closeModal')}
                             >
                                 <X className="portfolio-close-icon" />
                             </button>
                             <img
                                 src={selectedImageModal}
-                                alt="Projeto em tela cheia"
+                                alt={t('portfolio.actions.fullscreenImageAlt')}
                                 className="portfolio-fullscreen-image"
                             />
                         </motion.div>
