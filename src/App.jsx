@@ -1,39 +1,43 @@
-import React from 'react';
-import { ThemeProvider } from './context/ThemeContext';
-import { LanguageProvider } from './context/LanguageContext';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Sobre from './pages/Sobre';
-import Habilidades from './pages/Habilidades';
-import Contato from './pages/Contato';
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Header } from './components/Header.jsx';
+import { Home } from './components/Home.jsx';
+import { Sobre } from './components/Sobre.jsx';
+import { Habilidades } from './components/Habilidades.jsx';
+import { Portfolio } from './components/Portfolio.jsx';
+import { Footer } from './components/Footer.jsx';
 import './App.css';
 
-function App() {
+export default function App() {
+  const [darkMode, setDarkMode] = useState(true);
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark');
+      document.body.classList.remove('light');
+    } else {
+      document.body.classList.add('light');
+      document.body.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        <div className="app">
-          <Header />
-          <main className="main-content">
-            <section id="inicio">
-              <Home />
-            </section>
-            <section id="sobre">
-              <Sobre />
-            </section>
-            <section id="habilidades">
-              <Habilidades />
-            </section>
-            <section id="contato">
-              <Contato />
-            </section>
-          </main>
-          <Footer />
-        </div>
-      </LanguageProvider>
-    </ThemeProvider>
+    <div className={`app-wrapper ${darkMode ? 'dark-mode' : ''}`}>
+      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <Home darkMode={darkMode} />
+      <Sobre darkMode={darkMode} />
+      <Habilidades darkMode={darkMode} />
+      <Portfolio darkMode={darkMode} />
+      <Footer darkMode={darkMode} />
+    </div>
   );
 }
-
-export default App;
