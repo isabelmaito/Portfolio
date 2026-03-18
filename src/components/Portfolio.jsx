@@ -27,7 +27,7 @@ export function Portfolio({ darkMode }) {
             image: new URL("../assets/Delbicos-site-mock.png", import.meta.url).href,
             description: t('portfolio.projects.dashboardInterface.description'),
             tags: ["Dashboard", "Data Viz", "Web", "React"],
-            link: "#",
+            link: "https://www.delbicos.com.br",
         },
         {
             id: 3,
@@ -36,7 +36,7 @@ export function Portfolio({ darkMode }) {
             image: new URL("../assets/Delbicos-ident-mock.png", import.meta.url).href,
             description: t('portfolio.projects.visualIdentity.description'),
             tags: ["Illustrator", "Art", "Creative", "Branding"],
-            link: "#",
+            link: "https://www.delbicos.com.br",
         },
         {
             id: 4,
@@ -238,13 +238,17 @@ export function Portfolio({ darkMode }) {
                                         </span>
                                     ))}
                                 </div>
-                                <button
-                                    onClick={() => setSelectedImageModal(selectedProjectData.image)}
-                                    className="portfolio-modal-link"
-                                >
-                                    {t('portfolio.actions.viewFullProject')}
-                                    <ExternalLink className="portfolio-icon" />
-                                </button>
+                                {selectedProjectData.link && selectedProjectData.link !== "#" && (
+                                    <a
+                                        href={selectedProjectData.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="portfolio-modal-link"
+                                    >
+                                        {t('portfolio.actions.viewFullProject')}
+                                        <ExternalLink className="portfolio-icon" />
+                                    </a>
+                                )}
                             </div>
                         </motion.div>
                     </motion.div>
