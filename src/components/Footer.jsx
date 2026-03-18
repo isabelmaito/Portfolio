@@ -1,8 +1,11 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import logoHorizontalBranco from '../assets/logoHorizontalBranco.png';
 import './Footer.css';
 
 export function Footer({ darkMode }) {
+  const { t } = useTranslation();
+
   return (
     <footer className={`footer ${
       darkMode ? 'footer-dark' : 'footer-light'
@@ -18,15 +21,15 @@ export function Footer({ darkMode }) {
               />
             </div>
             <p className="footer-text footer-text-spaced">
-              São Paulo - Brasil
+              {t('footer.location')}
             </p>
 
           </div>
 
           <div className="footer-right">
-            <h4 className="footer-heading">Vamos Conversar?</h4>
+            <h4 className="footer-heading">{t('footer.heading')}</h4>
             <p className="footer-text footer-text-spaced">
-              Entre em contato através das redes sociais
+              {t('footer.subtitle')}
             </p>
             <div className="footer-socials">
               <a
@@ -72,7 +75,7 @@ export function Footer({ darkMode }) {
         
         <div className="footer-bottom">
           <p className="footer-bottom-text">
-            Isabel Maito © 2026 - Todos os direitos reservados.
+            {t('footer.rights')}
           </p>
         </div>
       </div>
