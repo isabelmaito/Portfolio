@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from './components/Header.jsx';
 import { Home } from './components/Home.jsx';
 import { Sobre } from './components/Sobre.jsx';
@@ -9,6 +10,7 @@ import './App.css';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     if (darkMode) {
@@ -19,6 +21,10 @@ export default function App() {
       document.body.classList.remove('dark');
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
