@@ -41,6 +41,7 @@ import './Habilidades.css';
 export function Habilidades({ darkMode }) {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('Linguagens');
+  const [expandedSkill, setExpandedSkill] = useState(null);
 
   const categories = [
     { id: 'Linguagens', label: t('skills.categories.languages') },
@@ -74,7 +75,15 @@ export function Habilidades({ darkMode }) {
       icon: <SiPython />,
       iconColor: "#3776AB",
       colorClass: "blue-yellow",
-      category: "Linguagens"
+      category: "Linguagens",
+      libs: [
+        "BeautifulSoup4",
+        "Django",
+        "Matplotlib",
+        "Numpy",
+        "Pandas",
+        "Scikit Learn"
+      ]
     },
     {
       name: "HTML/CSS",
@@ -389,7 +398,9 @@ export function Habilidades({ darkMode }) {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.03 }}
               viewport={{ once: true, margin: "-50px" }}
-              className={`skill-card ${darkMode ? 'dark' : 'light'}`}
+              className={`skill-card ${darkMode ? 'dark' : 'light'} ${
+                expandedSkill === skill.name ? 'expanded' : ''
+              }`}
             >
               <div className="skill-header">
                 <div className="skill-info">
@@ -451,6 +462,28 @@ export function Habilidades({ darkMode }) {
                   />
                 </motion.div>
               </div>
+              {skill.libs && skill.libs.length > 0 && (
+                <>
+                  <button
+                    type="button"
+                    className={`skill-more-button ${darkMode ? 'dark' : 'light'}`}
+                    onClick={() =>
+                      setExpandedSkill(prev => (prev === skill.name ? null : skill.name))
+                    }
+                  >
+                    {expandedSkill === skill.name ? 'Veja menos' : 'Veja mais'}
+                  </button>
+                  {expandedSkill === skill.name && (
+                    <div className={`skill-libs ${darkMode ? 'dark' : 'light'}`}>
+                      {skill.libs.map(lib => (
+                        <span key={lib} className="skill-lib-item">
+                          {lib}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
             </motion.div>
           ))}
         </div>
