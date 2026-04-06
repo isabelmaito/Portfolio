@@ -67,7 +67,7 @@ export function Formacao({ darkMode }) {
             className="formacao-column"
           >
             <h3 className={`formacao-column-title ${darkMode ? 'dark' : 'light'}`}>
-              Formação Acadêmica
+              {t('about.educationTitle')}
             </h3>
             <div className="education-grid">
               {education.map((edu, index) => (
