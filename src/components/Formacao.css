@@ -1,0 +1,90 @@
+.formacao-section {
+    padding: 3rem 0 5rem;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.formacao-section.light {
+    background: linear-gradient(135deg, #ecfeff 0%, #eef2ff 50%, #fdf2ff 100%);
+}
+
+.formacao-section.dark {
+    background: radial-gradient(
+        circle at top,
+        #0f172a 0%,
+        #020617 55%,
+        #000000 100%
+    );
+}
+
+.formacao-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.formacao-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* espaçamento entre Formação Acadêmica e Cursos/Certificações */
+}
+
+.formacao-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.formacao-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.formacao-title.light {
+    color: #111827;
+}
+
+.formacao-title.dark {
+    color: #ffffff;
+}
+
+.formacao-subtitle {
+    font-size: 1.05rem;
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+.formacao-subtitle.light {
+    color: #4b5563;
+}
+
+.formacao-subtitle.dark {
+    color: #d1d5db;
+}
+
+.formacao-column-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.formacao-column-title.light {
+    color: #111827;
+}
+
+.formacao-column-title.dark {
+    color: #e5e7eb;
+}
+
+@media (min-width: 640px) {
+    .formacao-container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .formacao-container {
+        padding: 0 2rem;
+    }
+}
