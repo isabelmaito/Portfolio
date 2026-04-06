@@ -41,6 +41,7 @@ import './Habilidades.css';
 export function Habilidades({ darkMode }) {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('Linguagens');
+  const [expandedSkill, setExpandedSkill] = useState(null);
 
   const categories = [
     { id: 'Linguagens', label: t('skills.categories.languages') },
@@ -70,11 +71,19 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "Python",
-      level: 75,
+      level: 65,
       icon: <SiPython />,
       iconColor: "#3776AB",
       colorClass: "blue-yellow",
-      category: "Linguagens"
+      category: "Linguagens",
+      libs: [
+        "BeautifulSoup4",
+        "Django",
+        "Matplotlib",
+        "Numpy",
+        "Pandas",
+        "Scikit Learn"
+      ]
     },
     {
       name: "HTML/CSS",
@@ -102,7 +111,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "Angular",
-      level: 82,
+      level: 72,
       icon: <SiAngular />,
       iconColor: "#DD0031",
       colorClass: "red-pink",
@@ -118,7 +127,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "Tailwind CSS",
-      level: 85,
+      level: 75,
       icon: <SiTailwindcss />,
       iconColor: "#06B6D4",
       colorClass: "teal-cyan",
@@ -141,8 +150,8 @@ export function Habilidades({ darkMode }) {
       category: "Frameworks e UI"
     },
     {
-      name: "React Paper",
-      level: 80,
+      name: "React Native Paper",
+      level: 75,
       icon: <SiReact />,
       iconColor: "#61DAFB",
       colorClass: "cyan-indigo",
@@ -150,7 +159,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "Expo",
-      level: 76,
+      level: 66,
       icon: <SiExpo />,
       iconColor: "#686868",
       colorClass: "slate-dark",
@@ -158,7 +167,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "Node.js/Express",
-      level: 75,
+      level: 65,
       icon: <SiNodedotjs />,
       iconColor: "#339933",
       colorClass: "green",
@@ -174,7 +183,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "Vite",
-      level: 77,
+      level: 70,
       icon: <SiVite />,
       iconColor: "#646CFF",
       colorClass: "violet-indigo",
@@ -190,7 +199,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "Git",
-      level: 85,
+      level: 75,
       icon: <SiGit />,
       iconColor: "#F05032",
       colorClass: "orange-red-dark",
@@ -198,7 +207,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "Vercel",
-      level: 77,
+      level: 67,
       icon: <SiVercel />,
       iconColor: "#000000",
       colorClass: "slate-dark",
@@ -206,7 +215,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "AWS",
-      level: 65,
+      level: 45,
       icon: <FaAws />,
       iconColor: "#FF9900",
       colorClass: "amber-orange",
@@ -214,7 +223,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "MySQL",
-      level: 68,
+      level: 58,
       icon: <SiMysql />,
       iconColor: "#4479A1",
       colorClass: "blue-cyan",
@@ -222,7 +231,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "PostgreSQL",
-      level: 66,
+      level: 56,
       icon: <SiPostgresql />,
       iconColor: "#336791",
       colorClass: "blue",
@@ -230,7 +239,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "Microsoft SQL Server",
-      level: 62,
+      level: 52,
       icon: <DiMsqlServer />,
       iconColor: "#CC2927",
       colorClass: "red-pink",
@@ -238,7 +247,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "SQLite",
-      level: 64,
+      level: 54,
       icon: <SiSqlite />,
       iconColor: "#003B57",
       colorClass: "blue-indigo",
@@ -246,7 +255,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "MongoDB",
-      level: 65,
+      level: 55,
       icon: <SiMongodb />,
       iconColor: "#47A248",
       colorClass: "green-teal",
@@ -254,7 +263,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "Figma",
-      level: 95,
+      level: 85,
       icon: <SiFigma />,
       iconColor: "#F24E1E",
       colorClass: "purple-pink",
@@ -318,7 +327,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "AutoCAD",
-      level: 80,
+      level: 75,
       icon: <SiAutodesk />,
       iconColor: "#0696D7",
       colorClass: "blue-cyan",
@@ -326,7 +335,7 @@ export function Habilidades({ darkMode }) {
     },
     {
       name: "ArcGis/QGIS",
-      level: 77,
+      level: 60,
       icon: <SiQgis />,
       iconColor: "#589632",
       colorClass: "teal-cyan",
@@ -335,34 +344,6 @@ export function Habilidades({ darkMode }) {
   ];
 
   const filteredSkills = skills.filter(skill => skill.category === activeCategory);
-
-  const certifications = [
-    {
-      name: t('skills.certifications.dio.name'),
-      institution: t('skills.certifications.dio.institution'),
-      date: t('skills.certifications.dio.date')
-    },
-    {
-      name: t('skills.certifications.angular.name'),
-      institution: t('skills.certifications.angular.institution'),
-      date: t('skills.certifications.angular.date')
-    },
-    {
-      name: t('skills.certifications.reactJs.name'),
-      institution: t('skills.certifications.reactJs.institution'),
-      date: t('skills.certifications.reactJs.date')
-    },
-    {
-      name: t('skills.certifications.reactState.name'),
-      institution: t('skills.certifications.reactState.institution'),
-      date: t('skills.certifications.reactState.date')
-    },
-    {
-      name: t('skills.certifications.graphics.name'),
-      institution: t('skills.certifications.graphics.institution'),
-      date: t('skills.certifications.graphics.date')
-    }
-  ];
 
   return (
     <section 
@@ -417,7 +398,9 @@ export function Habilidades({ darkMode }) {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.03 }}
               viewport={{ once: true, margin: "-50px" }}
-              className={`skill-card ${darkMode ? 'dark' : 'light'}`}
+              className={`skill-card ${darkMode ? 'dark' : 'light'} ${
+                expandedSkill === skill.name ? 'expanded' : ''
+              }`}
             >
               <div className="skill-header">
                 <div className="skill-info">
@@ -440,13 +423,12 @@ export function Habilidades({ darkMode }) {
               <div className={`skill-bar-container ${darkMode ? 'dark' : 'light'}`}>
                 <motion.div
                   initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  transition={{ 
-                    duration: 1.2, 
-                    delay: index * 0.03 + 0.2, 
-                    ease: "easeOut" 
+                  animate={{ width: `${skill.level}%` }}
+                  transition={{
+                    duration: 1.2,
+                    delay: index * 0.03 + 0.2,
+                    ease: "easeOut"
                   }}
-                  viewport={{ once: true, margin: "-50px" }}
                   className={`skill-bar ${skill.colorClass}`}
                 >
                   {/* Shimmer effect */}
@@ -480,48 +462,31 @@ export function Habilidades({ darkMode }) {
                   />
                 </motion.div>
               </div>
+              {skill.libs && skill.libs.length > 0 && (
+                <>
+                  <button
+                    type="button"
+                    className={`skill-more-button ${darkMode ? 'dark' : 'light'}`}
+                    onClick={() =>
+                      setExpandedSkill(prev => (prev === skill.name ? null : skill.name))
+                    }
+                  >
+                    {expandedSkill === skill.name ? 'Veja menos' : 'Veja mais'}
+                  </button>
+                  {expandedSkill === skill.name && (
+                    <div className={`skill-libs ${darkMode ? 'dark' : 'light'}`}>
+                      {skill.libs.map(lib => (
+                        <span key={lib} className="skill-lib-item">
+                          {lib}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
             </motion.div>
           ))}
         </div>
-
-        {/* Certifications Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="certifications-section"
-        >
-          <h3 className={`certifications-title ${darkMode ? 'dark' : 'light'}`}>
-            {t('skills.certificationsTitle')}
-          </h3>
-          
-          <div className="certifications-grid">
-            {certifications.map((cert, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                className={`certification-card ${darkMode ? 'dark' : 'light'}`}
-              >
-                <div className={`certification-icon ${darkMode ? 'dark' : 'light'}`}>
-                  🏆
-                </div>
-                <h4 className={`certification-name ${darkMode ? 'dark' : 'light'}`}>
-                  {cert.name}
-                </h4>
-                <p className={`certification-institution ${darkMode ? 'dark' : 'light'}`}>
-                  {cert.institution}
-                </p>
-                <p className={`certification-date ${darkMode ? 'dark' : 'light'}`}>
-                  {cert.date}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

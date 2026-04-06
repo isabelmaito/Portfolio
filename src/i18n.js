@@ -35,13 +35,14 @@ const resources = {
             about: {
                 title: "Sobre Mim",
                 description: {
-                    part1: "Minha trajetória profissional é definida pela convergência entre a comunicação visual e a lógica computacional. Com mais de uma década de atuação em Design Gráfico, desenvolvi um olhar apurado para interfaces e usabilidade, competência que hoje aplico diretamente na construção de softwares intuitivos e visualmente coerentes. Minha passagem como Assistente de Engenharia, embora não tenha culminado na graduação da área, foi fundamental para estruturar meu pensamento analítico, ensinando-me a lidar com dados complexos, relatórios técnicos e resolução de problemas sob pressão.",
-                    part2: "Atualmente, dedico-me integralmente à transição para o Desenvolvimento de Software, cursando Tecnologia em Desenvolvimento Multiplataforma na Fatec e atuando como desenvolvedora freelancer. Tenho experiência prática na entrega de soluções Fullstack reais, como o desenvolvimento completo de sistemas para o setor imobiliário, onde utilizei React, Material UI e Styled Components no front-end, integrados a um back-end em Node.js (Express) e bancos de dados MySQL com Sequelize.",
-                    part3: "Meu objetivo é atuar como Desenvolvedora de Software, trazendo para o time não apenas o conhecimento técnico em JavaScript, Python e frameworks modernos, mas também a maturidade de quem entende o produto de ponta a ponta, do protótipo no Figma à implementação do código e deploy. Busco desafios que valorizem a capacidade de adaptação, o rigor técnico e a visão centrada na experiência do usuário.",
+                    part1: "Desenvolvedora frontend e fullstack em formação, com mais de 2 anos de experiência prática na construção de aplicações web do zero. Atuo no desenvolvimento de sistemas completos utilizando React, Node.js (Express), JavaScript, HTML5, CSS3, Material UI e Styled Components, com persistência de dados via MySQL e Sequelize ORM.",
+                    part2: "Minha base em Design Gráfico e mais de uma década no setor editorial me deram um olhar apurado para hierarquia visual, tipografia e usabilidade — habilidades que aplico diretamente na criação de interfaces centradas no usuário, integrando protótipos no Figma à implementação em código com precisão.",
+                    part3: "Tenho experiência com o ciclo completo de desenvolvimento: levantamento de requisitos, prototipagem no Figma, desenvolvimento frontend e integração com APIs REST em back-end Node.js, controle de versão com Git e GitHub e gestão de Pull Requests.",
                 },
                 metrics: {
-                    experience: "Anos de Experiência",
-                    projects: "Projetos Concluídos",
+                    experience2: "Anos de Experiência em Design",
+                    experience: "Anos de Experiência em Desenvolvimento",
+                    projects: "Projetos Concluídos em Tecnologia",
                     technologies: "Tecnologias",
                 },
                 educationTitle: "Formação Acadêmica",
@@ -78,7 +79,7 @@ const resources = {
             skills: {
                 title: "Habilidades Técnicas",
                 subtitle:
-                    "Tecnologias e ferramentas que domino e utilizo no dia a dia para criar soluções eficientes e inovadoras.",
+                    "Tecnologias e ferramentas que utilizo no dia a dia para criar soluções eficientes e inovadoras.",
                 categories: {
                     languages: "Linguagens",
                     frameworks: "Frameworks e UI",
@@ -89,11 +90,6 @@ const resources = {
                 },
                 certificationsTitle: "Cursos e Certificações",
                 certifications: {
-                    dio: {
-                        name: "DIO Campus Expert",
-                        institution: "DIO",
-                        date: "Julho/2025",
-                    },
                     angular: {
                         name: "Angular: Construa uma Aplicação Web com Componentes",
                         institution: "Alura",
@@ -119,7 +115,7 @@ const resources = {
             portfolio: {
                 title: "Portfolio",
                 description:
-                    "Uma seleção dos meus trabalhos mais recentes e projetos favoritos",
+                    "Uma seleção dos meus trabalhos mais recentes e projetos",
                 categories: {
                     all: "Todos",
                     prototype: "Protótipo",
@@ -196,13 +192,14 @@ const resources = {
             about: {
                 title: "About Me",
                 description: {
-                    part1: "My professional path is defined by the convergence of visual communication and computational logic. With more than a decade of experience in Graphic Design, I developed a refined eye for interfaces and usability, a skill I now apply directly to building intuitive and visually consistent software. My time as an Engineering Assistant, although it did not lead to a degree in the field, was essential to shape my analytical thinking, teaching me how to work with complex data, technical reports, and problem solving under pressure.",
-                    part2: "Today, I am fully dedicated to transitioning into Software Development, studying Multiplatform Software Development at Fatec and working as a freelance developer. I have practical experience delivering real fullstack solutions, such as complete systems for the real estate sector, where I used React, Material UI, and Styled Components on the front end, integrated with a Node.js (Express) back end and MySQL databases with Sequelize.",
-                    part3: "My goal is to work as a Software Developer, bringing to the team not only technical knowledge in JavaScript, Python, and modern frameworks, but also the maturity of someone who understands the product end to end, from Figma prototype to code implementation and deployment. I look for challenges that value adaptability, technical rigor, and a user-centered mindset.",
+                    part1: "Frontend and fullstack developer in training, with over 2 years of hands-on experience building web applications from scratch. I work on the development of complete systems using React, Node.js (Express), JavaScript, HTML5, CSS3, Material UI and Styled Components, with data persistence through MySQL and the Sequelize ORM.",
+                    part2: "My background in Graphic Design and more than a decade in the publishing sector have given me a sharp eye for visual hierarchy, typography and usability — skills I apply directly when creating user-centered interfaces, connecting Figma prototypes to code implementation with precision.",
+                    part3: "I have experience with the full development lifecycle: requirements gathering, prototyping in Figma, frontend development and integration with REST APIs in a Node.js backend, version control with Git and GitHub, and managing Pull Requests.",
                 },
                 metrics: {
-                    experience: "Years of Experience",
-                    projects: "Completed Projects",
+                    experience2: "Years of Experience in Design",
+                    experience: "Years of Experience in Development",
+                    projects: "Tech Projects Completed",
                     technologies: "Technologies",
                 },
                 educationTitle: "Academic Background",
@@ -226,7 +223,7 @@ const resources = {
                     graphicDesign: {
                         degree: "Graphic Design",
                         institution: "Paulista University",
-                        period: "Graduated in 2009",
+                        period: "Associate Degree in 2009",
                     },
                 },
                 languages: {
@@ -279,8 +276,7 @@ const resources = {
             },
             portfolio: {
                 title: "Portfolio",
-                description:
-                    "A selection of my most recent and favorite projects",
+                description: "A selection of my most recent work and projects",
                 categories: {
                     all: "All",
                     prototype: "Prototype",
@@ -357,13 +353,14 @@ const resources = {
             about: {
                 title: "Sobre mí",
                 description: {
-                    part1: "Mi trayectoria profesional se define por la convergencia entre la comunicación visual y la lógica computacional. Con más de una década de experiencia en Diseño Gráfico, desarrollé una mirada refinada para interfaces y usabilidad, competencia que hoy aplico directamente en la construcción de software intuitivo y visualmente coherente. Mi paso como Asistente de Ingeniería, aunque no culminó en una graduación del área, fue fundamental para estructurar mi pensamiento analítico, enseñándome a trabajar con datos complejos, informes técnicos y resolución de problemas bajo presión.",
-                    part2: "Actualmente me dedico por completo a la transición hacia el Desarrollo de Software, estudiando Tecnología en Desarrollo Multiplataforma en Fatec y trabajando como desarrolladora freelance. Tengo experiencia práctica en la entrega de soluciones Fullstack reales, como el desarrollo completo de sistemas para el sector inmobiliario, donde utilicé React, Material UI y Styled Components en el front-end, integrados con un back-end en Node.js (Express) y bases de datos MySQL con Sequelize.",
-                    part3: "Mi objetivo es trabajar como Desarrolladora de Software, aportando al equipo no solo conocimientos técnicos en JavaScript, Python y frameworks modernos, sino también la madurez de quien entiende el producto de punta a punta, desde el prototipo en Figma hasta la implementación del código y el despliegue. Busco desafíos que valoren la capacidad de adaptación, el rigor técnico y una visión centrada en la experiencia del usuario.",
+                    part1: "Desarrolladora frontend y fullstack en formación, con más de 2 años de experiencia práctica en la construcción de aplicaciones web desde cero. Actúo en el desarrollo de sistemas completos utilizando React, Node.js (Express), JavaScript, HTML5, CSS3, Material UI y Styled Components, con persistencia de datos a través de MySQL y el ORM Sequelize.",
+                    part2: "Mi base en Diseño Gráfico y más de una década en el sector editorial me dieron una mirada afinada para la jerarquía visual, la tipografía y la usabilidad — habilidades que aplico directamente en la creación de interfaces centradas en el usuario, integrando prototipos en Figma con la implementación en código con precisión.",
+                    part3: "Tengo experiencia con el ciclo completo de desarrollo: levantamiento de requisitos, prototipado en Figma, desarrollo frontend e integración con APIs REST en un back-end Node.js, control de versiones con Git y GitHub y gestión de Pull Requests.",
                 },
                 metrics: {
-                    experience: "Años de experiencia",
-                    projects: "Proyectos Completados",
+                    experience2: "Años de Experiencia en Diseño",
+                    experience: "Años de Experiencia en Desarrollo",
+                    projects: "Proyectos Completados en Tecnología",
                     technologies: "Tecnologías",
                 },
                 educationTitle: "Formación académica",
@@ -441,7 +438,7 @@ const resources = {
             portfolio: {
                 title: "Portafolio",
                 description:
-                    "Una selección de mis trabajos más recientes y proyectos favoritos",
+                    "Una selección de mis trabajos más recientes y proyectos",
                 categories: {
                     all: "Todos",
                     prototype: "Prototipo",
@@ -518,13 +515,14 @@ const resources = {
             about: {
                 title: "关于我",
                 description: {
-                    part1: "我的职业经历由视觉传播与计算逻辑的融合所定义。凭借十多年平面设计经验，我形成了对界面与可用性的敏锐洞察，并将其直接应用于构建直观且视觉一致的软件。曾担任工程助理的经历虽然未能完成该领域学位，但对我分析思维的建立至关重要，让我能够在压力下处理复杂数据、技术报告并高效解决问题。",
-                    part2: "目前我正全力转向软件开发，在 Fatec 学习多平台软件开发技术，并以自由开发者身份工作。我具备交付真实全栈解决方案的实践经验，例如为房地产行业完整开发系统，前端使用 React、Material UI 与 Styled Components，后端采用 Node.js（Express），并使用 MySQL 与 Sequelize。",
-                    part3: "我的目标是成为一名软件开发者，不仅为团队带来 JavaScript、Python 和现代框架的技术能力，也带来对产品端到端的理解，从 Figma 原型到代码实现与部署。我希望在重视适应力、技术严谨性和用户体验的挑战中持续成长。",
+                    part1: "正在成长中的前端与全栈开发者，拥有两年以上从零构建 Web 应用的实战经验。负责开发完整的系统，使用 React、Node.js（Express）、JavaScript、HTML5、CSS3、Material UI 与 Styled Components，并通过 MySQL 与 Sequelize ORM 进行数据持久化。",
+                    part2: "我在平面设计方面的背景以及十多年编辑行业的经历，让我对视觉层次、排版与可用性有着敏锐的判断——这些能力被我直接运用到以用户为中心的界面设计中，将 Figma 原型精准地转化为实现代码。",
+                    part3: "我熟悉完整的软件开发生命周期：需求调研、在 Figma 中制作原型、前端开发，以及与基于 Node.js 的后端 REST API 集成，并使用 Git 与 GitHub 进行版本控制和 Pull Request 管理。",
                 },
                 metrics: {
-                    experience: "工作经验（年）",
-                    projects: "已完成项目",
+                    experience2: "设计经验（年）",
+                    experience: "开发经验（年）",
+                    projects: "已完成技术项目",
                     technologies: "技术栈",
                 },
                 educationTitle: "教育背景",
@@ -601,7 +599,7 @@ const resources = {
             },
             portfolio: {
                 title: "作品集",
-                description: "我近期最具代表性且最喜欢的一些项目",
+                description: "我近期的一些最新作品和项目精选",
                 categories: {
                     all: "全部",
                     prototype: "原型",

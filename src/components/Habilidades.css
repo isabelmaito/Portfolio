@@ -1,6 +1,6 @@
 /* Seção Principal */
 .habilidades-section {
-    padding: 5rem 0;
+    padding: 4rem 0 3rem;
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
@@ -122,16 +122,11 @@
 
 /* Grid de Habilidades */
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 1.5rem;
     margin-bottom: 4rem;
-}
-
-@media (min-width: 640px) {
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    align-items: flex-start;
 }
 
 /* Card de Habilidade */
@@ -139,6 +134,12 @@
     padding: 1.5rem;
     border-radius: 1rem;
     transition: all 0.3s ease;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.skill-card.expanded {
+    /* Em flexbox, manter a mesma largura; só a altura cresce */
 }
 
 .skill-card:hover {
@@ -224,6 +225,57 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.skill-more-button {
+    margin-top: 0.75rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    border: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.skill-more-button.light {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+}
+
+.skill-more-button.light:hover {
+    background-color: #e9d5ff;
+}
+
+.skill-more-button.dark {
+    background-color: rgba(88, 28, 135, 0.8);
+    color: #e9d5ff;
+}
+
+.skill-more-button.dark:hover {
+    background-color: rgba(124, 58, 237, 0.9);
+}
+
+.skill-libs {
+    margin-top: 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+}
+
+.skill-libs.light {
+    color: #374151;
+}
+
+.skill-libs.dark {
+    color: #e5e7eb;
+}
+
+.skill-lib-item {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    background-color: rgba(148, 163, 184, 0.15);
 }
 
 /* Cores dos gradientes das barras */
@@ -443,6 +495,15 @@
 
 /* Responsividade */
 @media (min-width: 640px) {
+    .skills-grid {
+        justify-content: space-between;
+    }
+
+    .skill-card {
+        flex: 0 0 calc(50% - 0.75rem);
+        max-width: calc(50% - 0.75rem);
+    }
+
     .section-title {
         font-size: 3rem;
     }
@@ -450,7 +511,7 @@
 
 @media (max-width: 768px) {
     .habilidades-section {
-        padding: 3rem 0;
+        padding: 2.5rem 0 2rem;
     }
 
     .section-title {

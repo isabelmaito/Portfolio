@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Header } from './components/Header.jsx';
 import { Home } from './components/Home.jsx';
 import { Sobre } from './components/Sobre.jsx';
+import { Formacao } from './components/Formacao.jsx';
 import { Habilidades } from './components/Habilidades.jsx';
 import { Portfolio } from './components/Portfolio.jsx';
 import { Footer } from './components/Footer.jsx';
@@ -36,6 +37,7 @@ export default function App() {
       <Home darkMode={darkMode} />
       <Sobre darkMode={darkMode} />
       <Habilidades darkMode={darkMode} />
+      <Formacao darkMode={darkMode} />
       <Portfolio darkMode={darkMode} />
       <Footer darkMode={darkMode} />
     </div>
