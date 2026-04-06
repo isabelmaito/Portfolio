@@ -1,4 +1,3 @@
-import { GraduationCap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import brazilFlag from '../assets/brazilflag.png';
 import usaFlag from '../assets/usaflag.png';
@@ -10,30 +9,10 @@ export function Sobre({ darkMode }) {
   const { t } = useTranslation();
 
   const metrics = [
-    { number: '1', label: t('about.metrics.experience') },
+    { number: '9', label: t('about.metrics.experience2') },
+    { number: '2', label: t('about.metrics.experience') },
     { number: '3', label: t('about.metrics.projects') },
     { number: '15', label: t('about.metrics.technologies') }
-  ];
-
-  const education = [
-    {
-      degree: t('about.education.software.degree'),
-      institution: t('about.education.software.institution'),
-      period: t('about.education.software.period'),
-      status: 'active'
-    },
-    {
-      degree: t('about.education.hydraulics.degree'),
-      institution: t('about.education.hydraulics.institution'),
-      period: t('about.education.hydraulics.period'),
-      status: 'interrupted'
-    },
-    {
-      degree: t('about.education.graphicDesign.degree'),
-      institution: t('about.education.graphicDesign.institution'),
-      period: t('about.education.graphicDesign.period'),
-      status: 'completed'
-    }
   ];
 
   const languages = [
@@ -66,10 +45,6 @@ export function Sobre({ darkMode }) {
     mandarin: chinaFlag
   };
 
-  const getStatusLabel = (status) => {
-    return t(`about.status.${status}`);
-  };
-
   return (
     <section id="sobre" className={`about-section ${darkMode ? 'dark' : 'light'}`}>
       <div className="about-container">
@@ -97,42 +72,6 @@ export function Sobre({ darkMode }) {
               <div key={index} className={`metric-item ${darkMode ? 'dark' : 'light'}`}>
                 <div className="metric-number">{metric.number}<span>+</span></div>
                 <div className={`metric-label ${darkMode ? 'dark' : 'light'}`}>{metric.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Education */}
-        <div>
-          <h3 className={`section-title ${darkMode ? 'dark' : 'light'}`} style={{ fontSize: '1.875rem', marginBottom: '2rem' }}>
-            {t('about.educationTitle')}
-          </h3>
-          
-          <div className="education-grid">
-            {education.map((edu, index) => (
-              <div
-                key={index}
-                className={`education-card ${darkMode ? 'dark' : 'light'}`}
-              >
-                <div className={`education-icon ${darkMode ? 'dark' : 'light'}`}>
-                  <GraduationCap className="w-6 h-6" />
-                </div>
-                
-                <h4 className={`education-degree ${darkMode ? 'dark' : 'light'}`}>
-                  {edu.degree}
-                </h4>
-                
-                <p className={`education-institution ${darkMode ? 'dark' : 'light'}`}>
-                  {edu.institution}
-                </p>
-                
-                <p className={`education-period ${darkMode ? 'dark' : 'light'}`}>
-                  {edu.period}
-                </p>
-                
-                <span className={`education-status ${edu.status} ${darkMode ? 'dark' : 'light'}`}>
-                  {getStatusLabel(edu.status)}
-                </span>
               </div>
             ))}
           </div>
