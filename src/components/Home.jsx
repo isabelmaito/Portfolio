@@ -1,6 +1,6 @@
 import { ArrowDown, Github, Linkedin, Mail, Code2, Palette } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import FotoPerfil from '../assets/Foto_eu_perfil.jpeg';
+import FotoPerfil from '../assets/Foto_profile2.jpeg';
 import './Home.css';
 
 export function Home({ darkMode }) {
