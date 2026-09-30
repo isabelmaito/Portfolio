@@ -6,6 +6,7 @@ import { Sobre } from './components/Sobre.jsx';
 import { Formacao } from './components/Formacao.jsx';
 import { Habilidades } from './components/Habilidades.jsx';
 import { Portfolio } from './components/Portfolio.jsx';
+import { Hea } from './components/hea/Hea.jsx';
 import { Footer } from './components/Footer.jsx';
 import './App.css';
 
@@ -39,6 +40,7 @@ export default function App() {
       <Habilidades darkMode={darkMode} />
       <Formacao darkMode={darkMode} />
       <Portfolio darkMode={darkMode} />
+      <Hea darkMode={darkMode} />
       <Footer darkMode={darkMode} />
     </div>
   );
