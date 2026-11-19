@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logoSimbolo from '../../assets/logo_simbolBranco.png';
 import { heaApi } from '../../services/heaApi.js';
 import './Admin.css';
 
@@ -37,8 +38,11 @@ export default function AdminLogin() {
   return (
     <main className="admin-page admin-login-page">
       <form className="admin-card admin-login-card" onSubmit={handleSubmit}>
-        <h1 className="admin-login-title">HEA</h1>
-        <p className="admin-muted">Entre para publicar o que aprendeu hoje.</p>
+        <header className="admin-login-header">
+          <img src={logoSimbolo} alt="Isabel Maito" className="admin-login-logo" />
+          <h1 className="admin-login-title">HEA</h1>
+          <p className="admin-muted">Entre para publicar o que aprendeu hoje.</p>
+        </header>
 
         <label className="admin-field">
           <span>Usuário</span>
@@ -72,6 +76,10 @@ export default function AdminLogin() {
         <button type="submit" className="admin-button admin-button-primary" disabled={submitting}>
           {submitting ? 'Entrando...' : 'Entrar'}
         </button>
+
+        <a href="/" className="admin-login-back">
+          ← Voltar ao portfólio
+        </a>
       </form>
     </main>
   );
