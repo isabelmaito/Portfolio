@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logoHorizontalBranco from '../../assets/logoHorizontalBranco.png';
 import { heaApi } from '../../services/heaApi.js';
 import { AdminPostCard } from './AdminPostCard.jsx';
 import { PostForm } from './PostForm.jsx';
@@ -179,7 +180,10 @@ export default function AdminDashboard() {
   return (
     <main className="admin-page">
       <header className="admin-topbar">
-        <h1 className="admin-topbar-title">HEA · Hoje Eu Aprendi</h1>
+        <div className="admin-topbar-brand">
+          <img src={logoHorizontalBranco} alt="Isabel Maito" className="admin-topbar-logo" />
+          <h1 className="admin-topbar-title">HEA · Hoje Eu Aprendi</h1>
+        </div>
         <nav className="admin-topbar-actions">
           <a href="/#hea" className="admin-link-button">
             Ver no site
