@@ -1,3 +1,5 @@
+// UI texts per language. The pinyin texts are generated from "zh-CN" by
+// npm run i18n:pinyin (src/locales/zh-pinyin.json); edit the Chinese and regenerate.
 export const resources = {
     "pt-BR": {
         translation: {
@@ -19,6 +21,7 @@ export const resources = {
                     en: "English",
                     es: "Español",
                     zhCN: "中文",
+                    zhPinyin: "Pinyin",
                 },
             },
             home: {
@@ -196,6 +199,7 @@ export const resources = {
                     en: "English",
                     es: "Spanish",
                     zhCN: "Chinese (Simplified)",
+                    zhPinyin: "Pinyin",
                 },
             },
             home: {
@@ -377,6 +381,7 @@ export const resources = {
                     en: "Inglés",
                     es: "Español",
                     zhCN: "Chino simplificado",
+                    zhPinyin: "Pinyin",
                 },
             },
             home: {
@@ -559,6 +564,7 @@ export const resources = {
                     en: "英语",
                     es: "西班牙语",
                     zhCN: "简体中文",
+                    zhPinyin: "拼音",
                 },
             },
             home: {
