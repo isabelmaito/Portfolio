@@ -1,0 +1,651 @@
+#hea {
+    scroll-margin-top: 6rem;
+}
+
+.hea-section {
+    padding: 4rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.hea-section.dark {
+    background-color: #111827;
+}
+
+.hea-section.light {
+    background: linear-gradient(135deg, #faf5ff 0%, #ffffff 50%, #fdf2f8 100%);
+}
+
+.hea-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .hea-container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hea-container {
+        padding: 0 2rem;
+    }
+}
+
+.hea-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.hea-title {
+    font-size: 2.25rem;
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+    .hea-title {
+        font-size: 3rem;
+    }
+}
+
+.hea-title.dark {
+    color: #ffffff;
+}
+
+.hea-title.light {
+    color: #111827;
+}
+
+.hea-subtitle {
+    font-size: 1.25rem;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.hea-subtitle.dark {
+    color: #d1d5db;
+}
+
+.hea-subtitle.light {
+    color: #4b5563;
+}
+
+/* Layout */
+.hea-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.hea-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+}
+
+.hea-aside {
+    display: none;
+    order: -1;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    background-color: var(--bg-secondary);
+}
+
+.hea-aside.open {
+    display: block;
+}
+
+.hea-section.dark .hea-aside {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+.hea-section.light .hea-aside {
+    background-color: #ffffff;
+    border-color: #e9d5ff;
+}
+
+.hea-nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+}
+
+.hea-nav-toggle.dark {
+    background-color: #1f2937;
+    color: #e5e7eb;
+}
+
+.hea-nav-toggle.light {
+    background-color: #ffffff;
+    color: #111827;
+}
+
+@media (min-width: 1100px) {
+    .hea-nav-toggle {
+        display: none;
+    }
+
+    .hea-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 13rem;
+        align-items: start;
+        gap: 2.5rem;
+    }
+
+    .hea-aside,
+    .hea-aside.open {
+        display: block;
+        order: 0;
+        position: sticky;
+        top: 7rem;
+        padding: 1rem 0.75rem;
+        max-height: calc(100vh - 8rem);
+        overflow-y: auto;
+    }
+}
+
+.hea-aside-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+
+/* Cards */
+.hea-card {
+    scroll-margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hea-card.dark {
+    --bubble-bg: #1f2937;
+    --bubble-border: #374151;
+    background-color: var(--bubble-bg);
+    border-color: var(--bubble-border);
+}
+
+.hea-card.light {
+    --bubble-bg: #ffffff;
+    --bubble-border: #e9d5ff;
+    background-color: var(--bubble-bg);
+    border-color: var(--bubble-border);
+}
+
+/* Speech bubble: avatar outside the card, square top-left corner with a tail pointing at it */
+.hea-post-row {
+    --avatar-size: 36px;
+    --tail-width: 10px;
+    --tail-height: 14px;
+    display: grid;
+    grid-template-columns: var(--avatar-size) minmax(0, 1fr);
+    column-gap: calc(var(--tail-width) + 0.35rem);
+    align-items: start;
+}
+
+.hea-avatar {
+    display: block;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+.hea-avatar-outside {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    box-shadow: 0 0 0 2px var(--accent-primary);
+}
+
+.hea-avatar-inside {
+    display: none;
+}
+
+.hea-card-head {
+    display: flex;
+    align-items: stretch;
+    gap: 0.75rem;
+}
+
+.hea-card-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-width: 0;
+}
+
+.hea-bubble {
+    position: relative;
+    border-top-left-radius: 0;
+}
+
+/* Two stacked triangles: ::before in the border color, ::after in the card color shifted
+   inward, so the 1px border wraps the tail and disappears where the tail meets the card. */
+.hea-bubble::before,
+.hea-bubble::after {
+    content: '';
+    position: absolute;
+    width: var(--tail-width);
+    height: calc(var(--tail-height) + 1px);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    pointer-events: none;
+}
+
+.hea-bubble::before {
+    top: -1px;
+    left: calc(-1px - var(--tail-width));
+    background-color: var(--bubble-border);
+}
+
+.hea-bubble::after {
+    top: 0;
+    left: calc(1px - var(--tail-width));
+    background-color: var(--bubble-bg);
+}
+
+@media (max-width: 1099px) {
+    .hea-post-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hea-avatar-outside,
+    .hea-avatar-spacer {
+        display: none;
+    }
+
+    .hea-bubble {
+        border-top-left-radius: 1rem;
+    }
+
+    .hea-bubble::before,
+    .hea-bubble::after {
+        display: none;
+    }
+
+    /* Square whose side follows the date + title block height (measured in HeaFeedItem). */
+    .hea-avatar-inside {
+        display: block;
+        position: relative;
+        flex-shrink: 0;
+        width: var(--avatar-inside-size);
+        height: var(--avatar-inside-size);
+    }
+
+    .hea-avatar-fill {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.hea-card.hea-highlight {
+    animation: hea-highlight 2.4s ease;
+}
+
+@keyframes hea-highlight {
+    0%,
+    60% {
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 3px var(--accent-primary);
+    }
+}
+
+.hea-bubble.hea-highlight::before {
+    animation: hea-highlight-tail 2.4s ease;
+}
+
+@keyframes hea-highlight-tail {
+    0%,
+    60% {
+        background-color: var(--accent-primary);
+    }
+}
+
+.hea-date {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+}
+
+.hea-card-title {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.hea-card-body {
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.hea-thread {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent-primary);
+}
+
+.hea-thread-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.hea-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.25rem;
+}
+
+.hea-share-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+}
+
+.hea-share-button:hover {
+    background-color: var(--bg-accent);
+}
+
+.hea-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Reply activity */
+.hea-activity {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.9rem 1.25rem;
+    border-radius: 1rem;
+    border: 1px dashed var(--border);
+}
+
+.hea-activity.light {
+    border-color: #d8b4fe;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.hea-activity-icon {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--accent-primary);
+}
+
+.hea-activity-text {
+    color: var(--text-secondary);
+}
+
+.hea-activity-link {
+    font-weight: 700;
+    font-size: inherit;
+    color: var(--accent-primary);
+    text-align: left;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 0;
+}
+
+.hea-activity-link:hover {
+    color: var(--accent-hover);
+}
+
+/* Filter, states and pagination */
+.hea-filter-chip {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.5rem 0.35rem 1rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.hea-filter-chip.dark {
+    background-color: rgba(88, 28, 135, 0.5);
+    color: #d8b4fe;
+}
+
+.hea-filter-chip.light {
+    background-color: #f3e8ff;
+    color: #9333ea;
+}
+
+.hea-filter-chip button {
+    display: inline-flex;
+    padding: 0.2rem;
+    border-radius: 9999px;
+    color: inherit;
+}
+
+.hea-filter-chip button:hover {
+    background-color: rgba(147, 51, 234, 0.2);
+}
+
+.hea-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.hea-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.hea-more-error {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.hea-load-more {
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    background-color: #9333ea;
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+.hea-load-more:hover:not(:disabled) {
+    background-color: #7e22ce;
+}
+
+.hea-load-more:disabled {
+    opacity: 0.7;
+    cursor: progress;
+}
+
+/* Timeline rail: one grid row per month, the rail column carries the line and the month marker */
+.hea-stream {
+    --rail-width: 10rem;
+    --rail-gap: 1.5rem;
+    --rail-line: #4b5563;
+    --rail-dot: 0.75rem;
+    /* Centers the dot on the first line of the label (0.9rem x 1.2 line-height). */
+    --rail-dot-offset: 0.165rem;
+    --rail-marker-top: 1.4rem;
+    --rail-sticky-top: 7rem;
+    --stream-gap: 1.25rem;
+}
+
+.hea-stream.light {
+    --rail-line: #d8b4fe;
+}
+
+.hea-month,
+.hea-more-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--rail-width);
+    column-gap: var(--rail-gap);
+}
+
+/* The spacing between months lives inside the grid row so the rail line runs through it. */
+.hea-month-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stream-gap);
+    min-width: 0;
+    padding-bottom: var(--stream-gap);
+}
+
+.hea-month:last-child .hea-month-items {
+    padding-bottom: 0;
+}
+
+.hea-rail {
+    position: relative;
+}
+
+.hea-rail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--rail-dot) / 2 - 1px);
+    width: 2px;
+    background-color: var(--rail-line);
+}
+
+.hea-month:first-child > .hea-rail::before {
+    top: calc(var(--rail-marker-top) + var(--rail-dot-offset) + var(--rail-dot) / 2);
+}
+
+.hea-rail-marker {
+    position: sticky;
+    top: var(--rail-sticky-top);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: var(--rail-marker-top);
+}
+
+.hea-rail-dot {
+    position: relative;
+    flex-shrink: 0;
+    width: var(--rail-dot);
+    height: var(--rail-dot);
+    margin-top: var(--rail-dot-offset);
+    border-radius: 9999px;
+    background-color: var(--accent-primary);
+}
+
+.hea-rail-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-secondary);
+}
+
+.hea-rail-label-short {
+    display: none;
+}
+
+.hea-rail-end::before {
+    bottom: auto;
+    height: 1.25rem;
+}
+
+.hea-rail-ellipsis {
+    position: absolute;
+    top: 1.6rem;
+    left: calc(var(--rail-dot) / 2 - 2px);
+    width: 4px;
+    height: 1.5rem;
+    background: radial-gradient(circle, var(--rail-line) 1.5px, transparent 2px) center top / 4px 0.5rem repeat-y;
+}
+
+@media (max-width: 1099px) {
+    .hea-stream {
+        --rail-width: 2.6rem;
+        --rail-gap: 0.75rem;
+        --rail-dot: 0.6rem;
+        --rail-dot-offset: 0.12rem;
+        --rail-marker-top: 1.3rem;
+        --rail-sticky-top: 6.75rem;
+    }
+
+    .hea-rail-marker {
+        gap: 0.35rem;
+    }
+
+    .hea-rail-label {
+        font-size: 0.7rem;
+    }
+
+    .hea-rail-label-long {
+        display: none;
+    }
+
+    .hea-rail-label-short {
+        display: block;
+    }
+}
+
+.hea-menu-count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    min-width: 1.5rem;
+    padding: 0.05rem 0.45rem;
+    border-radius: 9999px;
+    text-align: center;
+    color: var(--text-muted);
+    background-color: var(--bg-primary);
+}
+
+.hea-menu-chevron {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.35rem;
+    transition: transform 0.2s ease;
+}
+
+.hea-menu-chevron.open {
+    transform: rotate(180deg);
+}
+
+@media (max-width: 640px) {
+    .hea-section {
+        padding: 3rem 0;
+    }
+
+    .hea-card {
+        padding: 1.15rem;
+    }
+}

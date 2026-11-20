@@ -12,7 +12,8 @@ export function Header({ darkMode, toggleDarkMode }) {
   const menuItems = [
     { label: t('header.menu.about'), href: '#sobre' },
     { label: t('header.menu.skills'), href: '#habilidades' },
-    { label: t('header.menu.portfolio'), href: '#portfolio' }
+    { label: t('header.menu.portfolio'), href: '#portfolio' },
+    { label: t('header.menu.hea'), href: '#hea' }
   ];
 
   const selectedLanguage = i18n.language?.startsWith('zh')
