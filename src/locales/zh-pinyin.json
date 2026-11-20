@@ -1,0 +1,186 @@
+{
+  "header": {
+    "menu": {
+      "about": "Guānyú",
+      "skills": "Jìnéng",
+      "portfolio": "Zuòpǐn jí",
+      "hea": "Jīntiān xué dào"
+    },
+    "aria": {
+      "toggleTheme": "Qiēhuàn míngàn zhǔtí",
+      "languageSelector": "Xuǎnzé wǎngzhàn yǔyán",
+      "openMenu": "Dǎkāi càidān",
+      "closeMenu": "Guānbì càidān"
+    },
+    "languageOptions": {
+      "ptBR": "Pútáoyáyǔ (bāxī)",
+      "en": "Yīngyǔ",
+      "es": "Xībānyá yǔ",
+      "zhCN": "Jiǎntǐ zhōngwén",
+      "zhPinyin": "Pīnyīn"
+    }
+  },
+  "home": {
+    "badge": "Quán zhàn kāifā zhě yǔ shèjì shī",
+    "description": "Jiāng quán zhàn jìshù yǔ chuàngyì shèjì xiāng jiéhé, bǎ fùzá gàiniàn zhuǎnhuà wéi dòngtài qiě yǐ yònghù wéi zhōngxīn de Web jiějué fāngàn.",
+    "cta": {
+      "projects": "Zhākàn xiàngmù",
+      "about": "Guānyú wǒ"
+    }
+  },
+  "about": {
+    "title": "Guānyú wǒ",
+    "description": {
+      "part1": "Zhèngzài chéngzhǎng zhōngde qiánduān yǔ quán zhàn kāifā zhě, yōngyǒu liǎng nián yǐshàng cóng líng gòu jiàn Web yìngyòng de shízhàn jīngyàn. Fùzé kāifā wánzhěng de xìtǒng, shǐyòng React, Node.js (Express), JavaScript, HTML5, CSS3, Material UI yǔ Styled Components, bìng tōngguò MySQL yǔ Sequelize ORM jìnxíng shùjù chíjiǔ huà.",
+      "part2": "Wǒzài píngmiàn shèjì fāngmiàn de bèijǐng yǐjí shíduōnián biānjí hángyè de jīnglì, ràng wǒ duì shìjué céngcì, páibǎn yǔ kěyòngxìng yǒuzhe mǐnruì de pànduàn — zhèixiē nénglì bèi wǒ zhíjiē yùnyòng dào yǐ yònghù wéi zhōngxīn de jièmiàn shèjì zhōng, jiāng Figma yuánxíng jīngzhǔn dì zhuǎnhuà wéi shíxiàn dàimǎ.",
+      "part3": "Wǒ shúxī wánzhěng de ruǎnjiàn kāifā shēngmìng zhōuqī: xūqiú tiáo yán, zài Figma zhōng zhìzuò yuánxíng, qiánduān kāifā, yǐjí yǔ jīyú Node.js de hòu duān REST API jíchéng, bìng shǐyòng Git yǔ GitHub jìnxíng bǎnběn kòngzhì hé Pull Request guǎnlǐ."
+    },
+    "metrics": {
+      "experience2": "Shèjì jīngyàn (nián)",
+      "experience": "Kāifā jīngyàn (nián)",
+      "projects": "Yǐ wánchéng jìshù xiàngmù",
+      "technologies": "Jìshù zhàn"
+    },
+    "educationTitle": "Jiàoyù bèijǐng",
+    "languagesTitle": "Yǔyán",
+    "status": {
+      "active": "Jìnxíng zhōng",
+      "completed": "Yǐ wánchéng",
+      "interrupted": "Yǐ zhōngduàn"
+    },
+    "education": {
+      "software": {
+        "degree": "Ruǎnjiàn yǔ duō píngtái kāifā",
+        "institution": "Fatec Votorantim",
+        "period": "Yùjì 2026 nián 12 yuè bìyè"
+      },
+      "hydraulics": {
+        "degree": "Shuǐlì yǔ huánjìng wèishēng",
+        "institution": "Fatec Sao Paulo",
+        "period": "2017/08 - 2023/08"
+      },
+      "graphicDesign": {
+        "degree": "Píngmiàn shèjì",
+        "institution": "Paulista University",
+        "period": "2009 nián bìyè"
+      }
+    },
+    "languages": {
+      "portuguese": {
+        "name": "Pútáoyáyǔ",
+        "level": "Mǔyǔ"
+      },
+      "english": {
+        "name": "Yīngyǔ",
+        "level": "Zhōngjí"
+      },
+      "spanish": {
+        "name": "Xībānyá yǔ",
+        "level": "Jīchǔ"
+      },
+      "mandarin": {
+        "name": "Pǔtōng huà",
+        "level": "Chūjí"
+      }
+    }
+  },
+  "skills": {
+    "title": "Jìshù nénglì",
+    "subtitle": "Wǒzài rìcháng kāifā zhōng shúliàn shǐyòng de jìshù yǔ gōngjù, kě yòngyú gòu jiàn gāoxiào qiě chuàngxīn de jiějué fāngàn.",
+    "categories": {
+      "languages": "Biān chéng yǔyán",
+      "frameworks": "Kuàngjià yǔ UI",
+      "tools": "Gōngjù yǔ bùshǔ",
+      "backend": "Hòu duān",
+      "databases": "Shùjù kù",
+      "design": "Shèjì yǔ xiàngmù"
+    },
+    "certificationsTitle": "Kèchéng yǔ zhèngshū",
+    "certifications": {
+      "dio": {
+        "name": "DIO Campus Expert",
+        "institution": "DIO",
+        "date": "2025/07"
+      },
+      "angular": {
+        "name": "Angular: shǐyòng zǔ jiàn gòu jiàn Web yìngyòng",
+        "institution": "Alura",
+        "date": "2024/12"
+      },
+      "reactJs": {
+        "name": "React: shǐyòng JavaScript kāifā",
+        "institution": "Alura",
+        "date": "2024/12"
+      },
+      "reactState": {
+        "name": "React: shǐyòng Zustand jìnxíng zhuàngtài guǎnlǐ",
+        "institution": "Alura",
+        "date": "2024/12"
+      },
+      "graphics": {
+        "name": "Jìsuàn jī túxíng xué",
+        "institution": "Saga School of Art, Games and Animation",
+        "date": "2012/12"
+      }
+    }
+  },
+  "portfolio": {
+    "title": "Zuòpǐn jí",
+    "description": "Wǒ jìnqī de yīxiē zuìxīn zuòpǐn hé xiàngmù jīngxuǎn",
+    "categories": {
+      "all": "Quánbù",
+      "prototype": "Yuánxíng",
+      "webDesign": "Wǎngyè shèjì",
+      "branding": "Pǐnpái shèjì"
+    },
+    "actions": {
+      "viewDetails": "Zhākàn xiángqíng",
+      "viewFullProject": "Zhākàn wánzhěng xiàngmù",
+      "closeModal": "Guānbì dàn chuāng",
+      "fullscreenImageAlt": "Quán píng xiàngmù yù lǎn"
+    },
+    "projects": {
+      "mobilePrototype": {
+        "title": "Yídòng duān yuánxíng",
+        "description": "Dàiyǒu xìzhì dònghuà yǔ wēi jiāohù de yídòng yìngyòng jiāohù yuánxíng."
+      },
+      "dashboardInterface": {
+        "title": "Yíbiǎo pán jièmiàn",
+        "description": "Yǐ qīngxī zhíguān de fāngshì zhǎnshì fùzá shùjù de fēnxī xíng yíbiǎo pán."
+      },
+      "visualIdentity": {
+        "title": "Shìjué shíbié",
+        "description": "Bāohán chuàngyì shèjì yǔ biāozhì fāngàn de pǐnpái shìjué shíbié kāifā."
+      },
+      "ecommerce": {
+        "title": "Diànzǐ shāngwù",
+        "description": "Jùjiāo zhuǎnhuà shuài yǔ yònghù tǐyàn de wánzhěng diàn shāng yìngyòng shèjì."
+      }
+    }
+  },
+  "footer": {
+    "location": "Bāxī shèngbǎoluó",
+    "heading": "Yīqǐ liáoliáo?",
+    "subtitle": "Huānyíng tōngguò shèjiāo méitǐ liánxì wǒ",
+    "rights": "Isabel Maito © 2026 - bǎoliú suǒyǒu quánlì."
+  },
+  "hea": {
+    "title": "Jīntiān xué dào",
+    "subtitle": "Jìlù wǒ měitiān xué dào de xiǎo zhīshí.",
+    "loadMore": "Zhākàn gēngduō",
+    "loading": "Zhèngzài jiā zǎi...",
+    "empty": "Zànshí huán méiyǒu nèiróng.",
+    "emptyFilter": "Zhè duàn shíjiān méiyǒu nèiróng.",
+    "error": "Wúfǎ jiā zǎi nèiróng.",
+    "retry": "Zhòng shì",
+    "share": "Fēnxiǎng",
+    "linkCopied": "Liàn jiē yǐ fùzhì!",
+    "copyFailed": "Wúfǎ fùzhì liàn jiē.",
+    "replyShortcut": "Zài <post>{{title}}</post> zhōng tiānjiā le pínglùn",
+    "timeline": "Shíjiān xiàn",
+    "dateNav": "Àn rìqī liúlǎn",
+    "allDates": "Quánbù rìqī",
+    "postNotFound": "Gāi nèiróng yǐ bùcúnzài.",
+    "thread": "Hòu xù"
+  }
+}
