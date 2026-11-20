@@ -185,7 +185,7 @@ export default function AdminDashboard() {
           <h1 className="admin-topbar-title">HEA · Hoje Eu Aprendi</h1>
         </div>
         <nav className="admin-topbar-actions">
-          <a href="/#hea" className="admin-link-button">
+          <a href="/#hea" className="admin-link-button" target="_blank" rel="noopener noreferrer">
             Ver no site
           </a>
           <button type="button" className="admin-button" onClick={handleLogout}>
