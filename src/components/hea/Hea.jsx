@@ -4,7 +4,7 @@ import { ChevronDown, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { heaApi } from '../../services/heaApi.js';
-import { contentLang, formatMonthYear, monthKeyOf } from '../../utils/heaDates.js';
+import { contentLang, formatMonthYear, monthKeyOf, textIn } from '../../utils/heaDates.js';
 import { HeaDateMenu } from './HeaDateMenu.jsx';
 import { HeaFeedItem, postElementId } from './HeaFeedItem.jsx';
 import { HeaTimelineMarker } from './HeaTimeline.jsx';
@@ -147,7 +147,7 @@ export function Hea({ darkMode }) {
 
   const handleShare = async (post) => {
     const url = `${window.location.origin}/?post=${post.id}#hea`;
-    const title = post.title[contentLang(i18n.language)];
+    const title = textIn(post.title, contentLang(i18n.language));
     if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
       try {
         await navigator.share({ title, url });

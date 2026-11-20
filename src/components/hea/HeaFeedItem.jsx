@@ -2,7 +2,7 @@ import { MessageCircle, Share2 } from 'lucide-react';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import avatarSrc from '../../assets/Foto_profile2.jpeg';
-import { contentLang, formatFullDate } from '../../utils/heaDates.js';
+import { contentLang, formatFullDate, textIn } from '../../utils/heaDates.js';
 
 export function postElementId(postId) {
   return `hea-post-${postId}`;
@@ -49,10 +49,10 @@ function HeaPostCard({ item, darkMode, highlighted, onShare }) {
             <time className="hea-date" dateTime={post.learnedOn}>
               {formatFullDate(post.learnedOn, i18n.language)}
             </time>
-            <h3 className="hea-card-title">{post.title[lang]}</h3>
+            <h3 className="hea-card-title">{textIn(post.title, lang)}</h3>
           </div>
         </div>
-        <p className="hea-card-body">{post.body[lang]}</p>
+        <p className="hea-card-body">{textIn(post.body, lang)}</p>
 
         {post.replies.length > 0 && (
           <ol className="hea-thread" aria-label={t('hea.thread')}>
@@ -61,7 +61,7 @@ function HeaPostCard({ item, darkMode, highlighted, onShare }) {
                 <time className="hea-date" dateTime={reply.repliedOn}>
                   {formatFullDate(reply.repliedOn, i18n.language)}
                 </time>
-                <p className="hea-card-body">{reply.body[lang]}</p>
+                <p className="hea-card-body">{textIn(reply.body, lang)}</p>
               </li>
             ))}
           </ol>
@@ -94,7 +94,7 @@ function HeaReplyActivity({ item, darkMode, onOpenPost }) {
           <p className="hea-activity-text">
             <Trans
               i18nKey="hea.replyShortcut"
-              values={{ title: item.post.title[lang] }}
+              values={{ title: textIn(item.post.title, lang) }}
               components={{
                 post: <button type="button" className="hea-activity-link" onClick={() => onOpenPost(item.post.id)} />,
               }}

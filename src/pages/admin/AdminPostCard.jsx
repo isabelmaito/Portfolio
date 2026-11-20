@@ -6,6 +6,7 @@ const TRANSLATIONS = [
   { lang: 'en', label: 'EN' },
   { lang: 'es', label: 'ES' },
   { lang: 'zh', label: 'ZH' },
+  { lang: 'py', label: 'PY' },
 ];
 
 function AdminReply({ reply, minDate, onUpdateReply, onDeleteReply }) {
