@@ -299,8 +299,39 @@
     overflow-wrap: anywhere;
 }
 
-.hea-toggle-count {
-    margin-left: 0.5rem;
+.hea-topics-desktop {
+    display: none;
+}
+
+.hea-topics-mobile {
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+}
+
+.hea-topics-mobile .hea-topic-menu {
+    margin-bottom: 0;
+}
+
+.hea-topics-mobile.dark {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+.hea-topics-mobile.light {
+    background-color: #ffffff;
+    border-color: #e9d5ff;
+}
+
+@media (min-width: 1100px) {
+    .hea-topics-desktop {
+        display: block;
+    }
+
+    .hea-topics-mobile {
+        display: none;
+    }
 }
 
 .hea-filter-chips {

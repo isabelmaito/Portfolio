@@ -240,6 +240,13 @@ export function Hea({ darkMode }) {
   }, [items]);
 
   const hasNavigation = calendar.length > 0 || topics.length > 0;
+  const topicMenuProps = {
+    topics,
+    selected: selectedTopics,
+    onToggle: toggleTopic,
+    onClear: clearTopics,
+    theme,
+  };
   const lang = contentLang(i18n.language);
   const activeTopics = selectedTopics.map((id) => topics.find((topic) => topic.id === id)).filter(Boolean);
   const filtered = Boolean(filter) || selectedTopics.length > 0;
@@ -252,7 +259,14 @@ export function Hea({ darkMode }) {
           <p className={`hea-subtitle ${theme}`}>{t('hea.subtitle')}</p>
         </header>
 
-        {hasNavigation && (
+        {/* Below 1100px the topic button sits above the date toggle, so the dates keep their own button. */}
+        {topics.length > 0 && (
+          <div className={`hea-topics-mobile ${theme}`}>
+            <HeaTopicMenu {...topicMenuProps} />
+          </div>
+        )}
+
+        {calendar.length > 0 && (
           <button
             type="button"
             className={`hea-nav-toggle ${theme}`}
@@ -260,12 +274,7 @@ export function Hea({ darkMode }) {
             aria-controls="hea-aside"
             onClick={() => setNavOpen((open) => !open)}
           >
-            <span>
-              {t('hea.navToggle')}
-              {selectedTopics.length > 0 && (
-                <span className="hea-menu-count hea-toggle-count">{selectedTopics.length}</span>
-              )}
-            </span>
+            {t('hea.dateNav')}
             <ChevronDown className={`hea-menu-chevron ${navOpen ? 'open' : ''}`} aria-hidden="true" />
           </button>
         )}
@@ -365,13 +374,11 @@ export function Hea({ darkMode }) {
 
           {hasNavigation && (
             <aside id="hea-aside" className={`hea-aside ${navOpen ? 'open' : ''}`}>
-              <HeaTopicMenu
-                topics={topics}
-                selected={selectedTopics}
-                onToggle={toggleTopic}
-                onClear={clearTopics}
-                theme={theme}
-              />
+              {topics.length > 0 && (
+                <div className="hea-topics-desktop">
+                  <HeaTopicMenu {...topicMenuProps} />
+                </div>
+              )}
               <HeaDateMenu
                 calendar={calendar}
                 filter={filter}
