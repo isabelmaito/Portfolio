@@ -165,6 +165,181 @@
     margin-bottom: 0.75rem;
 }
 
+/* Topic menu: sits above the date menu, one checkbox per topic. */
+.hea-topic-menu {
+    margin-bottom: 1.5rem;
+}
+
+.hea-topic-clear {
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.4rem;
+    padding: 0.35rem 0.5rem;
+    border: 0;
+    background: none;
+    color: var(--accent-primary);
+    cursor: pointer;
+}
+
+/* Pill button like the language picker; it unfolds the checkboxes right below it. */
+.hea-topic-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.hea-topic-trigger.dark {
+    background-color: #111827;
+    color: #e5e7eb;
+    border-color: #374151;
+}
+
+.hea-topic-trigger.dark:hover {
+    background-color: #374151;
+}
+
+.hea-topic-trigger.light {
+    background-color: #f3f4f6;
+    color: #111827;
+    border-color: #d1d5db;
+}
+
+.hea-topic-trigger.light:hover {
+    background-color: #e5e7eb;
+}
+
+.hea-topic-trigger.active {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.hea-topic-trigger:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.hea-topic-trigger-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hea-topic-panel {
+    margin-top: 0.5rem;
+    padding: 0.35rem;
+    border-radius: 0.8rem;
+    border: 1px solid var(--border);
+}
+
+.hea-topic-panel.dark {
+    background-color: #111827;
+    border-color: #374151;
+}
+
+.hea-topic-panel.light {
+    background-color: #faf5ff;
+    border-color: #e9d5ff;
+}
+
+.hea-topic-options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    max-height: 16rem;
+    overflow-y: auto;
+}
+
+.hea-topic-option {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.5rem;
+    border-radius: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.hea-topic-option:hover,
+.hea-topic-option.checked {
+    background-color: var(--bg-accent);
+}
+
+.hea-topic-option.checked {
+    color: var(--accent-primary);
+    font-weight: 700;
+}
+
+.hea-topic-option input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    flex: none;
+    accent-color: var(--accent-primary);
+}
+
+.hea-topic-option-name {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.hea-topics-desktop {
+    display: none;
+}
+
+.hea-topics-mobile {
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+}
+
+.hea-topics-mobile .hea-topic-menu {
+    margin-bottom: 0;
+}
+
+.hea-topics-mobile.dark {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+.hea-topics-mobile.light {
+    background-color: #ffffff;
+    border-color: #e9d5ff;
+}
+
+@media (min-width: 1100px) {
+    .hea-topics-desktop {
+        display: block;
+    }
+
+    .hea-topics-mobile {
+        display: none;
+    }
+}
+
+.hea-filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
 /* Cards */
 .hea-card {
     scroll-margin-top: 7rem;
@@ -227,9 +402,69 @@
 
 .hea-card-heading {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 0.6rem;
     min-width: 0;
+}
+
+/* Date on the left, topics in the right corner; on phones the topics drop below the date. */
+.hea-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.4rem 1rem;
+}
+
+.hea-topics {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.35rem;
+}
+
+.hea-topic {
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 0.05rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--accent-primary);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.hea-topic:hover,
+.hea-topic.active {
+    background-color: var(--bg-accent);
+    border-color: var(--accent-primary);
+}
+
+.hea-topic:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.hea-topics-below {
+    display: none;
+    justify-content: flex-start;
+}
+
+@media (max-width: 1099px) {
+    .hea-topics-inline {
+        display: none;
+    }
+
+    .hea-topics-below {
+        display: flex;
+    }
 }
 
 .hea-bubble {
@@ -280,13 +515,14 @@
         display: none;
     }
 
-    /* Square whose side follows the date + title block height (measured in HeaFeedItem). */
+    /* Square whose side follows the date + title block height (measured in HeaFeedItem).
+       Capped: a long title wraps, the square grows, the title narrows and wraps more, and so on. */
     .hea-avatar-inside {
         display: block;
         position: relative;
         flex-shrink: 0;
-        width: var(--avatar-inside-size);
-        height: var(--avatar-inside-size);
+        width: min(var(--avatar-inside-size), 5rem);
+        height: min(var(--avatar-inside-size), 5rem);
     }
 
     .hea-avatar-fill {

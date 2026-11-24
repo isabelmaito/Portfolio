@@ -4,6 +4,7 @@ import logoHorizontalBranco from '../../assets/logoHorizontalBranco.png';
 import { heaApi } from '../../services/heaApi.js';
 import { AdminPostCard } from './AdminPostCard.jsx';
 import { PostForm } from './PostForm.jsx';
+import { TopicManager } from './TopicManager.jsx';
 import './Admin.css';
 
 function byDateDesc(a, b) {
@@ -24,6 +25,7 @@ export default function AdminDashboard() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [topics, setTopics] = useState([]);
   const loadingRef = useRef(false);
   const sentinelRef = useRef(null);
 
@@ -67,6 +69,16 @@ export default function AdminDashboard() {
     [navigate],
   );
 
+  // Topic counts change whenever a post gains or loses a topic, so this reloads after each save.
+  const loadTopics = useCallback(async () => {
+    try {
+      const { topics: list } = await heaApi.adminTopics();
+      setTopics(list);
+    } catch (requestError) {
+      if (requestError.status === 401) navigate('/admin/login', { replace: true });
+    }
+  }, [navigate]);
+
   useEffect(() => {
     let active = true;
     heaApi
@@ -75,12 +87,13 @@ export default function AdminDashboard() {
         if (!active) return;
         setAuthChecked(true);
         loadPage(null);
+        loadTopics();
       })
       .catch(() => active && navigate('/admin/login', { replace: true }));
     return () => {
       active = false;
     };
-  }, [loadPage, navigate]);
+  }, [loadPage, loadTopics, navigate]);
 
   useEffect(() => {
     const sentinel = sentinelRef.current;
@@ -110,6 +123,7 @@ export default function AdminDashboard() {
       handleError(requestError);
       return;
     }
+    loadTopics();
     await loadPage(null);
   };
 
@@ -117,6 +131,7 @@ export default function AdminDashboard() {
     try {
       const { post } = await heaApi.updatePost(id, data);
       replacePost(post);
+      loadTopics();
     } catch (requestError) {
       handleError(requestError);
     }
@@ -127,6 +142,7 @@ export default function AdminDashboard() {
     try {
       await heaApi.deletePost(id);
       setPosts((current) => current.filter((post) => post.id !== id));
+      loadTopics();
     } catch (requestError) {
       if (requestError.status === 401) return handleError(requestError);
       window.alert(requestError.message);
@@ -164,6 +180,42 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleCreateTopic = async (name) => {
+    try {
+      const { topic } = await heaApi.createTopic(name);
+      setTopics((current) =>
+        [...current, topic].sort((a, b) => a.name.pt.localeCompare(b.name.pt, 'pt-BR')),
+      );
+      return topic;
+    } catch (requestError) {
+      return handleError(requestError);
+    }
+  };
+
+  // Posts show topic names, so both changes reload the history too.
+  const handleRenameTopic = async (id, name) => {
+    try {
+      await heaApi.renameTopic(id, name);
+    } catch (requestError) {
+      handleError(requestError);
+      return;
+    }
+    await Promise.all([loadTopics(), loadPage(null)]);
+  };
+
+  const handleDeleteTopic = async (topic) => {
+    const message = `Apagar o tema "${topic.name.pt}"? Ele sai de ${topic.posts} post(s); os posts ficam.`;
+    if (!window.confirm(message)) return;
+    try {
+      await heaApi.deleteTopic(topic.id);
+    } catch (requestError) {
+      if (requestError.status === 401) return handleError(requestError);
+      window.alert(requestError.message);
+      return;
+    }
+    await Promise.all([loadTopics(), loadPage(null)]);
+  };
+
   const handleLogout = async () => {
     await heaApi.logout().catch(() => {});
     navigate('/admin/login', { replace: true });
@@ -197,11 +249,13 @@ export default function AdminDashboard() {
       <div className="admin-content">
         <section className="admin-card">
           <h2 className="admin-section-title">Novo post</h2>
-          <PostForm submitLabel="Publicar" onSubmit={handleCreate} />
+          <PostForm topics={topics} onCreateTopic={handleCreateTopic} submitLabel="Publicar" onSubmit={handleCreate} />
           <p className="admin-muted admin-hint">
             Escreva em português. O texto é traduzido para inglês, espanhol e chinês ao salvar.
           </p>
         </section>
+
+        <TopicManager topics={topics} onRename={handleRenameTopic} onDelete={handleDeleteTopic} />
 
         <section className="admin-history" aria-label="Histórico de posts">
           <h2 className="admin-section-title">Histórico</h2>
@@ -210,6 +264,8 @@ export default function AdminDashboard() {
             <AdminPostCard
               key={post.id}
               post={post}
+              topics={topics}
+              onCreateTopic={handleCreateTopic}
               onUpdate={handleUpdate}
               onDelete={handleDelete}
               onReply={handleReply}

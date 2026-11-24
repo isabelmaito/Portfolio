@@ -364,6 +364,184 @@
     gap: 0.35rem;
 }
 
+/* Temas: chips escolhidos + caixa de texto com sugestões. */
+.admin-topics {
+    position: relative;
+}
+
+.admin-topics > label > span {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.admin-topics-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem;
+    background-color: var(--bg-primary);
+    border: 1px solid #374151;
+    border-radius: 0.6rem;
+}
+
+.admin-topics-box:focus-within {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25);
+}
+
+.admin-field .admin-topics-box input {
+    flex: 1 1 10rem;
+    min-width: 0;
+    border: 0;
+    padding: 0.35rem 0.45rem;
+    background: transparent;
+    box-shadow: none;
+}
+
+.admin-topic-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.2rem 0.25rem 0.2rem 0.7rem;
+    border-radius: 999px;
+    background-color: var(--bg-accent);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+}
+
+.admin-topic-chip button {
+    display: flex;
+    padding: 0.2rem;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.admin-topic-chip button:hover,
+.admin-topic-chip button:focus-visible {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.admin-topic-chip svg {
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+.admin-topic-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    margin-top: 0.3rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    box-shadow: 0 16px 30px -12px rgba(0, 0, 0, 0.6);
+}
+
+.admin-topic-list button {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 0;
+    border-radius: 0.45rem;
+    background: none;
+    color: var(--text-primary);
+    font: inherit;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+}
+
+.admin-topic-list button:hover {
+    background-color: var(--bg-accent);
+}
+
+.admin-topic-list .admin-topic-create {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.admin-post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+}
+
+.admin-post-topics {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.admin-post-topics li {
+    padding: 0.1rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--accent-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.admin-topic-manager summary {
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.admin-topic-manager[open] summary {
+    margin-bottom: 0.75rem;
+}
+
+.admin-topic-rows {
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+}
+
+.admin-topic-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+}
+
+.admin-topic-rename {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.admin-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
 @media (max-width: 640px) {
     .admin-card {
         padding: 1.1rem;

@@ -180,6 +180,14 @@
     "timeline": "Shíjiān xiàn",
     "dateNav": "Àn rìqī liúlǎn",
     "allDates": "Quánbù rìqī",
+    "allTopics": "Quánbù zhǔtí",
+    "topicsSelected": "{{count}} gè zhǔtí",
+    "topicNav": "Àn zhǔtí liúlǎn",
+    "clearTopics": "Qīngchú",
+    "removeTopic": "Yíchú \"{{name}}\"shāixuǎn",
+    "emptyTopics": "Méiyǒu zhèixiē zhǔtí de tiězǐ.",
+    "topics": "Zhǔtí",
+    "filterByTopic": "Àn \"{{name}}\"shāixuǎn",
     "postNotFound": "Gāi nèiróng yǐ bùcúnzài.",
     "thread": "Hòu xù"
   }

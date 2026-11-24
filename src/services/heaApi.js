@@ -41,8 +41,10 @@ function query(params) {
 }
 
 export const heaApi = {
-    feed: ({ cursor, year, month, signal } = {}) => request(`/api/posts${query({ cursor, year, month })}`, { signal }),
+    feed: ({ cursor, year, month, topics, signal } = {}) =>
+        request(`/api/posts${query({ cursor, year, month, topics: topics?.join(',') })}`, { signal }),
     calendar: ({ signal } = {}) => request('/api/posts/calendar', { signal }),
+    topics: ({ signal } = {}) => request('/api/posts/topics', { signal }),
     postContext: (id, { signal } = {}) => request(`/api/posts/${id}`, { signal }),
 
     login: (username, password) =>
@@ -58,4 +60,9 @@ export const heaApi = {
         request(`/api/admin/posts/${postId}/replies`, { method: 'POST', body: data, auth: true }),
     updateReply: (id, data) => request(`/api/admin/replies/${id}`, { method: 'PUT', body: data, auth: true }),
     deleteReply: (id) => request(`/api/admin/replies/${id}`, { method: 'DELETE', auth: true }),
+
+    adminTopics: () => request('/api/admin/topics', { auth: true }),
+    createTopic: (name) => request('/api/admin/topics', { method: 'POST', body: { name }, auth: true }),
+    renameTopic: (id, name) => request(`/api/admin/topics/${id}`, { method: 'PUT', body: { name }, auth: true }),
+    deleteTopic: (id) => request(`/api/admin/topics/${id}`, { method: 'DELETE', auth: true }),
 };
