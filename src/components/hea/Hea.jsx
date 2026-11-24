@@ -12,6 +12,8 @@ import { HeaTopicMenu } from './HeaTopicMenu.jsx';
 import './Hea.css';
 
 const MOBILE_QUERY = '(max-width: 1099px)';
+// Ticking boxes only asks the API once the reader stops for this long, so five quick clicks cost one request.
+const TOPIC_DELAY_MS = 1500;
 
 function setPostParam(postId) {
   const url = new URL(window.location.href);
@@ -44,7 +46,9 @@ export function Hea({ darkMode }) {
   const theme = darkMode ? 'dark' : 'light';
 
   const [filter, setFilter] = useState(null);
+  // topicIds = topics of the feed on screen; selectedTopics = boxes ticked, applied after TOPIC_DELAY_MS.
   const [topicIds, setTopicIds] = useState([]);
+  const [selectedTopics, setSelectedTopics] = useState([]);
   const [items, setItems] = useState([]);
   const [nextCursor, setNextCursor] = useState(null);
   const [status, setStatus] = useState('loading');
@@ -59,6 +63,10 @@ export function Hea({ darkMode }) {
   const requestId = useRef(0);
   const retry = useRef(null);
   const initialized = useRef(false);
+  const topicTimer = useRef(null);
+
+  const cancelPendingTopics = () => clearTimeout(topicTimer.current);
+  useEffect(() => () => clearTimeout(topicTimer.current), []);
 
   // Month and topics combine: the feed shows posts of that month with any of the topics.
   const loadFirstPage = useCallback(async (nextFilter, nextTopics = []) => {
@@ -66,6 +74,7 @@ export function Hea({ darkMode }) {
     retry.current = () => loadFirstPage(nextFilter, nextTopics);
     setFilter(nextFilter);
     setTopicIds(nextTopics);
+    setSelectedTopics(nextTopics);
     setTopicsParam(nextTopics);
     setStatus('loading');
     setMoreError(false);
@@ -91,6 +100,7 @@ export function Hea({ darkMode }) {
         if (id !== requestId.current) return;
         setFilter({ year: context.year, month: context.month });
         setTopicIds([]);
+        setSelectedTopics([]);
         setTopicsParam([]);
         setItems(context.items);
         setNextCursor(context.nextCursor);
@@ -141,7 +151,8 @@ export function Hea({ darkMode }) {
     if (window.matchMedia(MOBILE_QUERY).matches) setNavOpen(false);
   };
 
-  const changeFilter = (nextFilter, nextTopics = topicIds) => {
+  const changeFilter = (nextFilter, nextTopics = selectedTopics) => {
+    cancelPendingTopics();
     setPostParam(null);
     loadFirstPage(nextFilter, nextTopics);
     scrollIntoView(document.getElementById('hea-feed'));
@@ -152,13 +163,23 @@ export function Hea({ darkMode }) {
     closeNavOnMobile();
   };
 
-  // Ticking several boxes is normal, so the topic menu stays open on phones.
+  // The box changes at once; the feed waits until no box was clicked for TOPIC_DELAY_MS.
   const toggleTopic = (topicId) => {
-    const next = topicIds.includes(topicId) ? topicIds.filter((id) => id !== topicId) : [...topicIds, topicId];
-    changeFilter(filter, next);
+    const next = selectedTopics.includes(topicId)
+      ? selectedTopics.filter((id) => id !== topicId)
+      : [...selectedTopics, topicId];
+    setSelectedTopics(next);
+    cancelPendingTopics();
+    topicTimer.current = setTimeout(() => {
+      setPostParam(null);
+      loadFirstPage(filter, next);
+    }, TOPIC_DELAY_MS);
   };
 
+  const clearTopics = () => changeFilter(filter, []);
+
   const handleOpenPost = (postId) => {
+    cancelPendingTopics();
     closeNavOnMobile();
     openPost(postId);
   };
@@ -220,8 +241,8 @@ export function Hea({ darkMode }) {
 
   const hasNavigation = calendar.length > 0 || topics.length > 0;
   const lang = contentLang(i18n.language);
-  const activeTopics = topicIds.map((id) => topics.find((topic) => topic.id === id)).filter(Boolean);
-  const filtered = Boolean(filter) || topicIds.length > 0;
+  const activeTopics = selectedTopics.map((id) => topics.find((topic) => topic.id === id)).filter(Boolean);
+  const filtered = Boolean(filter) || selectedTopics.length > 0;
 
   return (
     <section id="hea" className={`hea-section ${theme}`}>
@@ -241,7 +262,9 @@ export function Hea({ darkMode }) {
           >
             <span>
               {t('hea.navToggle')}
-              {topicIds.length > 0 && <span className="hea-menu-count hea-toggle-count">{topicIds.length}</span>}
+              {selectedTopics.length > 0 && (
+                <span className="hea-menu-count hea-toggle-count">{selectedTopics.length}</span>
+              )}
             </span>
             <ChevronDown className={`hea-menu-chevron ${navOpen ? 'open' : ''}`} aria-hidden="true" />
           </button>
@@ -311,7 +334,7 @@ export function Hea({ darkMode }) {
                           darkMode={darkMode}
                           highlighted={item.type === 'post' && focus?.postId === item.post.id}
                           onShare={handleShare}
-                          selectedTopics={topicIds}
+                          selectedTopics={selectedTopics}
                           onToggleTopic={toggleTopic}
                           onOpenPost={handleOpenPost}
                         />
@@ -344,9 +367,9 @@ export function Hea({ darkMode }) {
             <aside id="hea-aside" className={`hea-aside ${navOpen ? 'open' : ''}`}>
               <HeaTopicMenu
                 topics={topics}
-                selected={topicIds}
+                selected={selectedTopics}
                 onToggle={toggleTopic}
-                onClear={() => changeFilter(filter, [])}
+                onClear={clearTopics}
               />
               <HeaDateMenu
                 calendar={calendar}
