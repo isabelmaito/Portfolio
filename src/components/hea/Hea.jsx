@@ -370,6 +370,7 @@ export function Hea({ darkMode }) {
                 selected={selectedTopics}
                 onToggle={toggleTopic}
                 onClear={clearTopics}
+                theme={theme}
               />
               <HeaDateMenu
                 calendar={calendar}

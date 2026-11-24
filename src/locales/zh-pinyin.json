@@ -180,6 +180,8 @@
     "timeline": "Shíjiān xiàn",
     "dateNav": "Àn rìqī liúlǎn",
     "allDates": "Quánbù rìqī",
+    "allTopics": "Quánbù zhǔtí",
+    "topicsSelected": "{{count}} gè zhǔtí",
     "topicNav": "Àn zhǔtí liúlǎn",
     "navToggle": "Zhǔtí hé rìqī",
     "clearTopics": "Qīngchú",
