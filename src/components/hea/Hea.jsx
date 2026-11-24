@@ -8,6 +8,7 @@ import { contentLang, formatMonthYear, monthKeyOf, textIn } from '../../utils/he
 import { HeaDateMenu } from './HeaDateMenu.jsx';
 import { HeaFeedItem, postElementId } from './HeaFeedItem.jsx';
 import { HeaTimelineMarker } from './HeaTimeline.jsx';
+import { HeaTopicMenu } from './HeaTopicMenu.jsx';
 import './Hea.css';
 
 const MOBILE_QUERY = '(max-width: 1099px)';
@@ -35,6 +36,7 @@ export function Hea({ darkMode }) {
   const [loadingMore, setLoadingMore] = useState(false);
   const [moreError, setMoreError] = useState(false);
   const [calendar, setCalendar] = useState([]);
+  const [topics, setTopics] = useState([]);
   const [focus, setFocus] = useState(null);
   const [notice, setNotice] = useState('');
   const [navOpen, setNavOpen] = useState(false);
@@ -99,6 +101,11 @@ export function Hea({ darkMode }) {
     heaApi
       .calendar()
       .then(({ months }) => setCalendar(months))
+      .catch(() => {});
+
+    heaApi
+      .topics()
+      .then(({ topics: list }) => setTopics(list))
       .catch(() => {});
 
     const postParam = new URLSearchParams(window.location.search).get('post');
@@ -194,7 +201,10 @@ export function Hea({ darkMode }) {
     return groups;
   }, [items]);
 
-  const hasNavigation = calendar.length > 0;
+  const hasNavigation = calendar.length > 0 || topics.length > 0;
+  const lang = contentLang(i18n.language);
+  const activeTopics = topicIds.map((id) => topics.find((topic) => topic.id === id)).filter(Boolean);
+  const filtered = Boolean(filter) || topicIds.length > 0;
 
   return (
     <section id="hea" className={`hea-section ${theme}`}>
@@ -212,19 +222,41 @@ export function Hea({ darkMode }) {
             aria-controls="hea-aside"
             onClick={() => setNavOpen((open) => !open)}
           >
-            {t('hea.dateNav')}
+            <span>
+              {t('hea.navToggle')}
+              {topicIds.length > 0 && <span className="hea-menu-count hea-toggle-count">{topicIds.length}</span>}
+            </span>
             <ChevronDown className={`hea-menu-chevron ${navOpen ? 'open' : ''}`} aria-hidden="true" />
           </button>
         )}
 
         <div className="hea-layout">
           <div id="hea-feed" className="hea-feed" aria-busy={status === 'loading'}>
-            {filter && (
-              <div className={`hea-filter-chip ${theme}`}>
-                {formatMonthYear(filter.year, filter.month, i18n.language)}
-                <button type="button" onClick={() => changeFilter(null)} aria-label={t('hea.allDates')}>
-                  <X className="hea-icon" aria-hidden="true" />
-                </button>
+            {filtered && (
+              <div className="hea-filter-chips">
+                {filter && (
+                  <div className={`hea-filter-chip ${theme}`}>
+                    {formatMonthYear(filter.year, filter.month, i18n.language)}
+                    <button type="button" onClick={() => changeFilter(null)} aria-label={t('hea.allDates')}>
+                      <X className="hea-icon" aria-hidden="true" />
+                    </button>
+                  </div>
+                )}
+                {activeTopics.map((topic) => {
+                  const name = textIn(topic.name, lang);
+                  return (
+                    <div key={topic.id} className={`hea-filter-chip ${theme}`}>
+                      {name}
+                      <button
+                        type="button"
+                        onClick={() => toggleTopic(topic.id)}
+                        aria-label={t('hea.removeTopic', { name })}
+                      >
+                        <X className="hea-icon" aria-hidden="true" />
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             )}
 
@@ -246,7 +278,7 @@ export function Hea({ darkMode }) {
 
             {status === 'ready' && items.length === 0 && (
               <div className="hea-state">
-                <p>{filter ? t('hea.emptyFilter') : t('hea.empty')}</p>
+                <p>{topicIds.length > 0 ? t('hea.emptyTopics') : filter ? t('hea.emptyFilter') : t('hea.empty')}</p>
               </div>
             )}
 
@@ -293,6 +325,12 @@ export function Hea({ darkMode }) {
 
           {hasNavigation && (
             <aside id="hea-aside" className={`hea-aside ${navOpen ? 'open' : ''}`}>
+              <HeaTopicMenu
+                topics={topics}
+                selected={topicIds}
+                onToggle={toggleTopic}
+                onClear={() => changeFilter(filter, [])}
+              />
               <HeaDateMenu
                 calendar={calendar}
                 filter={filter}
