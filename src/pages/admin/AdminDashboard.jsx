@@ -4,6 +4,7 @@ import logoHorizontalBranco from '../../assets/logoHorizontalBranco.png';
 import { heaApi } from '../../services/heaApi.js';
 import { AdminPostCard } from './AdminPostCard.jsx';
 import { PostForm } from './PostForm.jsx';
+import { TopicManager } from './TopicManager.jsx';
 import './Admin.css';
 
 function byDateDesc(a, b) {
@@ -191,6 +192,30 @@ export default function AdminDashboard() {
     }
   };
 
+  // Posts show topic names, so both changes reload the history too.
+  const handleRenameTopic = async (id, name) => {
+    try {
+      await heaApi.renameTopic(id, name);
+    } catch (requestError) {
+      handleError(requestError);
+      return;
+    }
+    await Promise.all([loadTopics(), loadPage(null)]);
+  };
+
+  const handleDeleteTopic = async (topic) => {
+    const message = `Apagar o tema "${topic.name.pt}"? Ele sai de ${topic.posts} post(s); os posts ficam.`;
+    if (!window.confirm(message)) return;
+    try {
+      await heaApi.deleteTopic(topic.id);
+    } catch (requestError) {
+      if (requestError.status === 401) return handleError(requestError);
+      window.alert(requestError.message);
+      return;
+    }
+    await Promise.all([loadTopics(), loadPage(null)]);
+  };
+
   const handleLogout = async () => {
     await heaApi.logout().catch(() => {});
     navigate('/admin/login', { replace: true });
@@ -229,6 +254,8 @@ export default function AdminDashboard() {
             Escreva em português. O texto é traduzido para inglês, espanhol e chinês ao salvar.
           </p>
         </section>
+
+        <TopicManager topics={topics} onRename={handleRenameTopic} onDelete={handleDeleteTopic} />
 
         <section className="admin-history" aria-label="Histórico de posts">
           <h2 className="admin-section-title">Histórico</h2>
