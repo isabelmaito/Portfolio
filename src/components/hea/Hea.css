@@ -227,9 +227,69 @@
 
 .hea-card-heading {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 0.6rem;
     min-width: 0;
+}
+
+/* Date on the left, topics in the right corner; on phones the topics drop below the date. */
+.hea-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.4rem 1rem;
+}
+
+.hea-topics {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.35rem;
+}
+
+.hea-topic {
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 0.05rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--accent-primary);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.hea-topic:hover,
+.hea-topic.active {
+    background-color: var(--bg-accent);
+    border-color: var(--accent-primary);
+}
+
+.hea-topic:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.hea-topics-below {
+    display: none;
+    justify-content: flex-start;
+}
+
+@media (max-width: 1099px) {
+    .hea-topics-inline {
+        display: none;
+    }
+
+    .hea-topics-below {
+        display: flex;
+    }
 }
 
 .hea-bubble {
@@ -280,13 +340,14 @@
         display: none;
     }
 
-    /* Square whose side follows the date + title block height (measured in HeaFeedItem). */
+    /* Square whose side follows the date + title block height (measured in HeaFeedItem).
+       Capped: a long title wraps, the square grows, the title narrows and wraps more, and so on. */
     .hea-avatar-inside {
         display: block;
         position: relative;
         flex-shrink: 0;
-        width: var(--avatar-inside-size);
-        height: var(--avatar-inside-size);
+        width: min(var(--avatar-inside-size), 5rem);
+        height: min(var(--avatar-inside-size), 5rem);
     }
 
     .hea-avatar-fill {

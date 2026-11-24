@@ -28,6 +28,7 @@ export function Hea({ darkMode }) {
   const theme = darkMode ? 'dark' : 'light';
 
   const [filter, setFilter] = useState(null);
+  const [topicIds, setTopicIds] = useState([]);
   const [items, setItems] = useState([]);
   const [nextCursor, setNextCursor] = useState(null);
   const [status, setStatus] = useState('loading');
@@ -42,14 +43,16 @@ export function Hea({ darkMode }) {
   const retry = useRef(null);
   const initialized = useRef(false);
 
-  const loadFirstPage = useCallback(async (nextFilter) => {
+  // Month and topics combine: the feed shows posts of that month with any of the topics.
+  const loadFirstPage = useCallback(async (nextFilter, nextTopics = []) => {
     const id = ++requestId.current;
-    retry.current = () => loadFirstPage(nextFilter);
+    retry.current = () => loadFirstPage(nextFilter, nextTopics);
     setFilter(nextFilter);
+    setTopicIds(nextTopics);
     setStatus('loading');
     setMoreError(false);
     try {
-      const page = await heaApi.feed({ year: nextFilter?.year, month: nextFilter?.month });
+      const page = await heaApi.feed({ year: nextFilter?.year, month: nextFilter?.month, topics: nextTopics });
       if (id !== requestId.current) return;
       setItems(page.items);
       setNextCursor(page.nextCursor);
@@ -69,6 +72,7 @@ export function Hea({ darkMode }) {
         const context = await heaApi.postContext(postId);
         if (id !== requestId.current) return;
         setFilter({ year: context.year, month: context.month });
+        setTopicIds([]);
         setItems(context.items);
         setNextCursor(context.nextCursor);
         setStatus('ready');
@@ -113,11 +117,21 @@ export function Hea({ darkMode }) {
     if (window.matchMedia(MOBILE_QUERY).matches) setNavOpen(false);
   };
 
-  const changeFilter = (nextFilter) => {
+  const changeFilter = (nextFilter, nextTopics = topicIds) => {
     setPostParam(null);
-    loadFirstPage(nextFilter);
-    closeNavOnMobile();
+    loadFirstPage(nextFilter, nextTopics);
     scrollIntoView(document.getElementById('hea-feed'));
+  };
+
+  const changeMonth = (nextFilter) => {
+    changeFilter(nextFilter);
+    closeNavOnMobile();
+  };
+
+  // Ticking several boxes is normal, so the topic menu stays open on phones.
+  const toggleTopic = (topicId) => {
+    const next = topicIds.includes(topicId) ? topicIds.filter((id) => id !== topicId) : [...topicIds, topicId];
+    changeFilter(filter, next);
   };
 
   const handleOpenPost = (postId) => {
@@ -131,7 +145,7 @@ export function Hea({ darkMode }) {
     setLoadingMore(true);
     setMoreError(false);
     try {
-      const page = await heaApi.feed({ cursor: nextCursor, year: filter?.year, month: filter?.month });
+      const page = await heaApi.feed({ cursor: nextCursor, year: filter?.year, month: filter?.month, topics: topicIds });
       if (id !== requestId.current) return;
       setItems((current) => {
         const seen = new Set(current.map((item) => item.key));
@@ -248,6 +262,8 @@ export function Hea({ darkMode }) {
                           darkMode={darkMode}
                           highlighted={item.type === 'post' && focus?.postId === item.post.id}
                           onShare={handleShare}
+                          selectedTopics={topicIds}
+                          onToggleTopic={toggleTopic}
                           onOpenPost={handleOpenPost}
                         />
                       ))}
@@ -280,8 +296,8 @@ export function Hea({ darkMode }) {
               <HeaDateMenu
                 calendar={calendar}
                 filter={filter}
-                onSelectMonth={(year, month) => changeFilter({ year, month })}
-                onClear={() => changeFilter(null)}
+                onSelectMonth={(year, month) => changeMonth({ year, month })}
+                onClear={() => changeMonth(null)}
               />
             </aside>
           )}

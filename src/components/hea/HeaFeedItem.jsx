@@ -28,11 +28,39 @@ function useHeight() {
   return [ref, height];
 }
 
-function HeaPostCard({ item, darkMode, highlighted, onShare }) {
+function HeaTopics({ className, topics, lang, selectedTopics, onToggleTopic }) {
+  const { t } = useTranslation();
+  if (!topics?.length) return null;
+
+  return (
+    <ul className={`hea-topics ${className}`} aria-label={t('hea.topics')}>
+      {topics.map((topic) => {
+        const name = textIn(topic.name, lang);
+        const active = selectedTopics.includes(topic.id);
+        return (
+          <li key={topic.id}>
+            <button
+              type="button"
+              className={`hea-topic ${active ? 'active' : ''}`}
+              aria-pressed={active}
+              title={t('hea.filterByTopic', { name })}
+              onClick={() => onToggleTopic(topic.id)}
+            >
+              {name}
+            </button>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function HeaPostCard({ item, darkMode, highlighted, onShare, selectedTopics = [], onToggleTopic }) {
   const { t, i18n } = useTranslation();
   const lang = contentLang(i18n.language);
   const { post } = item;
   const [headingRef, headingHeight] = useHeight();
+  const topicProps = { topics: post.topics, lang, selectedTopics, onToggleTopic };
 
   return (
     <div className="hea-post-row">
@@ -46,12 +74,17 @@ function HeaPostCard({ item, darkMode, highlighted, onShare }) {
             <Avatar className="hea-avatar-fill" />
           </span>
           <div ref={headingRef} className="hea-card-heading">
-            <time className="hea-date" dateTime={post.learnedOn}>
-              {formatFullDate(post.learnedOn, i18n.language)}
-            </time>
+            <div className="hea-card-meta">
+              <time className="hea-date" dateTime={post.learnedOn}>
+                {formatFullDate(post.learnedOn, i18n.language)}
+              </time>
+              <HeaTopics className="hea-topics-inline" {...topicProps} />
+            </div>
             <h3 className="hea-card-title">{textIn(post.title, lang)}</h3>
           </div>
         </div>
+        {/* Below 1100px the avatar sits inside the card, sized to the date + title, so the topics get their own line. */}
+        <HeaTopics className="hea-topics-below" {...topicProps} />
         <p className="hea-card-body">{textIn(post.body, lang)}</p>
 
         {post.replies.length > 0 && (

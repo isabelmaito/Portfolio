@@ -180,6 +180,8 @@
     "timeline": "Shíjiān xiàn",
     "dateNav": "Àn rìqī liúlǎn",
     "allDates": "Quánbù rìqī",
+    "topics": "Zhǔtí",
+    "filterByTopic": "Àn \"{{name}}\"shāixuǎn",
     "postNotFound": "Gāi nèiróng yǐ bùcúnzài.",
     "thread": "Hòu xù"
   }
