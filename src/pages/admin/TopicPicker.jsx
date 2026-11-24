@@ -3,7 +3,6 @@ import { useId, useState } from 'react';
 
 export const TOPICS_PER_POST_MAX = 3;
 const TOPIC_NAME_MAX = 40;
-const MAX_SUGGESTIONS = 6;
 
 function normalize(text) {
   return text.trim().toLocaleLowerCase('pt-BR');
@@ -25,8 +24,7 @@ export function TopicPicker({ topics, value, onChange, onCreate }) {
   const typed = normalize(query);
   const exact = topics.find((topic) => normalize(topic.name.pt) === typed);
   const suggestions = topics
-    .filter((topic) => !value.includes(topic.id) && normalize(topic.name.pt).includes(typed))
-    .slice(0, MAX_SUGGESTIONS);
+    .filter((topic) => !value.includes(topic.id) && normalize(topic.name.pt).includes(typed));
   const canCreate = typed !== '' && !exact && [...query.trim()].length <= TOPIC_NAME_MAX;
 
   const add = (id) => {
