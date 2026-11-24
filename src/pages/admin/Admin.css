@@ -57,6 +57,12 @@
     padding: 1.5rem;
     box-shadow: 0 20px 40px -20px var(--shadow);
     backdrop-filter: blur(8px);
+    position: relative;
+}
+
+/* backdrop-filter makes each card its own layer, so the next card would cover the topic list. */
+.admin-card:has(.admin-topic-list) {
+    z-index: 2;
 }
 
 .admin-login-card {
@@ -445,6 +451,11 @@
     border: 1px solid var(--border);
     border-radius: 0.6rem;
     box-shadow: 0 16px 30px -12px rgba(0, 0, 0, 0.6);
+    max-height: 16rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) transparent;
 }
 
 .admin-topic-list button {
