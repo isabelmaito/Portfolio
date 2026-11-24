@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BODY_MAX, TITLE_MAX, charLength, todayIso } from '../../utils/heaDates.js';
+import { TopicPicker } from './TopicPicker.jsx';
 
 function CharCounter({ value, max }) {
   const length = charLength(value);
@@ -10,10 +11,11 @@ function CharCounter({ value, max }) {
   );
 }
 
-export function PostForm({ initial, submitLabel, onSubmit, onCancel }) {
+export function PostForm({ initial, topics, onCreateTopic, submitLabel, onSubmit, onCancel }) {
   const [title, setTitle] = useState(initial?.title ?? '');
   const [learnedOn, setLearnedOn] = useState(initial?.learnedOn ?? todayIso());
   const [body, setBody] = useState(initial?.body ?? '');
+  const [topicIds, setTopicIds] = useState(initial?.topicIds ?? []);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -26,11 +28,12 @@ export function PostForm({ initial, submitLabel, onSubmit, onCancel }) {
     setError('');
     setSubmitting(true);
     try {
-      await onSubmit({ title, body, learnedOn });
+      await onSubmit({ title, body, learnedOn, topicIds });
       if (!initial) {
         setTitle('');
         setBody('');
         setLearnedOn(todayIso());
+        setTopicIds([]);
       }
     } catch (submitError) {
       setError(submitError.message);
@@ -60,6 +63,8 @@ export function PostForm({ initial, submitLabel, onSubmit, onCancel }) {
         </span>
         <textarea rows={5} value={body} onChange={(event) => setBody(event.target.value)} required />
       </label>
+
+      <TopicPicker topics={topics} value={topicIds} onChange={setTopicIds} onCreate={onCreateTopic} />
 
       {error && (
         <p className="admin-error" role="alert">

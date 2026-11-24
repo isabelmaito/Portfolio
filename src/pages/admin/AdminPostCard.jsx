@@ -47,14 +47,31 @@ function AdminReply({ reply, minDate, onUpdateReply, onDeleteReply }) {
   );
 }
 
-export function AdminPostCard({ post, onUpdate, onDelete, onReply, onUpdateReply, onDeleteReply }) {
+export function AdminPostCard({
+  post,
+  topics,
+  onCreateTopic,
+  onUpdate,
+  onDelete,
+  onReply,
+  onUpdateReply,
+  onDeleteReply,
+}) {
   const [mode, setMode] = useState('view');
+  const postTopics = post.topics ?? [];
 
   return (
     <article className="admin-card admin-post">
       {mode === 'edit' ? (
         <PostForm
-          initial={{ title: post.title.pt, body: post.body.pt, learnedOn: post.learnedOn }}
+          initial={{
+            title: post.title.pt,
+            body: post.body.pt,
+            learnedOn: post.learnedOn,
+            topicIds: postTopics.map((topic) => topic.id),
+          }}
+          topics={topics}
+          onCreateTopic={onCreateTopic}
           submitLabel="Salvar alterações"
           onCancel={() => setMode('view')}
           onSubmit={async (data) => {
@@ -64,9 +81,18 @@ export function AdminPostCard({ post, onUpdate, onDelete, onReply, onUpdateReply
         />
       ) : (
         <>
-          <time className="admin-date" dateTime={post.learnedOn}>
-            {formatFullDate(post.learnedOn, 'pt-BR')}
-          </time>
+          <div className="admin-post-meta">
+            <time className="admin-date" dateTime={post.learnedOn}>
+              {formatFullDate(post.learnedOn, 'pt-BR')}
+            </time>
+            {postTopics.length > 0 && (
+              <ul className="admin-post-topics" aria-label="Temas">
+                {postTopics.map((topic) => (
+                  <li key={topic.id}>{topic.name.pt}</li>
+                ))}
+              </ul>
+            )}
+          </div>
           <h2 className="admin-post-title">{post.title.pt}</h2>
           <p className="admin-text">{post.body.pt}</p>
 
