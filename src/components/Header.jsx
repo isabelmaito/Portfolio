@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { PINYIN } from '../locales/languages.js';
 import logoHorizontal from '../assets/logoHorizontal.png';
 import logoHorizontalBranco from '../assets/logoHorizontalBranco.png';
 import './Header.css';
@@ -16,7 +17,9 @@ export function Header({ darkMode, toggleDarkMode }) {
     { label: t('header.menu.hea'), href: '#hea' }
   ];
 
-  const selectedLanguage = i18n.language?.startsWith('zh')
+  const selectedLanguage = i18n.language === PINYIN
+    ? PINYIN
+    : i18n.language?.startsWith('zh')
     ? 'zh-CN'
     : i18n.language?.startsWith('es')
       ? 'es'
@@ -73,6 +76,7 @@ export function Header({ darkMode, toggleDarkMode }) {
               <option value="en">{t('header.languageOptions.en')}</option>
               <option value="es">{t('header.languageOptions.es')}</option>
               <option value="zh-CN">{t('header.languageOptions.zhCN')}</option>
+              <option value={PINYIN}>{t('header.languageOptions.zhPinyin')}</option>
             </select>
           </nav>
 
@@ -95,6 +99,7 @@ export function Header({ darkMode, toggleDarkMode }) {
               <option value="en">{t('header.languageOptions.en')}</option>
               <option value="es">{t('header.languageOptions.es')}</option>
               <option value="zh-CN">{t('header.languageOptions.zhCN')}</option>
+              <option value={PINYIN}>{t('header.languageOptions.zhPinyin')}</option>
             </select>
             
             <button
