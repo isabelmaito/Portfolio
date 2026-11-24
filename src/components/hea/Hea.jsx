@@ -20,6 +20,21 @@ function setPostParam(postId) {
   window.history.replaceState(window.history.state, '', url);
 }
 
+// ?temas=1,4 keeps the chosen topics in the address, so a copied link opens the same filter.
+function setTopicsParam(topicIds) {
+  const url = new URL(window.location.href);
+  if (topicIds.length > 0) url.searchParams.set('temas', topicIds.join(','));
+  else url.searchParams.delete('temas');
+  url.search = url.search.replaceAll('%2C', ','); // "1,4" reads better in a shared link than "1%2C4"
+  window.history.replaceState(window.history.state, '', url);
+}
+
+function readTopicsParam() {
+  const value = new URLSearchParams(window.location.search).get('temas');
+  if (!value || !/^\d{1,9}(,\d{1,9})*$/.test(value)) return [];
+  return [...new Set(value.split(',').map(Number))].filter((id) => id > 0).slice(0, 20);
+}
+
 function scrollIntoView(element) {
   element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -51,6 +66,7 @@ export function Hea({ darkMode }) {
     retry.current = () => loadFirstPage(nextFilter, nextTopics);
     setFilter(nextFilter);
     setTopicIds(nextTopics);
+    setTopicsParam(nextTopics);
     setStatus('loading');
     setMoreError(false);
     try {
@@ -75,6 +91,7 @@ export function Hea({ darkMode }) {
         if (id !== requestId.current) return;
         setFilter({ year: context.year, month: context.month });
         setTopicIds([]);
+        setTopicsParam([]);
         setItems(context.items);
         setNextCursor(context.nextCursor);
         setStatus('ready');
@@ -110,7 +127,7 @@ export function Hea({ darkMode }) {
 
     const postParam = new URLSearchParams(window.location.search).get('post');
     if (postParam && /^\d+$/.test(postParam)) openPost(Number(postParam));
-    else loadFirstPage(null);
+    else loadFirstPage(null, readTopicsParam());
   }, [loadFirstPage, openPost]);
 
   useEffect(() => {
