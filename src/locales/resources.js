@@ -161,6 +161,7 @@ export const resources = {
             hea: {
                 title: "HEA",
                 subtitle: "Hoje Eu Aprendi: anotações curtas sobre o que aprendo a cada dia.",
+                note: "Criei o HEA em novembro de 2026 e fui preenchendo com anotações antigas dos meus cadernos e blocos de notas, por isso alguns posts têm datas anteriores.",
                 loadMore: "Ver mais",
                 loading: "Carregando posts...",
                 empty: "Nenhum post por aqui ainda.",
@@ -351,6 +352,7 @@ export const resources = {
             hea: {
                 title: "TIL",
                 subtitle: "Today I Learned: short notes about what I learn each day.",
+                note: "I created TIL in November 2026 and filled it with older notes from my notebooks and notepads, which is why some posts have earlier dates.",
                 loadMore: "See more",
                 loading: "Loading posts...",
                 empty: "No posts here yet.",
@@ -542,6 +544,7 @@ export const resources = {
             hea: {
                 title: "HA",
                 subtitle: "Hoy Aprendí: notas cortas sobre lo que aprendo cada día.",
+                note: "Creé HA en noviembre de 2026 y lo fui llenando con notas antiguas de mis cuadernos y libretas, por eso algunas publicaciones tienen fechas anteriores.",
                 loadMore: "Ver más",
                 loading: "Cargando publicaciones...",
                 empty: "Todavía no hay publicaciones.",
@@ -730,6 +733,7 @@ export const resources = {
             hea: {
                 title: "今天学到",
                 subtitle: "记录我每天学到的小知识。",
+                note: "我在2026年11月创建了这个栏目，并陆续加入了笔记本和便签里的旧笔记，所以有些文章的日期更早。",
                 loadMore: "查看更多",
                 loading: "正在加载...",
                 empty: "暂时还没有内容。",
