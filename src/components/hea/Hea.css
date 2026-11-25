@@ -73,6 +73,21 @@
     color: #4b5563;
 }
 
+.hea-note {
+    font-size: 0.95rem;
+    max-width: 40rem;
+    margin: 0.6rem auto 0;
+    line-height: 1.5;
+}
+
+.hea-note.dark {
+    color: #9ca3af;
+}
+
+.hea-note.light {
+    color: #6b7280;
+}
+
 /* Layout */
 .hea-layout {
     display: flex;
