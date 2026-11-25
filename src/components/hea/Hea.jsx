@@ -257,6 +257,7 @@ export function Hea({ darkMode }) {
         <header className="hea-header">
           <h2 className={`hea-title ${theme}`}>{t('hea.title')}</h2>
           <p className={`hea-subtitle ${theme}`}>{t('hea.subtitle')}</p>
+          <p className={`hea-note ${theme}`}>{t('hea.note')}</p>
         </header>
 
         {/* Below 1100px the topic button sits above the date toggle, so the dates keep their own button. */}
