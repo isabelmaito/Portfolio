@@ -3,6 +3,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import avatarSrc from '../../assets/Foto_profile2.jpeg';
 import { contentLang, formatFullDate, textIn } from '../../utils/heaDates.js';
+import { RichText } from '../RichText.jsx';
 
 export function postElementId(postId) {
   return `hea-post-${postId}`;
@@ -85,7 +86,7 @@ function HeaPostCard({ item, darkMode, highlighted, onShare, selectedTopics = []
         </div>
         {/* Below 1100px the avatar sits inside the card, sized to the date + title, so the topics get their own line. */}
         <HeaTopics className="hea-topics-below" {...topicProps} />
-        <p className="hea-card-body">{textIn(post.body, lang)}</p>
+        <RichText className="hea-card-body" source={textIn(post.body, lang)} />
 
         {post.replies.length > 0 && (
           <ol className="hea-thread" aria-label={t('hea.thread')}>
@@ -94,7 +95,7 @@ function HeaPostCard({ item, darkMode, highlighted, onShare, selectedTopics = []
                 <time className="hea-date" dateTime={reply.repliedOn}>
                   {formatFullDate(reply.repliedOn, i18n.language)}
                 </time>
-                <p className="hea-card-body">{textIn(reply.body, lang)}</p>
+                <RichText className="hea-card-body" source={textIn(reply.body, lang)} />
               </li>
             ))}
           </ol>

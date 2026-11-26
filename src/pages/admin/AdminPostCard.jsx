@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { RichText } from '../../components/RichText.jsx';
 import { formatFullDate } from '../../utils/heaDates.js';
 import { PostForm, ReplyForm } from './PostForm.jsx';
 
@@ -34,7 +35,7 @@ function AdminReply({ reply, minDate, onUpdateReply, onDeleteReply }) {
       <time className="admin-date" dateTime={reply.repliedOn}>
         {formatFullDate(reply.repliedOn, 'pt-BR')}
       </time>
-      <p className="admin-text">{reply.body.pt}</p>
+      <RichText className="admin-text" source={reply.body.pt} />
       <div className="admin-card-actions">
         <button type="button" className="admin-link-button" onClick={() => setEditing(true)}>
           Editar
@@ -94,7 +95,7 @@ export function AdminPostCard({
             )}
           </div>
           <h2 className="admin-post-title">{post.title.pt}</h2>
-          <p className="admin-text">{post.body.pt}</p>
+          <RichText className="admin-text" source={post.body.pt} />
 
           <details className="admin-translations">
             <summary>Ver traduções</summary>
@@ -103,7 +104,7 @@ export function AdminPostCard({
                 <span className="admin-translation-lang">{label}</span>
                 <div>
                   <strong>{post.title[lang]}</strong>
-                  <p className="admin-text">{post.body[lang]}</p>
+                  <RichText className="admin-text" source={post.body[lang]} />
                 </div>
               </div>
             ))}
