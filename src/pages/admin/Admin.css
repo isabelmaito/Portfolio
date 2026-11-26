@@ -566,3 +566,115 @@
         display: none;
     }
 }
+
+/* Post body editor (RichEditor.jsx): toolbar on top of the textarea. */
+.rich-editor {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #374151;
+    border-radius: 0.6rem;
+    background-color: var(--bg-primary);
+}
+
+.rich-editor:focus-within {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25);
+}
+
+.admin-field .rich-editor textarea,
+.admin-field .rich-editor textarea:focus {
+    border: 0;
+    border-radius: 0 0 0.6rem 0.6rem;
+    box-shadow: none;
+    background: transparent;
+}
+
+.rich-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.35rem;
+    border-bottom: 1px solid #374151;
+}
+
+.rich-tool {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* 40px: easy to hit with a thumb on the phone. */
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.5rem;
+    border: 0;
+    border-radius: 0.5rem;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #c084fc;
+    background: transparent;
+    cursor: pointer;
+}
+
+.rich-tool:hover:not(:disabled),
+.rich-tool[aria-pressed='true'] {
+    background-color: rgba(168, 85, 247, 0.18);
+}
+
+.rich-tool:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.rich-tool-text {
+    gap: 0.35rem;
+    margin-left: auto;
+}
+
+/* On a phone the six tools and the preview fit in one line with the eye icon alone. */
+@media (max-width: 480px) {
+    .rich-tool-label {
+        display: none;
+    }
+
+    .rich-toolbar {
+        gap: 0.1rem;
+    }
+
+    .rich-tool {
+        min-width: 2.2rem;
+        padding: 0 0.3rem;
+    }
+}
+
+.rich-panel {
+    padding: 0.5rem;
+    border-bottom: 1px solid #374151;
+}
+
+.rich-link-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.rich-link-panel input {
+    flex: 1 1 12rem;
+}
+
+.rich-link-panel .admin-error {
+    flex-basis: 100%;
+}
+
+.rich-panel em-emoji-picker {
+    width: 100%;
+    max-width: 24rem;
+    height: 22rem;
+}
+
+.rich-preview {
+    min-height: 7.5rem;
+    padding: 0.65rem 0.8rem;
+    font-weight: 400;
+    font-size: 1rem;
+}

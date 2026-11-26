@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { BODY_MAX, TITLE_MAX, charLength, todayIso } from '../../utils/heaDates.js';
+import { visibleLength } from '../../utils/richText.js';
+import { RichEditor } from './RichEditor.jsx';
 import { TopicPicker } from './TopicPicker.jsx';
 
 function CharCounter({ value, max }) {
@@ -20,7 +22,7 @@ export function PostForm({ initial, topics, onCreateTopic, submitLabel, onSubmit
   const [submitting, setSubmitting] = useState(false);
 
   const invalid =
-    !title.trim() || !body.trim() || !learnedOn || charLength(title) > TITLE_MAX || charLength(body) > BODY_MAX;
+    !title.trim() || !body.trim() || !learnedOn || charLength(title) > TITLE_MAX || visibleLength(body) > BODY_MAX;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -57,12 +59,7 @@ export function PostForm({ initial, topics, onCreateTopic, submitLabel, onSubmit
         </label>
       </div>
 
-      <label className="admin-field">
-        <span>
-          O que você aprendeu? <CharCounter value={body} max={BODY_MAX} />
-        </span>
-        <textarea rows={5} value={body} onChange={(event) => setBody(event.target.value)} required />
-      </label>
+      <RichEditor label="O que você aprendeu?" value={body} onChange={setBody} max={BODY_MAX} />
 
       <TopicPicker topics={topics} value={topicIds} onChange={setTopicIds} onCreate={onCreateTopic} />
 
@@ -96,7 +93,7 @@ export function ReplyForm({ initial, minDate, submitLabel, onSubmit, onCancel })
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  const invalid = !body.trim() || !repliedOn || charLength(body) > BODY_MAX;
+  const invalid = !body.trim() || !repliedOn || visibleLength(body) > BODY_MAX;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -114,12 +111,9 @@ export function ReplyForm({ initial, minDate, submitLabel, onSubmit, onCancel })
   return (
     <form className="admin-form admin-reply-form" onSubmit={handleSubmit}>
       <div className="admin-form-row">
-        <label className="admin-field admin-field-grow">
-          <span>
-            Continuação <CharCounter value={body} max={BODY_MAX} />
-          </span>
-          <textarea rows={3} value={body} onChange={(event) => setBody(event.target.value)} required autoFocus />
-        </label>
+        <div className="admin-field-grow">
+          <RichEditor label="Continuação" value={body} onChange={setBody} max={BODY_MAX} rows={3} autoFocus />
+        </div>
         <label className="admin-field">
           <span>Data</span>
           <input
