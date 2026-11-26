@@ -70,7 +70,8 @@ export const heaApi = {
     logout: () => request('/api/auth/logout', { method: 'POST', auth: true }),
     me: () => request('/api/auth/me', { auth: true }),
 
-    adminFeed: (cursor) => request(`/api/admin/feed${query({ cursor })}`, { auth: true }),
+    adminFeed: (cursor, { year, month, topics } = {}) =>
+        request(`/api/admin/feed${query({ cursor, year, month, topics: topics?.join(',') })}`, { auth: true }),
     createPost: (data) => request('/api/admin/posts', { method: 'POST', body: data, auth: true }),
     updatePost: (id, data) => request(`/api/admin/posts/${id}`, { method: 'PUT', body: data, auth: true }),
     deletePost: (id) => request(`/api/admin/posts/${id}`, { method: 'DELETE', auth: true }),
