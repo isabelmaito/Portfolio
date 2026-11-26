@@ -1,0 +1,88 @@
+.rich-text strong {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.rich-text a {
+    color: var(--accent-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.rich-text code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--accent-primary) 12%, transparent);
+}
+
+/* Sized like a letter, so it sits in the line of text. The gophers are pixel art: keep the pixels sharp. */
+.rich-emoji {
+    display: inline-block;
+    height: 1.4em;
+    width: auto;
+    vertical-align: -0.3em;
+    image-rendering: pixelated;
+}
+
+/* One file serves every screen. The frame never goes past the text column: standing (4:5) on
+   a phone, lying down (16:9) on a computer. The photo is always shown whole; a blurred copy of
+   itself fills the rest of the frame (same file, nothing extra to download). */
+.rich-photo {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    margin: 0.75rem 0;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #111827;
+    cursor: zoom-in;
+}
+
+.rich-photo::before {
+    content: '';
+    position: absolute;
+    inset: -24px;
+    background: var(--photo) center / cover no-repeat;
+    filter: blur(24px) brightness(0.55);
+}
+
+.rich-photo img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (min-width: 768px) {
+    .rich-photo {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+.rich-photo-dialog {
+    max-width: 100vw;
+    max-height: 100vh;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-out;
+}
+
+.rich-photo-dialog::backdrop {
+    background: rgb(0 0 0 / 85%);
+}
+
+.rich-photo-dialog img {
+    display: block;
+    max-width: 96vw;
+    max-height: 92vh;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+}
