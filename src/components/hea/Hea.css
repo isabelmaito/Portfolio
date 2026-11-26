@@ -511,7 +511,9 @@
     background-color: var(--bubble-bg);
 }
 
-@media (max-width: 1099px) {
+/* Phones only: the avatar moves inside the card so the text keeps the full width.
+   From 768px (tablet) up, it stays outside with the speech-bubble tail. */
+@media (max-width: 767px) {
     .hea-post-row {
         grid-template-columns: minmax(0, 1fr);
     }

@@ -1,3 +1,8 @@
+/* The body used to be a <p>; keep the site's paragraph spacing (index.css p { line-height: 1.6 }). */
+.rich-text {
+    line-height: 1.6;
+}
+
 .rich-text strong {
     font-weight: 700;
     color: var(--text-primary);
