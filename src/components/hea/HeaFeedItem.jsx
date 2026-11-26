@@ -84,7 +84,7 @@ function HeaPostCard({ item, darkMode, highlighted, onShare, selectedTopics = []
             <h3 className="hea-card-title">{textIn(post.title, lang)}</h3>
           </div>
         </div>
-        {/* Below 1100px the avatar sits inside the card, sized to the date + title, so the topics get their own line. */}
+        {/* Below 1100px the topics get their own line; below 768px the avatar also moves inside the card. */}
         <HeaTopics className="hea-topics-below" {...topicProps} />
         <RichText className="hea-card-body" source={textIn(post.body, lang)} />
 
