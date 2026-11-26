@@ -1,17 +1,19 @@
-import { Bold, Code, Eye, Italic, Link, Pencil } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { Bold, Code, Eye, Italic, Link, Pencil, Smile } from 'lucide-react';
+import { Suspense, lazy, useRef, useState } from 'react';
 import { RichText } from '../../components/RichText.jsx';
 import { visibleLength } from '../../utils/richText.js';
+
+const EmojiPicker = lazy(() => import('./EmojiPicker.jsx'));
 
 const HTTPS_URL = /^https:\/\/[^\s)]+$/;
 
 /**
  * The post body field: a textarea plus buttons that write the format the site reads
- * (utils/richText.js): **bold**, *italic*, `code` and [text](https://...).
+ * (utils/richText.js): **bold**, *italic*, `code`, [text](https://...) and emojis.
  */
 export function RichEditor({ label, value, onChange, max, rows = 5, autoFocus = false }) {
   const textareaRef = useRef(null);
-  const [panel, setPanel] = useState(null); // 'link' | null
+  const [panel, setPanel] = useState(null); // 'link' | 'emoji' | null
   const [linkUrl, setLinkUrl] = useState('');
   const [linkError, setLinkError] = useState('');
   const [preview, setPreview] = useState(false);
@@ -57,11 +59,17 @@ export function RichEditor({ label, value, onChange, max, rows = 5, autoFocus = 
     setPanel(null);
   };
 
+  const insertEmoji = (emoji) => {
+    replaceSelection(() => ({ text: emoji }));
+    setPanel(null);
+  };
+
   const tools = [
     { icon: Bold, title: 'Negrito', onClick: () => wrap('**', 'negrito') },
     { icon: Italic, title: 'Itálico', onClick: () => wrap('*', 'itálico') },
     { icon: Code, title: 'Código', onClick: () => wrap('`', 'código') },
     { icon: Link, title: 'Link', onClick: () => togglePanel('link'), pressed: panel === 'link' },
+    { icon: Smile, title: 'Emoji', onClick: () => togglePanel('emoji'), pressed: panel === 'emoji' },
   ];
 
   return (
@@ -119,6 +127,14 @@ export function RichEditor({ label, value, onChange, max, rows = 5, autoFocus = 
               Inserir
             </button>
             {linkError && <p className="admin-error">{linkError}</p>}
+          </div>
+        )}
+
+        {panel === 'emoji' && (
+          <div className="rich-panel">
+            <Suspense fallback={<p className="admin-muted">Carregando emojis...</p>}>
+              <EmojiPicker onSelect={insertEmoji} />
+            </Suspense>
           </div>
         )}
 
