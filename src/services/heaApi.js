@@ -40,6 +40,24 @@ function query(params) {
     return text ? `?${text}` : '';
 }
 
+/** Sends a photo already shrinked to WebP (utils/photoResize.js); returns { url, width, height }. */
+async function uploadPhoto(blob) {
+    let response;
+    try {
+        response = await fetch(`${API_URL}/api/admin/photos`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'image/webp' },
+            body: blob,
+        });
+    } catch {
+        throw new ApiError('Sem conexão com o servidor', 0);
+    }
+    const data = await response.json().catch(() => null);
+    if (!response.ok) throw new ApiError(data?.error || `Erro ${response.status}`, response.status);
+    return data;
+}
+
 export const heaApi = {
     feed: ({ cursor, year, month, topics, signal } = {}) =>
         request(`/api/posts${query({ cursor, year, month, topics: topics?.join(',') })}`, { signal }),
@@ -65,4 +83,5 @@ export const heaApi = {
     createTopic: (name) => request('/api/admin/topics', { method: 'POST', body: { name }, auth: true }),
     renameTopic: (id, name) => request(`/api/admin/topics/${id}`, { method: 'PUT', body: { name }, auth: true }),
     deleteTopic: (id) => request(`/api/admin/topics/${id}`, { method: 'DELETE', auth: true }),
+    uploadPhoto,
 };

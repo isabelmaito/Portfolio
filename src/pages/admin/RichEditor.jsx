@@ -1,7 +1,9 @@
-import { Bold, Code, Eye, Italic, Link, Pencil, Smile } from 'lucide-react';
+import { Bold, Code, Eye, Image, Italic, Link, Pencil, Smile } from 'lucide-react';
 import { Suspense, lazy, useRef, useState } from 'react';
 import { RichText } from '../../components/RichText.jsx';
-import { visibleLength } from '../../utils/richText.js';
+import { heaApi } from '../../services/heaApi.js';
+import { formatBytes, shrinkPhoto } from '../../utils/photoResize.js';
+import { IMAGES_PER_TEXT_MAX, imageUrls, visibleLength } from '../../utils/richText.js';
 
 const EmojiPicker = lazy(() => import('./EmojiPicker.jsx'));
 
@@ -9,16 +11,19 @@ const HTTPS_URL = /^https:\/\/[^\s)]+$/;
 
 /**
  * The post body field: a textarea plus buttons that write the format the site reads
- * (utils/richText.js): **bold**, *italic*, `code`, [text](https://...) and emojis.
+ * (utils/richText.js): **bold**, *italic*, `code`, [text](https://...), emojis and photos.
  */
 export function RichEditor({ label, value, onChange, max, rows = 5, autoFocus = false }) {
   const textareaRef = useRef(null);
+  const fileRef = useRef(null);
   const [panel, setPanel] = useState(null); // 'link' | 'emoji' | null
   const [linkUrl, setLinkUrl] = useState('');
   const [linkError, setLinkError] = useState('');
+  const [photoStatus, setPhotoStatus] = useState(null); // { busy, text, error }
   const [preview, setPreview] = useState(false);
 
   const length = visibleLength(value);
+  const photoCount = imageUrls(value).length;
 
   // Replaces the selection; the new text keeps `select` (start/end inside it) selected.
   const replaceSelection = (build) => {
@@ -64,12 +69,37 @@ export function RichEditor({ label, value, onChange, max, rows = 5, autoFocus = 
     setPanel(null);
   };
 
+  const sendPhoto = async (event) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file) return;
+    setPanel(null);
+    setPhotoStatus({ busy: true, text: 'Reduzindo a foto...' });
+    try {
+      const photo = await shrinkPhoto(file);
+      setPhotoStatus({ busy: true, text: 'Enviando a foto...' });
+      const { url } = await heaApi.uploadPhoto(photo.blob);
+      replaceSelection(() => ({ text: `\n![](${url})\n`, select: [3, 3] }));
+      setPhotoStatus({
+        text: `Foto pronta: ${formatBytes(photo.originalBytes)} → ${formatBytes(photo.blob.size)}. Se quiser, escreva uma descrição dentro dos colchetes [ ].`,
+      });
+    } catch (error) {
+      setPhotoStatus({ error: true, text: error.message });
+    }
+  };
+
   const tools = [
     { icon: Bold, title: 'Negrito', onClick: () => wrap('**', 'negrito') },
     { icon: Italic, title: 'Itálico', onClick: () => wrap('*', 'itálico') },
     { icon: Code, title: 'Código', onClick: () => wrap('`', 'código') },
     { icon: Link, title: 'Link', onClick: () => togglePanel('link'), pressed: panel === 'link' },
     { icon: Smile, title: 'Emoji', onClick: () => togglePanel('emoji'), pressed: panel === 'emoji' },
+    {
+      icon: Image,
+      title: photoCount >= IMAGES_PER_TEXT_MAX ? `Máximo de ${IMAGES_PER_TEXT_MAX} fotos` : 'Foto',
+      onClick: () => fileRef.current?.click(),
+      disabled: photoCount >= IMAGES_PER_TEXT_MAX || photoStatus?.busy,
+    },
   ];
 
   return (
@@ -153,6 +183,12 @@ export function RichEditor({ label, value, onChange, max, rows = 5, autoFocus = 
         )}
       </div>
 
+      <input ref={fileRef} type="file" accept="image/*" hidden onChange={sendPhoto} />
+      {photoStatus && (
+        <p className={photoStatus.error ? 'admin-error' : 'admin-muted'} role="status">
+          {photoStatus.text}
+        </p>
+      )}
     </div>
   );
 }
