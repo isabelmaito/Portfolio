@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logoHorizontalBranco from '../../assets/logoHorizontalBranco.png';
 import { heaApi } from '../../services/heaApi.js';
+import { AdminHistoryFilters, describePeriod, periodToQuery } from './AdminHistoryFilters.jsx';
 import { AdminPostCard } from './AdminPostCard.jsx';
 import { PostForm } from './PostForm.jsx';
 import { TopicManager } from './TopicManager.jsx';
@@ -26,6 +27,10 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [topics, setTopics] = useState([]);
+  const [calendar, setCalendar] = useState([]);
+  const [filters, setFilters] = useState({ period: '', topicIds: [] });
+  const filtersRef = useRef(filters);
+  const requestRef = useRef(0);
   const loadingRef = useRef(false);
   const sentinelRef = useRef(null);
 
@@ -40,14 +45,19 @@ export default function AdminDashboard() {
     [navigate],
   );
 
+  // A new first page (cursor null) always wins: an older request that answers later is ignored.
   const loadPage = useCallback(
     async (cursor) => {
-      if (loadingRef.current) return;
+      if (cursor && loadingRef.current) return;
+      const request = ++requestRef.current;
+      const { period, topicIds } = filtersRef.current;
       loadingRef.current = true;
       setLoading(true);
       setError('');
+      if (!cursor) setPosts([]);
       try {
-        const page = await heaApi.adminFeed(cursor);
+        const page = await heaApi.adminFeed(cursor, { ...periodToQuery(period), topics: topicIds });
+        if (request !== requestRef.current) return;
         setPosts((current) => {
           const base = cursor ? current : [];
           const seen = new Set(base.map((post) => post.id));
@@ -56,18 +66,35 @@ export default function AdminDashboard() {
         setNextCursor(page.nextCursor);
         setHasLoaded(true);
       } catch (requestError) {
+        if (request !== requestRef.current) return;
         if (requestError.status === 401) {
           navigate('/admin/login', { replace: true });
         } else {
           setError(requestError.message);
         }
       } finally {
-        loadingRef.current = false;
-        setLoading(false);
+        if (request === requestRef.current) {
+          loadingRef.current = false;
+          setLoading(false);
+        }
       }
     },
     [navigate],
   );
+
+  const changeFilters = (next) => {
+    filtersRef.current = next;
+    setFilters(next);
+    loadPage(null);
+  };
+
+  // Month counts for the period filter; they change when a post is created, moved or deleted.
+  const loadCalendar = useCallback(() => {
+    heaApi
+      .calendar()
+      .then(({ months }) => setCalendar(months))
+      .catch(() => {});
+  }, []);
 
   // Topic counts change whenever a post gains or loses a topic, so this reloads after each save.
   const loadTopics = useCallback(async () => {
@@ -88,12 +115,13 @@ export default function AdminDashboard() {
         setAuthChecked(true);
         loadPage(null);
         loadTopics();
+        loadCalendar();
       })
       .catch(() => active && navigate('/admin/login', { replace: true }));
     return () => {
       active = false;
     };
-  }, [loadPage, loadTopics, navigate]);
+  }, [loadPage, loadTopics, loadCalendar, navigate]);
 
   useEffect(() => {
     const sentinel = sentinelRef.current;
@@ -124,6 +152,7 @@ export default function AdminDashboard() {
       return;
     }
     loadTopics();
+    loadCalendar();
     await loadPage(null);
   };
 
@@ -132,6 +161,7 @@ export default function AdminDashboard() {
       const { post } = await heaApi.updatePost(id, data);
       replacePost(post);
       loadTopics();
+      loadCalendar();
     } catch (requestError) {
       handleError(requestError);
     }
@@ -143,6 +173,7 @@ export default function AdminDashboard() {
       await heaApi.deletePost(id);
       setPosts((current) => current.filter((post) => post.id !== id));
       loadTopics();
+      loadCalendar();
     } catch (requestError) {
       if (requestError.status === 401) return handleError(requestError);
       window.alert(requestError.message);
@@ -216,6 +247,12 @@ export default function AdminDashboard() {
     await Promise.all([loadTopics(), loadPage(null)]);
   };
 
+  const filtering = Boolean(filters.period) || filters.topicIds.length > 0;
+  const filterTopicNames = topics
+    .filter((topic) => filters.topicIds.includes(topic.id))
+    .map((topic) => topic.name.pt)
+    .join(' ou ');
+
   const handleLogout = async () => {
     await heaApi.logout().catch(() => {});
     navigate('/admin/login', { replace: true });
@@ -260,6 +297,20 @@ export default function AdminDashboard() {
         <section className="admin-history" aria-label="Histórico de posts">
           <h2 className="admin-section-title">Histórico</h2>
 
+          <AdminHistoryFilters calendar={calendar} topics={topics} filters={filters} onChange={changeFilters} />
+          {filtering && hasLoaded && !loading && (
+            <p className="admin-muted admin-filter-summary" role="status">
+              {posts.length === 0
+                ? 'Nenhum post com esses filtros.'
+                : `Posts ${[
+                    filters.period && `de ${describePeriod(filters.period)}`,
+                    filters.topicIds.length > 0 && `com ${filterTopicNames}`,
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}${nextCursor ? '' : ` (${posts.length})`}`}
+            </p>
+          )}
+
           {posts.map((post) => (
             <AdminPostCard
               key={post.id}
@@ -274,7 +325,9 @@ export default function AdminDashboard() {
             />
           ))}
 
-          {hasLoaded && posts.length === 0 && <p className="admin-muted">Nenhum post ainda. Que tal o primeiro?</p>}
+          {hasLoaded && !filtering && posts.length === 0 && (
+            <p className="admin-muted">Nenhum post ainda. Que tal o primeiro?</p>
+          )}
           {loading && <p className="admin-muted admin-center">Carregando...</p>}
           {error && (
             <div className="admin-center">

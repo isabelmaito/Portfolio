@@ -678,3 +678,50 @@
     font-weight: 400;
     font-size: 1rem;
 }
+
+/* History filters (AdminHistoryFilters.jsx): period and topics side by side, stacked on a phone. */
+.admin-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.admin-filter-period {
+    flex: 1 1 14rem;
+}
+
+.admin-filter-period select {
+    font: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    border: 1px solid #374151;
+    border-radius: 0.6rem;
+    padding: 0.65rem 0.8rem;
+    color-scheme: dark;
+}
+
+.admin-filter-topics {
+    flex: 1 1 14rem;
+    position: relative;
+}
+
+.admin-filter-topics .hea-topic-menu {
+    margin-bottom: 0;
+}
+
+/* The site's menu brings its own heading; here the field label above it says "Temas". */
+.admin-filter-topics .hea-aside-title {
+    display: none;
+}
+
+.admin-filter-clear {
+    padding-bottom: 0.7rem;
+}
+
+.admin-filter-summary {
+    margin-bottom: 1rem;
+}
